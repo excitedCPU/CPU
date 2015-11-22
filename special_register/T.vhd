@@ -1,10 +1,10 @@
 library IEEE;
 use IEEE.SED_LOGIC_1164.ALL;
 
-entity controlUnit is
-end controlUnit;
+entity T is
+end T;
 
-architecture behavioral of controlUnit is
+architecture behavioral of T is
 
 begin
 

@@ -1,10 +1,10 @@
 library IEEE;
 use IEEE.SED_LOGIC_1164.ALL;
 
-entity controlUnit is
-end controlUnit;
+entity IF_manager is
+end IF_manager;
 
-architecture behavioral of controlUnit is
+architecture behavioral of IF_manager is
 
 begin
 

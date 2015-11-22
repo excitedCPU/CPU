@@ -1,10 +1,10 @@
 library IEEE;
 use IEEE.SED_LOGIC_1164.ALL;
 
-entity controlUnit is
-end controlUnit;
+entity instructionRegister is
+end instructionRegister;
 
-architecture behavioral of controlUnit is
+architecture behavioral of instructionRegister is
 
 begin
 

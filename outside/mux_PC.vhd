@@ -1,10 +1,10 @@
 library IEEE;
 use IEEE.SED_LOGIC_1164.ALL;
 
-entity controlUnit is
-end controlUnit;
+entity mux_PC is
+end mux_PC;
 
-architecture behavioral of controlUnit is
+architecture behavioral of mux_PC is
 
 begin
 
