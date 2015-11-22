@@ -1,10 +1,10 @@
 library IEEE;
 use IEEE.SED_LOGIC_1164.ALL;
 
-entity SP is
-end SP;
+entity IH is
+end IH;
 
-architecture behavioral of SP is
+architecture behavioral of IH is
 
 begin
 
