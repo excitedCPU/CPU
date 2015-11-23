@@ -5,6 +5,11 @@ entity ID_manager is
 	port (
 		instruction: in std_logic_vector(15 downto 0);
 		updated_PC_in: in std_logic_vector(15 downto 0);
+		write_addr: in std_logic_vector(2 downto 0);
+		write_data: in std_logic_vector(15 downto 0);
+		register_write_enable: in std_logic;
+		control_clear_instruction: in std_logic;	--(from branch control)when its '1', instruction shall be set to allZero
+
 		branchOrJump: out std_logic_vector(2 downto 0);
 		desRegister: out std_logic_vector(1 downto 0);
 		ALUsrc1: out std_logic_vector(2 downto 0);
