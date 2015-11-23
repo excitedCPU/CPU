@@ -1,5 +1,5 @@
 library IEEE;
-use IEEE.SED_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.ALL;
 
 entity ID_manager is
 	port (
@@ -52,14 +52,14 @@ begin
 	Inst_commonRegister: commonRegister PORT MAP(
 		read_rx => instruction(10 downto 8),
 		read_ry => instruction(7 downto 5),
-		write_addr => ,
-		write_data => ,
-		write_enable => ,
-		read_result1 => ,
-		read_result2 => 
+		write_addr => write_addr,
+		write_data => write_data,
+		write_enable => register_write_enable,
+		read_result1 => register_result1,
+		read_result2 => register_result2
 	);
 	Inst_immediateExpansion: immediateExpansion PORT MAP(
-		instruction => ,
-		imm_exp_result => 
+		instruction => instruction,
+		imm_exp_result => imm_exp_result
 	);
 end architecture ; -- structural
