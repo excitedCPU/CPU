@@ -14,4 +14,13 @@ architecture behavioral of mux_wbData is
 
 begin
 
+process(control_memToReg, ALUresult, ramResult, result)
+begin
+	if control_memToReg = '0' then
+		result <= ALUresult;
+	elsif control_memToReg = '1' then
+		result <= ramResult;
+	end if;
+end process;
+
 end architecture ; -- behavioral

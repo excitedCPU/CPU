@@ -12,6 +12,7 @@ entity ME_manager is
 		ALUresult: in std_logic_vector(15 downto 0);
 		ram_addr: in std_logic_vector(15 downto 0);
 		desReg_in: in std_logic_vector(15 downto 0);
+		c_14: out std_logic;
 		desReg_out: out std_logic_vector(15 downto 0);
 		ram_result: out std_logic_vector(15 downto 0);
 		control_regWrite_out: out std_logic_vector(2 downto 0)
