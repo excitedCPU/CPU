@@ -24,3 +24,7 @@ architecture behavioral of controlUnit is
 begin
 
 end architecture ; -- behavioral
+
+package C_SIGNAL is
+	CONSTANT TEST_SIGNAL: std_logic_vector(2 downto 0) := "111";
+end C_SIGNAL;
