@@ -1,5 +1,5 @@
 library IEEE;
-use IEEE.SED_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.ALL;
 
 entity mux_wbData is
 	port (
@@ -14,7 +14,7 @@ architecture behavioral of mux_wbData is
 
 begin
 
-process(control_memToReg, ALUresult, ramResult, result)
+process(control_memToReg, ALUresult, ramResult)
 begin
 	if control_memToReg = '0' then
 		result <= ALUresult;
