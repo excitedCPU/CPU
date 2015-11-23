@@ -74,7 +74,7 @@ begin
 			when "00101" => --BNEZ
 				if (Rtarget = Instructor(10 downto 8)) then
 					Nop <= '1';
-					waitEnable <= '1''
+					waitEnable <= '1';
 				end if;
 
 			when "11101" =>	--CMP JR MFPC OR SRLV 
@@ -86,7 +86,7 @@ begin
 						end if;
 
 					when "00000" => --JR MFPC
-						if ((Rtarget = Instructor(10 downto 8)) and (Instructor(7 downto 5) = "000") then
+						if ((Rtarget = Instructor(10 downto 8)) and (Instructor(7 downto 5) = "000")) then
 							Nop <= '1';
 							waitEnable <= '1';
 						end if;
@@ -129,7 +129,7 @@ begin
 				end case;
 			
 			when "01111" => --MOVE
-				if (Rtarget = Instructor(7 downt 5)) then
+				if (Rtarget = Instructor(7 downto 5)) then
 					Nop <= '1';
 					waitEnable <= '1';
 				end if;
@@ -162,7 +162,7 @@ begin
  							waitEnable <= '1';
  						end if;
 
-					when others => NULL
+					when others => NULL;
 				end case;
 
 			when "01011" => --SLTUI
