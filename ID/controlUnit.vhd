@@ -14,7 +14,7 @@ entity controlUnit is
 		memToReg: out std_logic_vector(2 downto 0);
 		regWrite: out std_logic_vector(2 downto 0);
 		memWrite: out std_logic;
-		memRead: out std_logic;
+		memRead: out std_logic
 		);
 
 end controlUnit;
