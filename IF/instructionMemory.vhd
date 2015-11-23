@@ -1,15 +1,16 @@
 library IEEE;
-use IEEE.SED_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.ALL;
 
-entity instructionRegister is
+entity instructionMemory is
 	port (
 		pc: in std_logic_vector(15 downto 0);
 		instruction: out std_logic_vector(15 downto 0)
 		);
-end instructionRegister;
+end instructionMemory;
 
-architecture behavioral of instructionRegister is
+architecture behavioral of instructionMemory is
 
 begin
+	
 
 end architecture ; -- behavioral
