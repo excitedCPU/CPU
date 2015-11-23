@@ -20,3 +20,4 @@ xst/
 iseconfig/
 isim/
 IF/testbench/
+*.vhi
