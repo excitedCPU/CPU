@@ -15,7 +15,7 @@ end IF_ID;
 
 architecture behavioral of IF_ID is
 begin
-	process (clk, rst, from_riskCheck)
+	process (clk, rst)
 	begin
 		if rst = '1' then
 			updated_pc_out <= "0000000000000000"; --16bit
