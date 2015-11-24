@@ -21,7 +21,7 @@ begin
 			updated_pc_out <= "0000000000000000"; --16bit
 			instruction_out <= "0000000000000000"; --16bit
 		elsif clk'event and clk = '1' then
-			if (from_riskCheck = '1') then --'1' enable to write
+			if (from_riskCheck = '0') then --'0' enable to write
 				updated_pc_out <= updated_pc_in;
 				instruction_out <= instruction_in;
 			end if;
