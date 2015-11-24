@@ -1,5 +1,5 @@
 library IEEE;
-use IEEE.SED_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.ALL;
 
 entity riskCheck is
 port(
@@ -77,7 +77,7 @@ begin
 					waitEnable <= '1';
 				end if;
 
-			when "11101" =>	--CMP JR MFPC OR SRLV 
+			when "11101" =>	--CMP JR MFPC OR SRLV AND
 				case Instructor(4 downto 0) is
 					when "01010" => --CMP
 						if ((Rtarget = Instructor(10 downto 8)) or (Rtarget = Instructor(7 downto 5))) then
@@ -101,7 +101,13 @@ begin
 						if ((Rtarget = Instructor(10 downto 8)) or (Rtarget = Instructor(7 downto 5))) then
 							Nop <= '1';
 							waitEnable <= '1';
-						end if;												
+						end if;
+
+					when "01100" =>	--AND
+						if ((Rtarget = Instructor(10 downto 8)) or (Rtarget = Instructor(7 downto 5))) then
+							Nop <= '1';
+							waitEnable <= '1';
+						end if;						
 
 					when others => NULL;
 				end case;
@@ -130,12 +136,6 @@ begin
 			
 			when "01111" => --MOVE
 				if (Rtarget = Instructor(7 downto 5)) then
-					Nop <= '1';
-					waitEnable <= '1';
-				end if;
-
-			when "01100" => --MTSP
-				if (Rtarget = Instructor(10 downto 8)) then
 					Nop <= '1';
 					waitEnable <= '1';
 				end if;
