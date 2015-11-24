@@ -7,7 +7,7 @@ port(
 	ALUsrc2: in std_logic_vector(2 downto 0);
 	ME_ReqWrite: in std_logic_vector(2 downto 0);
 	WB_ReqWrite: in std_logic_vector(2 downto 0);
-	T_Enable: in std_logic_vector(2 downto 0);
+	T_Enable: in std_logic;
 
 	rx_addr: in std_logic_vector(2 downto 0);
 	ry_addr: in std_logic_vector(2 downto 0);
@@ -30,7 +30,7 @@ begin
 		Fsrc1 <= "00";
 		if (ALUsrc1 = "000") then
 
-			if (rx_addr = ME_target and ME_ReqWrite = "000")
+			if (rx_addr = ME_target and ME_ReqWrite = "000") then
 				Fsrc1 <= "01";
 			elsif (rx_addr = WB_target and WB_ReqWrite = "000") then
 				Fsrc1 <= "10";
@@ -60,7 +60,7 @@ begin
 		Fsrc2 <= "00";
 		if (ALUsrc2 = "000") then
 
-			if (ry_addr = ME_target and ME_ReqWrite = "000")
+			if (ry_addr = ME_target and ME_ReqWrite = "000") then 
 				Fsrc2 <= "01";
 			elsif (ry_addr = WB_target and WB_ReqWrite = "000") then
 				Fsrc2 <= "10";
@@ -91,7 +91,7 @@ begin
 		Fbranch <= "00";
 		if (T_Enable = '1') then
 			if (ME_ReqWrite = "001") then
-				Fbranch <= "01"
+				Fbranch <= "01";
 			elsif (WB_ReqWrite = "001") then
 				Fbranch <= "10";
 			end if;
@@ -102,5 +102,5 @@ begin
 				Fbranch <= "10";
 			end if;
 		end if;
-	end process
+	end process;
 end architecture ; -- behavioral

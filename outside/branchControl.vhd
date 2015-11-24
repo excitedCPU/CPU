@@ -3,13 +3,14 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity branchControl is
 port(
+	--debug: out std_logic_vector(4 downto 0);
 	rx: in std_logic_vector(15 downto 0);
-	T: in std_logic;
+	T: in std_logic_vector(15 downto 0);
 	ME_Value: in std_logic_vector(15 downto 0);
 	WB_Value: in std_logic_vector(15 downto 0);
 
 	BranchOrJump: in std_logic_vector(2 downto 0);
-	Fbranch: in std_logic_vector(2 downto 0);
+	Fbranch: in std_logic_vector(1 downto 0);
 
 	PC_Choose: out std_logic;
 	kill: out std_logic
@@ -19,9 +20,11 @@ end branchControl;
 architecture behavioral of branchControl is
 begin
 	process(rx, T, ME_Value, WB_Value, BranchOrJump, Fbranch)
-		signal tmp: std_logic_vector(15 downto 0);
-		signal zeros: std_logic_vector(15 downto 0) := "0000000000000000";
+		variable tmp: std_logic_vector(15 downto 0);
+		variable zeros: std_logic_vector(15 downto 0) := "0000000000000000";
 	begin
+		--debug(2 downto 0) <= BranchOrJump;
+		--debug(4 downto 3) <= Fbranch;
 		PC_Choose <= '0';
 		kill <= '0';
 
@@ -34,13 +37,15 @@ begin
 
 			case Fbranch is
 				when "00" =>
-					tmp <= rx;
+					tmp := rx;
 				when "01" =>
-					tmp <= ME_Value;
+					tmp := ME_Value;
 				when "10" =>
-					tmp <= WB_Value;
+					tmp := WB_Value;
 				when "11" =>
-					tmp <= rx;
+					tmp := rx;
+					
+				when others => null;
 			end case;
 
 			if ((tmp = zeros and BranchOrJump = "010") or (not (tmp = zeros) and BranchOrJump = "110")) then
@@ -52,13 +57,15 @@ begin
 
 			case Fbranch is
 				when "00" =>
-					tmp <= T;
+					tmp := T;
 				when "01" =>
-					tmp <= ME_Value;
+					tmp := ME_Value;
 				when "10" =>
-					tmp <= WB_Value;
+					tmp := WB_Value;
 				when "11" =>
-					tmp <= Tl
+					tmp := T;
+					
+				when others => null;
 			end case;
 
 			if ((tmp = zeros and BranchOrJump = "011") or (not (tmp = zeros) and BranchOrJump = "111")) then
