@@ -9,11 +9,11 @@ entity ME_manager is
 		control_memRead: in std_logic;
 		control_memWrite: in std_logic;
 		control_regWrite_in: in std_logic_vector(2 downto 0);
-		ALUresult: in std_logic_vector(15 downto 0);
+		ALUresult_in: in std_logic_vector(15 downto 0);
 		ram_addr: in std_logic_vector(15 downto 0);
 		desReg_in: in std_logic_vector(15 downto 0);
 		desReg_out: out std_logic_vector(15 downto 0);
-		ram_result: out std_logic_vector(15 downto 0);
+		result_out: out std_logic_vector(15 downto 0);
 		control_regWrite_out: out std_logic_vector(2 downto 0)
 		);
 end ME_manager;
@@ -33,18 +33,46 @@ architecture behavioral of ME_manager is
 			ram_out: out std_logic_vector(15 downto 0)
 		);		
 	end component;
+
+	component mux_wbData
+		port (
+			control_memToReg: in std_logic;
+			ALUresult: in std_logic_vector(15 downto 0);
+			ramResult: in std_logic_vector(15 downto 0);
+			result: out std_logic_vector(15 downto 0)
+		);
+	end component;
+
+
 	signal OE_L, WE_L: std_logic;
 	signal inout_signal: std_logic_vector(15 downto 0);
+	signal ramResult: std_logic_vector(15 downto 0);
 begin
-	myRam: ram PORT MAP (clk, rst, inout_signal, ram_addr, control_memRead, control_memWrite, OE_L, WE_L, ram_result);
+	Inst_ram: ram PORT MAP(
+		clk => clk,
+		rst => rst,
+		data => inout_signal,
+		addr => ram_addr,
+		read_enable => control_memRead,
+		write_enable => control_memWrite,
+		OE_L => OE_L,
+		WE_L => WE_L,
+		ram_out => ramResult
+	);
+	Inst_mux_wbData: mux_wbData PORT MAP(
+		control_memToReg => control_memToReg,
+		ALUresult => ALUresult_in,
+		ramResult => ramResult,
+		result => result_out
+	);
 
 	desReg_out <= desReg_in;
 	control_regWrite_out <= control_regWrite_in;
 	
-	process(control_memWrite)
+	process(control_memWrite, inout_signal, ALUresult_in)
 	begin
 		if control_memWrite = '1' then
-			inout_signal <= ALUresult;
+			inout_signal <= ALUresult_in;
 		end if;
 	end process;
 	
