@@ -45,7 +45,7 @@ begin
 		end case;
 	end process;
 
-	logic_control: process(current_status, data, addr, read_enable, write_enable)
+	logic_control: process(clk, current_status, data, addr, read_enable, write_enable)
 	begin
 		if clk'event and clk = '0' then
 			case current_status is

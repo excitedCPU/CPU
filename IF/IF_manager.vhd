@@ -33,8 +33,6 @@ architecture structural of IF_manager is
 		ram_out: out std_logic_vector(15 downto 0)
 		);
 	END COMPONENT;
-	signal set_read_enable: std_logic := '1';
-	signal set_write_unable: std_logic := '0';
 begin
 	Inst_adder: adder PORT MAP(
 		old_pc => old_pc,
@@ -45,8 +43,8 @@ begin
 		rst => rst,
 		data => "ZZZZZZZZZZZZZZZZ",
 		addr => old_pc,
-		read_enable => set_read_enable,
-		write_enable => set_write_unable,
+		read_enable => '1',
+		write_enable => '0',
 		OE_L => IM_OE_L,
 		WE_L => IM_WE_L,
 		ram_out => instruction
