@@ -8,14 +8,14 @@ entity ID_manager is
 		write_addr: in std_logic_vector(2 downto 0);
 		write_data: in std_logic_vector(15 downto 0);
 		register_write_enable: in std_logic;
-		control_clear_instruction: in std_logic;	--(from branch control)when its '1', instruction shall be set to allZero
+		control_clear_instruction: in std_logic;	--(from branch control)when its '1', instruction shall be set to Nop
 
 		branchOrJump: out std_logic_vector(2 downto 0);
 		desRegister: out std_logic_vector(1 downto 0);
 		ALUsrc1: out std_logic_vector(2 downto 0);
 		ALUsrc2: out std_logic_vector(2 downto 0);
 		ALUop: out std_logic_vector(3 downto 0);
-		memToReg: out std_logic_vector(2 downto 0);
+		memToReg: out std_logic;
 		regWrite: out std_logic_vector(2 downto 0);
 		memWrite: out std_logic;
 		memRead: out std_logic;
