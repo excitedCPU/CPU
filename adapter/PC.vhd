@@ -19,7 +19,7 @@ begin
 		if rst = '1' then
 			pc_out <= "0000000000000000"; --16bit
 		elsif clk'event and clk = '1' then
-			if from_riskCheck = '1' then
+			if from_riskCheck = '0' then --0 is enable
 				pc_out <= from_mux_pc;
 			end if;
 		end if;

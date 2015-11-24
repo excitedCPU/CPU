@@ -1,5 +1,5 @@
 library IEEE;
-use IEEE.SED_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.ALL;
 
 entity EX_ME is
 	port (
@@ -19,12 +19,11 @@ entity EX_ME is
 		from_branch_control_out: out std_logic;
 		desReg_out: out std_logic_vector(15 downto 0);
 		ram_addr_out: out std_logic_vector(15 downto 0);
-		ALUresult_out: out std_logic_vector(15 downto 0);
+		ALUresult_out: out std_logic_vector(15 downto 0)
 		);
 end EX_ME;
 
 architecture behavioral of EX_ME is
-
 begin
 
 end architecture ; -- behavioral

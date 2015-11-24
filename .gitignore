@@ -21,3 +21,5 @@ iseconfig/
 isim/
 IF/testbench/
 *.vhi
+*.spl
+*.sym
