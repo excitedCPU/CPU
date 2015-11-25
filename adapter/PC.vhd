@@ -16,7 +16,7 @@ architecture behavioral of PC is
 begin
 	process (clk, rst)
 	begin
-		if rst = '1' then
+		if rst = '0' then
 			pc_out <= "0000000000000000"; --16bit
 		elsif clk'event and clk = '1' then
 			if from_riskCheck = '0' then --0 is enable

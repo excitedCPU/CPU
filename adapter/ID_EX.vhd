@@ -56,7 +56,7 @@ begin
 
 	process(clk, rst)
 	begin
-		if rst = '1' then
+		if rst = '0' then
 			--all out signal set to zero
 			control_branchOrJump_out <= "000";
 			control_desRegister_out <= "00";
@@ -80,7 +80,7 @@ begin
 			from_instruction_4_2_out <= "000";
 			from_instruction_10_8_out <= "000";
 			
-		elsif clk'event and clk = '1' then
+		elsif clk'event and clk = '0' then
 			control_branchOrJump_out <= control_branchOrJump_in;
 			control_desRegister_out <= control_desRegister_in;
 			control_ALUsrc1_out <= control_ALUsrc1_in;

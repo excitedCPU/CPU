@@ -86,7 +86,7 @@ begin
 	end process;
 
 
-	out_T: process(T_Enable, ME_ReqWrite, WB_ReqWrite)
+	out_T: process(T_Enable, ME_ReqWrite, WB_ReqWrite, rx_addr, ME_target, WB_target)
 	begin
 		Fbranch <= "00";
 		if (T_Enable = '1') then

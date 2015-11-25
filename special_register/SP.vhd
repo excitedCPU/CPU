@@ -13,7 +13,7 @@ end SP;
 architecture behavioral of SP is
 	shared variable SP_register: std_logic_vector(15 downto 0);
 begin
-	process(regWrite)
+	process(regWrite, writeData)
 	begin
 		if (regWrite = "011") then
 			SP_register := writeData;

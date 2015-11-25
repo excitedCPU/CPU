@@ -14,7 +14,7 @@ architecture behavioral of IH is
 	shared variable IH_register: std_logic_vector(15 downto 0);
 begin
 
-	process(regWrite)
+	process(regWrite, writeData)
 	begin
 		if (regWrite = "010") then
 			IH_register := writeData;

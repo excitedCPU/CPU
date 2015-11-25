@@ -48,7 +48,7 @@ begin
 				when others => null;
 			end case;
 
-			if ((tmp = zeros and BranchOrJump = "010") or (not (tmp = zeros) and BranchOrJump = "110")) then
+			if ((tmp = "0000000000000000" and BranchOrJump = "010") or (not (tmp = "0000000000000000") and BranchOrJump = "110")) then
 				PC_Choose <= '1';
 				kill <= '1';
 			end if;
@@ -68,7 +68,7 @@ begin
 				when others => null;
 			end case;
 
-			if ((tmp = zeros and BranchOrJump = "011") or (not (tmp = zeros) and BranchOrJump = "111")) then
+			if ((tmp = "0000000000000000" and BranchOrJump = "011") or (not (tmp = "0000000000000000") and BranchOrJump = "111")) then
 				PC_Choose <= '1';
 				kill <= '1';
 			end if;
