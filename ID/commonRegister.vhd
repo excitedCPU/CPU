@@ -9,7 +9,7 @@ entity commonRegister is
 		read_ry: in std_logic_vector(2 downto 0);
 		write_addr: in std_logic_vector(2 downto 0);
 		write_data: in std_logic_vector(15 downto 0);
-		write_enable: in std_logic;
+		regWrite: in std_logic_vector(2 downto 0);
 		read_result1: out std_logic_vector(15 downto 0);
 		read_result2: out std_logic_vector(15 downto 0)
 		);
@@ -25,9 +25,9 @@ begin
 		read_result2 <= registers(to_integer(unsigned(read_ry)));
 	end process;
 	
-	writeRegister: process(write_addr, write_data, write_enable)
+	writeRegister: process(write_addr, write_data, regWrite)
 	begin
-	if write_enable = '1' then
+	if regWrite = "000" then
 		registers(to_integer(unsigned(write_addr))) <= write_data;
 	end if;
 	end process;
