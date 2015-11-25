@@ -19,7 +19,7 @@ begin
 	begin
 		if rst = '1' then
 			updated_pc_out <= "0000000000000000"; --16bit
-			instruction_out <= "0000000000000000"; --16bit
+			instruction_out <= "0000100000000000"; --16bit
 		elsif clk'event and clk = '1' then
 			if (from_riskCheck = '0') then --'0' enable to write
 				updated_pc_out <= updated_pc_in;
