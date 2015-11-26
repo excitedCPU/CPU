@@ -52,7 +52,9 @@ entity CPU_manager is
 	Ram2EN: out std_logic;
 	Ram2OE: out std_logic;
 	Ram2WE: out std_logic;
-	PC_out: out std_logic_vector(15 downto 0)
+	instruction_out: out std_logic_vector(15 downto 0);
+	DIGITAL_H: out std_logic_vector(6 downto 0);
+	DIGITAL_L: out std_logic_vector(6 downto 0)
 	);
 end CPU_manager;
 
@@ -330,6 +332,14 @@ architecture Behavioral of CPU_manager is
 		Rtarget_out : OUT std_logic_vector(2 downto 0)
 		);
 	END COMPONENT;
+	
+	COMPONENT translator
+	PORT (
+		input_bits: in std_logic_vector(7 downto 0);
+		H: out std_logic_vector(6 downto 0);
+		L: out std_logic_vector(6 downto 0)
+		);
+	END COMPONENT;
 
 	signal PC_PC: std_logic_vector(15 downto 0);
 	
@@ -424,7 +434,7 @@ architecture Behavioral of CPU_manager is
 begin
 	ToRam1_addr(17 downto 16) <= "00";
 	ToRam2_addr(17 downto 16) <= "00";
-	PC_out <= IF_PC;
+	instruction_out <= IF_instruction;
 
 	Inst_PC: PC PORT MAP(
 		clk => clk,
@@ -671,5 +681,12 @@ begin
 		data_result_out => ME_WB_Result,
 		Rtarget_out => ME_WB_Rtarget
 	);
+	
+	Inst_translator: translator PORT MAP(
+		input_bits => IF_PC(7 downto 0),
+		H => DIGITAL_H,
+		L => DIGITAL_L
+	);
+
 end Behavioral;
 
