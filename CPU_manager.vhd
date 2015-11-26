@@ -51,7 +51,8 @@ entity CPU_manager is
 	ToRam2_addr: out std_logic_vector(17 downto 0);
 	Ram2EN: out std_logic;
 	Ram2OE: out std_logic;
-	Ram2WE: out std_logic
+	Ram2WE: out std_logic;
+	PC_out: out std_logic_vector(15 downto 0)
 	);
 end CPU_manager;
 
@@ -419,9 +420,11 @@ architecture Behavioral of CPU_manager is
 	signal ME_WB_Result: std_logic_vector(15 downto 0);
 	signal ME_WB_regWrite: std_logic_vector(2 downto 0);
 	signal ME_WB_Rtarget: std_logic_vector(2 downto 0);
+	
 begin
 	ToRam1_addr(17 downto 16) <= "00";
-	ToRam1_addr(17 downto 16) <= "00";
+	ToRam2_addr(17 downto 16) <= "00";
+	PC_out <= IF_PC;
 
 	Inst_PC: PC PORT MAP(
 		clk => clk,
