@@ -17,10 +17,10 @@ architecture behavioral of IF_ID is
 begin
 	process (clk, rst)
 	begin
-		if rst = '1' then
+		if rst = '0' then
 			updated_pc_out <= "0000000000000000"; --16bit
-			instruction_out <= "0000000000000000"; --16bit
-		elsif clk'event and clk = '1' then
+			instruction_out <= "0000100000000000"; --16bit
+		elsif clk'event and clk = '0' then
 			if (from_riskCheck = '0') then --'0' enable to write
 				updated_pc_out <= updated_pc_in;
 				instruction_out <= instruction_in;

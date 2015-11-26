@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity EX_manager is
 	port (
-		control_branchOrJump: in std_logic_vector(2 downto 0);
+		--control_branchOrJump: in std_logic_vector(2 downto 0);
 		control_desRegister: in std_logic_vector(1 downto 0);
 		control_ALUsrc1: in std_logic_vector(2 downto 0);
 		control_ALUsrc2: in std_logic_vector(2 downto 0);
@@ -13,7 +13,7 @@ entity EX_manager is
 		control_memWrite: in std_logic;
 		control_memRead: in std_logic;
 		control_WC: in std_logic;
-		control_TE: in std_logic;
+		--control_TE: in std_logic;
 		from_pc: in std_logic_vector(15 downto 0);
 		register_read_result1: in std_logic_vector(15 downto 0);
 		register_read_result2: in std_logic_vector(15 downto 0);

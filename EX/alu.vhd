@@ -26,7 +26,7 @@ begin
 			when "0100" => --equal
 				if signed(ALUsrc1) = signed(ALUsrc2) then
 					result <= "0000000000000001"; --16bit
-				elsif signed(ALUsrc1) = signed(ALUsrc2) then
+				elsif signed(ALUsrc1) /= signed(ALUsrc2) then
 					result <= "0000000000000000"; --16bit
 				end if;
 			when "0110" => --OR 

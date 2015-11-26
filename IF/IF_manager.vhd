@@ -7,10 +7,20 @@ entity IF_manager is
 		rst: in std_logic;
 		old_pc: in std_logic_vector(15 downto 0);
 		new_pc: out std_logic_vector(15 downto 0);
-		instruction: out std_logic_vector(15 downto 0);
-		IM_OE_L: out std_logic;
-		IM_WE_L: out std_logic
-		);
+		Instruction: out std_logic_vector(15 downto 0);
+
+		write_enable: in std_logic;
+		write_Data: in std_logic_vector(15 downto 0);
+		target_Addr: in std_logic_vector(15 downto 0);
+
+		RAddr: in std_logic_vector(15 downto 0);
+		Ram2Data: inout std_logic_vector(15 downto 0);
+		ToRam2_addr: out std_logic_vector(15 downto 0);
+
+		Ram2EN: out std_logic;
+		Ram2OE: out std_logic;
+		Ram2WE: out std_logic
+	);
 end IF_manager;
 
 architecture structural of IF_manager is
@@ -20,33 +30,42 @@ architecture structural of IF_manager is
 		new_pc : OUT std_logic_vector(15 downto 0)
 		);
 	END COMPONENT;
-	COMPONENT ram
+	COMPONENT Instruction_MEM
 	PORT(
-		clk: in std_logic;
-		rst: in std_logic;
-		data: inout std_logic_vector(15 downto 0);
-		addr: in std_logic_vector(15 downto 0);
-		read_enable: in std_logic;
-		write_enable: in std_logic;
-		OE_L: out std_logic;
-		WE_L: out std_logic;
-		ram_out: out std_logic_vector(15 downto 0)
+		clk : IN std_logic;
+		rst : IN std_logic;
+		write_Enable : IN std_logic;
+		write_Data : IN std_logic_vector(15 downto 0);
+		target_Addr : IN std_logic_vector(15 downto 0);
+		RAddr : IN std_logic_vector(15 downto 0);    
+		data : INOUT std_logic_vector(15 downto 0);      
+		Rdata : OUT std_logic_vector(15 downto 0);
+		ToRam_addr : OUT std_logic_vector(15 downto 0);
+		IRamEN : OUT std_logic;
+		IRamOE : OUT std_logic;
+		IRamWE : OUT std_logic
 		);
 	END COMPONENT;
 begin
+
 	Inst_adder: adder PORT MAP(
 		old_pc => old_pc,
 		new_pc => new_pc
 	);
-	Inst_ram: ram PORT MAP(
+
+	Inst_Instruction_MEM: Instruction_MEM PORT MAP(
 		clk => clk,
 		rst => rst,
-		data => "ZZZZZZZZZZZZZZZZ",
-		addr => old_pc,
-		read_enable => '1',
-		write_enable => '0',
-		OE_L => IM_OE_L,
-		WE_L => IM_WE_L,
-		ram_out => instruction
+		write_Enable => write_Enable,
+		write_Data => write_Data,
+		target_Addr => target_Addr,
+		RAddr => RAddr,
+		Rdata => Instruction,
+		data => Ram2Data,
+		ToRam_addr => ToRam2_addr,
+		IRamEN => Ram2EN,
+		IRamOE => Ram2OE,
+		IRamWE => Ram2WE
 	);
+
 end architecture ; -- structural
