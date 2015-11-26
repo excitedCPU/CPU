@@ -18,7 +18,7 @@ architecture behavioral of ME_WB is
 begin
 	process(clk, rst)
 	begin
-		if rst = '1' then
+		if rst = '0' then --FIX
 			regWrite_out <= "100";
 			data_result_out <= "0000000000000000";
 			Rtarget_out <= "000";

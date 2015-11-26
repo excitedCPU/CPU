@@ -11,16 +11,11 @@ port(
 end T;
 
 architecture behavioral of T is
-	shared variable T_register: std_logic_vector(15 downto 0);
 begin
-	
 	process(regWrite, writeData)
 	begin
 		if (regWrite = "001") then
-			T_register := writeData;
+			TData <= writeData;
 		end if;
 	end process;
-
-	TData <= T_register;
-
 end architecture ; -- behavioral

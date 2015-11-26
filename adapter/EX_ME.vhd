@@ -30,7 +30,7 @@ architecture behavioral of EX_ME is
 begin
 	process(clk, rst)
 	begin
-		if rst = '1' then
+		if rst = '0' then
 			control_memToReg_out <= '0';
 			control_regWrite_out <= "100";
 			control_memRead_out <= '0';

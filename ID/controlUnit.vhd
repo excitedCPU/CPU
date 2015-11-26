@@ -125,7 +125,7 @@ begin
 								ALUsrc2 <= "111";
 								ALUop <= "1110";
 								regWrite <= "100";
-							else 										--MFPC
+							elsif (instruction(7 downto 5) = "010") then 										--MFPC
 								ALUsrc1 <= "011";
 								ALUsrc2 <= "111";
 								ALUop <= "1110";
