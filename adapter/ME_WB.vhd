@@ -22,7 +22,7 @@ begin
 			regWrite_out <= "100";
 			data_result_out <= "0000000000000000";
 			Rtarget_out <= "000";
-		elsif clk'event and clk = '1' then
+		elsif clk'event and clk = '0' then
 			regWrite_out <= regWrite_in;
 			data_result_out <= data_result_in;
 			Rtarget_out <= Rtarget_in;

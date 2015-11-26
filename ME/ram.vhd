@@ -58,7 +58,7 @@ begin
 					crdn <= '1';
 					cwrn <= '1';
 					data <= (others => 'Z');
-				else
+				elsif (target_addr = x"BF00") then
 					com <= (others => '0');
 					mask(15 downto 8) <= (others => '0');
 					mask(7 downto 0) <= (others => '1');
@@ -75,7 +75,7 @@ begin
 		
 				end if;
 
-			else
+			elsif (target_addr /= x"BF00" and target_addr /= x"BF01") then
 				com <= (others => '0');
 				mask <= (others => '1');
 				crdn <= '1';

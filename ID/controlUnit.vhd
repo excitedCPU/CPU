@@ -43,7 +43,7 @@ begin
 			ALUsrc1 <= "111";
 			ALUsrc2 <= "111";
 			regWrite <= "100";
-		else
+		elsif (from_branch_control = '0' and from_risk_check = '0') then 
 			case instruction(15 downto 11) is
 				when "01001" => --ADDIU
 					ALUsrc2 <= "001";

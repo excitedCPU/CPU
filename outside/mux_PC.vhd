@@ -17,7 +17,7 @@ begin
 	begin
 		if (PC_Choose = '1') then
 			next_PC <= branch_PC;
-		else
+		elsif (PC_Choose = '0') then
 			next_PC <= new_PC;
 		end if;
 	end process;

@@ -39,7 +39,7 @@ begin
 			store_data_out <= "0000000000000000";
 			target_Addr_out <= "000";
 			ALUresult_out <= "0000000000000000";
-		elsif clk'event and clk = '1' then
+		elsif clk'event and clk = '0' then
 			control_memToReg_out <= control_memToReg_in;
 			control_regWrite_out <= control_regWrite_in;
 			control_memRead_out <= control_memRead_in;

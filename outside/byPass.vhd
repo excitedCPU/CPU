@@ -95,7 +95,7 @@ begin
 			elsif (WB_ReqWrite = "001") then
 				Fbranch <= "10";
 			end if;
-		else
+		elsif (T_Enable = '0') then
 			if (rx_addr = ME_target and ME_ReqWrite = "000") then
 				Fbranch <= "01";
 			elsif (rx_addr = WB_target and WB_ReqWrite = "000") then

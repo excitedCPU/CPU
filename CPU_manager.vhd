@@ -36,7 +36,7 @@ entity CPU_manager is
 	rst: IN std_logic;
 	--instruction: IN std_logic_vector(15 downto 0);
 	Ram1Data: inout std_logic_vector(15 downto 0);
-	ToRam1_addr: out std_logic_vector(15 downto 0);
+	ToRam1_addr: out std_logic_vector(17 downto 0);
 	Ram1EN: out std_logic;
 	Ram1OE: out std_logic;
 	Ram1WE: out std_logic;
@@ -48,7 +48,7 @@ entity CPU_manager is
 	tsre: in std_logic;
 	
 	Ram2Data: inout std_logic_vector(15 downto 0);
-	ToRam2_addr: out std_logic_vector(15 downto 0);
+	ToRam2_addr: out std_logic_vector(17 downto 0);
 	Ram2EN: out std_logic;
 	Ram2OE: out std_logic;
 	Ram2WE: out std_logic
@@ -420,6 +420,9 @@ architecture Behavioral of CPU_manager is
 	signal ME_WB_regWrite: std_logic_vector(2 downto 0);
 	signal ME_WB_Rtarget: std_logic_vector(2 downto 0);
 begin
+	ToRam1_addr(17 downto 16) <= "00";
+	ToRam1_addr(17 downto 16) <= "00";
+
 	Inst_PC: PC PORT MAP(
 		clk => clk,
 		rst => rst,
@@ -439,7 +442,7 @@ begin
 		target_Addr => (others => '0'),
 		RAddr => PC_PC,
 		Ram2Data => Ram2Data,
-		ToRam2_addr => ToRam2_addr,
+		ToRam2_addr => ToRam2_addr(15 downto 0),
 		Ram2EN => Ram2EN,
 		Ram2OE => Ram2OE,
 		Ram2WE => Ram2WE
@@ -644,7 +647,7 @@ begin
 		Ram1EN => Ram1EN,
 		Ram1OE => Ram1OE,
 		Ram1WE => Ram1WE,
-		ToRam1_addr => ToRam1_addr,
+		ToRam1_addr => ToRam1_addr(15 downto 0),
 		data => Ram1Data,
 		wrn => wrn,
 		rdn => rdn,
