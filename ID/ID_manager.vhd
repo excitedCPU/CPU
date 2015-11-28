@@ -3,6 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity ID_manager is
 	port (
+		clk: in std_logic;
 		rst: in std_logic;
 		instruction: in std_logic_vector(15 downto 0);
 		from_PC: in std_logic_vector(15 downto 0);
@@ -32,7 +33,10 @@ entity ID_manager is
 		T_result: out std_logic_vector(15 downto 0);
 		instruction_7_5: out std_logic_vector(2 downto 0);
 		instruction_4_2: out std_logic_vector(2 downto 0);
-		instruction_10_8: out std_logic_vector(2 downto 0)
+		instruction_10_8: out std_logic_vector(2 downto 0);
+		
+		out_register1: out std_logic_vector(15 downto 0);--debug
+		out_register2: out std_logic_vector(15 downto 0)--debug
 		);
 end ID_manager;
 
@@ -63,6 +67,7 @@ architecture structural of ID_manager is
 
 	COMPONENT commonRegister
 	PORT(
+		clk: IN std_logic;
 		rst : IN std_logic;
 		read_rx : IN std_logic_vector(2 downto 0);
 		read_ry : IN std_logic_vector(2 downto 0);
@@ -70,7 +75,9 @@ architecture structural of ID_manager is
 		write_data : IN std_logic_vector(15 downto 0);
 		regWrite : IN std_logic_vector(2 downto 0);          
 		read_result1 : OUT std_logic_vector(15 downto 0);
-		read_result2 : OUT std_logic_vector(15 downto 0)
+		read_result2 : OUT std_logic_vector(15 downto 0);
+		out_register1: OUT std_logic_vector(15 downto 0);--debug
+		out_register2: OUT std_logic_vector(15 downto 0)--debug
 		);
 	END COMPONENT;
 	
@@ -104,6 +111,7 @@ architecture structural of ID_manager is
 	
 begin
 	Inst_commonRegister: commonRegister PORT MAP(
+		clk => clk,
 		rst => rst,
 		read_rx => instruction(10 downto 8),
 		read_ry => instruction(7 downto 5),
@@ -111,7 +119,9 @@ begin
 		write_data => write_data,
 		regWrite => regWrite,
 		read_result1 => register_result1,
-		read_result2 => register_result2
+		read_result2 => register_result2,
+		out_register1 => out_register1,--debug
+		out_register2 => out_register2--debug
 	);
 
 	Inst_immediateExpansion: immediateExpansion PORT MAP(

@@ -17,7 +17,10 @@ port(
 
 	Fsrc1: out std_logic_vector(1 downto 0);
 	Fsrc2: out std_logic_vector(1 downto 0);
-	Fbranch: out std_logic_vector(1 downto 0)
+	Fbranch: out std_logic_vector(1 downto 0);
+	
+	Control_WC: in std_logic;
+	FmemData: out std_logic_vector(1 downto 0)
 );
 end byPass;
 
@@ -25,6 +28,24 @@ architecture behavioral of byPass is
 
 begin
 
+	out_FmemData: process(control_WC, ME_ReqWrite, WB_ReqWrite, rx_addr, ry_addr, ME_target, WB_target)
+	begin
+		FmemData <= "00";
+		if (Control_WC = '0') then
+			if (ME_target = rx_addr and ME_ReqWrite = "000") then
+				FmemData <= "01";
+			elsif (WB_target = rx_addr and ME_ReqWrite = "000") then
+				FmemData <= "10";
+			end if;
+		elsif (Control_WC = '1') then
+			if (ME_target = ry_addr and ME_ReqWrite = "000") then
+				FmemData <= "01";
+			elsif (WB_target = ry_addr and ME_ReqWrite = "000") then
+				FmemData <= "10";
+			end if;			
+		end if;
+	end process;
+	
 	out_Fsrc1: process(ALUsrc1, ME_ReqWrite, WB_ReqWrite, rx_addr, ME_target, WB_target)
 	begin
 		Fsrc1 <= "00";

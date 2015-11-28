@@ -4,6 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity commonRegister is
 	port (
+		clk: in std_logic;
 		rst: in std_logic;
 		read_rx: in std_logic_vector(2 downto 0);
 		read_ry: in std_logic_vector(2 downto 0);
@@ -11,7 +12,9 @@ entity commonRegister is
 		write_data: in std_logic_vector(15 downto 0);
 		regWrite: in std_logic_vector(2 downto 0);
 		read_result1: out std_logic_vector(15 downto 0);
-		read_result2: out std_logic_vector(15 downto 0)
+		read_result2: out std_logic_vector(15 downto 0);
+		out_register1: out std_logic_vector(15 downto 0); --debug
+		out_register2: out std_logic_vector(15 downto 0) --debug
 		);
 end commonRegister;
 
@@ -23,9 +26,11 @@ begin
 	begin
 		read_result1 <= registers(to_integer(unsigned(read_rx)));
 		read_result2 <= registers(to_integer(unsigned(read_ry)));
+		out_register1 <= registers(1);--debug
+		out_register2 <= registers(2);--debug
 	end process;
 	
-	writeRegister: process(write_addr, write_data, regWrite, rst)
+	writeRegister: process(clk, write_addr, write_data, regWrite, rst)
 	begin
 		if (rst = '0') then
 			registers(0) <= "0000000000000000";
@@ -36,7 +41,7 @@ begin
 			registers(5) <= "0000000000000000";
 			registers(6) <= "0000000000000000";
 			registers(7) <= "0000000000000000";			
-		elsif regWrite = "000" then
+		elsif regWrite = "000" and clk'event and clk = '1' then
 			registers(to_integer(unsigned(write_addr))) <= write_data;
 		end if;
 	end process;

@@ -151,6 +151,7 @@ architecture Behavioral of CPU_manager is
 
 	COMPONENT ID_manager
 	PORT(
+		clk: IN std_logic;
 		rst: IN std_logic;
 		instruction : IN std_logic_vector(15 downto 0);
 		from_PC : IN std_logic_vector(15 downto 0);
@@ -179,12 +180,18 @@ architecture Behavioral of CPU_manager is
 		T_result : OUT std_logic_vector(15 downto 0);
 		instruction_7_5 : OUT std_logic_vector(2 downto 0);
 		instruction_4_2 : OUT std_logic_vector(2 downto 0);
-		instruction_10_8 : OUT std_logic_vector(2 downto 0)
+		instruction_10_8 : OUT std_logic_vector(2 downto 0);
+		out_register1: OUT std_logic_vector(15 downto 0);--debug
+		out_register2: OUT std_logic_vector(15 downto 0)--debug
 		);
 	END COMPONENT;
 
+	signal tmp1: std_logic_vector(15 downto 0);
+	signal tmp2: std_logic_vector(15 downto 0);
 	COMPONENT EX_manager
 	PORT(
+		op1: out std_logic_vector(15 downto 0);	
+		op2: out std_logic_vector(15 downto 0);
 		--control_branchOrJump : IN std_logic_vector(2 downto 0);
 		control_desRegister : IN std_logic_vector(1 downto 0);
 		control_ALUsrc1 : IN std_logic_vector(2 downto 0);
@@ -207,6 +214,7 @@ architecture Behavioral of CPU_manager is
 		from_instruction_10_8 : IN std_logic_vector(2 downto 0);
 		Fsrc1 : IN std_logic_vector(1 downto 0);
 		Fsrc2 : IN std_logic_vector(1 downto 0);
+		FmemData: IN std_logic_vector(1 downto 0);
 		result_from_ME_WB : IN std_logic_vector(15 downto 0);
 		result_from_EX_ME : IN std_logic_vector(15 downto 0);          
 		out_memToReg : OUT std_logic;
@@ -243,7 +251,9 @@ architecture Behavioral of CPU_manager is
 		WB_target : IN std_logic_vector(2 downto 0);          
 		Fsrc1 : OUT std_logic_vector(1 downto 0);
 		Fsrc2 : OUT std_logic_vector(1 downto 0);
-		Fbranch : OUT std_logic_vector(1 downto 0)
+		Fbranch : OUT std_logic_vector(1 downto 0);	
+		Control_WC: IN std_logic;
+		FmemData: OUT std_logic_vector(1 downto 0)
 		);
 	END COMPONENT;
 
@@ -402,6 +412,7 @@ architecture Behavioral of CPU_manager is
 	signal byPass_Fsrc1: std_logic_vector(1 downto 0);
 	signal byPass_Fsrc2: std_logic_vector(1 downto 0);
 	signal byPass_Fbranch: std_logic_vector(1 downto 0);
+	signal byPass_FmemData: std_logic_vector(1 downto 0);
 
 	signal EX_memToReg: std_logic;
 	signal EX_regWrite: std_logic_vector(2 downto 0);
@@ -431,11 +442,32 @@ architecture Behavioral of CPU_manager is
 	signal ME_WB_regWrite: std_logic_vector(2 downto 0);
 	signal ME_WB_Rtarget: std_logic_vector(2 downto 0);
 	
+	signal out_register1: std_logic_vector(15 downto 0);--debug
+	signal out_register2: std_logic_vector(15 downto 0);--debug
+	
 begin
 	ToRam1_addr(17 downto 16) <= "00";
 	ToRam2_addr(17 downto 16) <= "00";
-	instruction_out <= IF_instruction;
-
+	--instruction_out <= IF_instruction;
+	--instruction_out(15 downto 14) <= byPass_Fsrc1;--debug
+	--instruction_out(13 downto 12) <= byPass_Fsrc2;--debug
+	--instruction_out(11 downto 10) <= byPass_Fbranch;
+	--instruction_out(9 downto 8) <= byPass_FmemData;
+	--instruction_out <= EX_ALUresult;
+	--instruction_out(15 downto 0) <= EX_ME_Result(15 downto 0);
+	--instruction_out(15 downto 14) <= byPass_Fsrc1;
+	--instruction_out(13 downto 12) <= byPass_Fsrc2;
+	--instruction_out(11 downto 8) <= (others => '0');
+	instruction_out(15 downto 8) <= tmp1(7 downto 0);
+	instruction_out(7 downto 0) <= tmp2(7 downto 0);
+	--instruction_out(7 downto 0) <= ID_EX_imm_exp_result(7 downto 0);
+	--instruction_out(15 downto 0) <= IF_instruction;
+	--instruction_out(15 downto 13) <= ID_EX_ALUsrc1;
+	--instruction_out(12 downto 10) <= ID_EX_ALUsrc2;
+	--instruction_out(9 downto 8) <= "00";
+	--instruction_out(9) <= branchControl_PC_Choose;
+	--instruction_out(8) <= branchControl_kill;
+	
 	Inst_PC: PC PORT MAP(
 		clk => clk,
 		rst => rst,
@@ -472,6 +504,7 @@ begin
 	);
 
 	Inst_ID_manager: ID_manager PORT MAP(
+		clk => clk,
 		rst => rst,
 		instruction => IF_ID_instruction,
 		from_PC => IF_ID_PC,
@@ -500,7 +533,9 @@ begin
 		T_result => ID_T,
 		instruction_7_5 => ID_instruction_7_5,
 		instruction_4_2 => ID_instruction_4_2,
-		instruction_10_8 => ID_instruction_10_8
+		instruction_10_8 => ID_instruction_10_8,
+		out_register1 => out_register1,--debug
+		out_register2 => out_register2--debug
 	);
 
 	Inst_riskCheck: riskCheck PORT MAP(
@@ -559,6 +594,8 @@ begin
 	);
 
 	Inst_EX_manager: EX_manager PORT MAP(
+		op1 => tmp1,
+		op2 => tmp2,
 		control_desRegister => ID_EX_disRegister,
 		control_ALUsrc1 => ID_EX_ALUsrc1,
 		control_ALUsrc2 => ID_EX_ALUsrc2,
@@ -580,8 +617,9 @@ begin
 		from_instruction_10_8 => ID_EX_instruction_10_8,
 		Fsrc1 => byPass_Fsrc1,
 		Fsrc2 => byPass_Fsrc2,
-		result_from_ME_WB => EX_ME_Result,
-		result_from_EX_ME => ME_WB_Result,
+		FmemData => byPass_FmemData,
+		result_from_ME_WB => ME_WB_Result,
+		result_from_EX_ME => EX_ME_Result,
 		out_memToReg => EX_memToReg,
 		out_regWrite => EX_regWrite,
 		out_memWrite => EX_memWrite,
@@ -615,7 +653,10 @@ begin
 		WB_target => ME_WB_Rtarget,
 		Fsrc1 => byPass_Fsrc1,
 		Fsrc2 => byPass_Fsrc2,
-		Fbranch => byPass_Fbranch
+		Fbranch => byPass_Fbranch,
+		Control_WC => ID_EX_WC,
+		FmemData => byPass_FmemData
+		
 	);
 	
 	Inst_mux_PC: mux_PC PORT MAP(

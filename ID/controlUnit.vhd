@@ -153,7 +153,7 @@ begin
 
 				when "10011" =>	--LW
 					desRegister <= "01";
-					ALUsrc2 <= "100";
+					ALUsrc2 <= "001";
 					memToReg <= '1';
 					memRead <= '1';
 

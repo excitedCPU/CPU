@@ -3,6 +3,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity EX_manager is
 	port (
+		op1: out std_logic_vector(15 downto 0);
+		op2: out std_logic_vector(15 downto 0);
+		
 		--control_branchOrJump: in std_logic_vector(2 downto 0);
 		control_desRegister: in std_logic_vector(1 downto 0);
 		control_ALUsrc1: in std_logic_vector(2 downto 0);
@@ -26,6 +29,7 @@ entity EX_manager is
 		from_instruction_10_8: in std_logic_vector(2 downto 0);
 		Fsrc1: in std_logic_vector(1 downto 0);
 		Fsrc2: in std_logic_vector(1 downto 0);
+		FmemData: in std_logic_vector(1 downto 0);
 		result_from_ME_WB: in std_logic_vector(15 downto 0);
 		result_from_EX_ME: in std_logic_vector(15 downto 0);
 
@@ -85,10 +89,13 @@ architecture structural of EX_manager is
 	END COMPONENT;
 	COMPONENT mux_writeRamData
 	PORT(
-		control_WC : IN std_logic;
-		from_register1 : IN std_logic_vector(15 downto 0);
-		from_register2 : IN std_logic_vector(15 downto 0);          
-		result : OUT std_logic_vector(15 downto 0)
+		control_WC: in std_logic;
+		FmemData: in std_logic_vector(1 downto 0);
+		from_register1: in std_logic_vector(15 downto 0);
+		from_register2: in std_logic_vector(15 downto 0);
+		from_ME_Data: in std_logic_vector(15 downto 0);
+		from_WB_Data: in std_logic_vector(15 downto 0);
+		result: out std_logic_vector(15 downto 0)
 		);
 	END COMPONENT;
 	
@@ -108,6 +115,12 @@ begin
 		result => out_ALUresult,
 		sum => out_sum
 	);
+	--op1 <= result_from_EX_ME;
+	--op2(15 downto 2) <= (others => '0');
+	--op2(1 downto 0) <= Fsrc1;
+	op1 <= alu_src1;
+	op2 <= alu_src2;
+	
 	Inst_mux_ALUsrc1: mux_ALUsrc PORT MAP(
 		control_ALUsrc => control_ALUsrc1,
 		control_Fsrc => Fsrc1,
@@ -141,8 +154,11 @@ begin
 	);
 	Inst_mux_writeRamData: mux_writeRamData PORT MAP(
 		control_WC => control_WC,
+		FmemData => FmemData,
 		from_register1 => register_read_result1,
 		from_register2 => register_read_result2,
+		from_ME_Data => result_from_EX_ME,
+		from_WB_Data => result_from_ME_WB,
 		result => out_mux_writeRamData
 	);
 end architecture ; -- structural
