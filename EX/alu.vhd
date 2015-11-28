@@ -25,9 +25,9 @@ begin
 				result <= ALUsrc1 and ALUsrc2;
 			when "0100" => --equal
 				if signed(ALUsrc1) = signed(ALUsrc2) then
-					result <= "0000000000000001"; --16bit
-				elsif signed(ALUsrc1) /= signed(ALUsrc2) then
 					result <= "0000000000000000"; --16bit
+				elsif signed(ALUsrc1) /= signed(ALUsrc2) then
+					result <= "0000000000000001"; --16bit
 				end if;
 			when "0110" => --OR 
 				result <= ALUsrc1 or ALUsrc2;

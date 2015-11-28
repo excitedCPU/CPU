@@ -43,6 +43,8 @@ end ID_manager;
 architecture structural of ID_manager is
 	COMPONENT IH
 	PORT(
+		clk: IN std_logic;
+		rst: In std_logic;
 		regWrite : IN std_logic_vector(2 downto 0);
 		writeData : IN std_logic_vector(15 downto 0);          
 		IHData : OUT std_logic_vector(15 downto 0)
@@ -51,6 +53,8 @@ architecture structural of ID_manager is
 	
 	COMPONENT SP
 	PORT(
+		clk: IN std_logic;
+		rst: In std_logic;
 		regWrite : IN std_logic_vector(2 downto 0);
 		writeData : IN std_logic_vector(15 downto 0);          
 		SPData : OUT std_logic_vector(15 downto 0)
@@ -59,6 +63,8 @@ architecture structural of ID_manager is
 	
 	COMPONENT T
 	PORT(
+		clk: IN std_logic;
+		rst: In std_logic;
 		regWrite : IN std_logic_vector(2 downto 0);
 		writeData : IN std_logic_vector(15 downto 0);          
 		TData : OUT std_logic_vector(15 downto 0)
@@ -148,18 +154,24 @@ begin
 	);
 
 	Inst_IH: IH PORT MAP(
+		clk => clk,
+		rst => rst,
 		regWrite => regWrite,
 		writeData => write_data,
 		IHData => IH_result
 	);
 
 	Inst_SP: SP PORT MAP(
+		clk => clk,
+		rst => rst,
 		regWrite => regWrite,
 		writeData => write_data,
 		SPData => SP_result
 	);
 
 	Inst_T: T PORT MAP(
+		clk => clk,
+		rst => rst,
 		regWrite => regWrite,
 		writeData => write_data,
 		TData => T_result

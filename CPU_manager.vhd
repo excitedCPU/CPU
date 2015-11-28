@@ -32,7 +32,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity CPU_manager is
 	port (
-	clk: IN std_logic;
+	clk1: IN std_logic;
 	rst: IN std_logic;
 	--instruction: IN std_logic_vector(15 downto 0);
 	Ram1Data: inout std_logic_vector(15 downto 0);
@@ -351,6 +351,9 @@ architecture Behavioral of CPU_manager is
 		);
 	END COMPONENT;
 
+	signal clk: std_logic := '1';
+	signal clk2: std_logic := '1';
+
 	signal PC_PC: std_logic_vector(15 downto 0);
 	
 	signal IF_PC: std_logic_vector(15 downto 0);
@@ -454,20 +457,50 @@ begin
 	--instruction_out(11 downto 10) <= byPass_Fbranch;
 	--instruction_out(9 downto 8) <= byPass_FmemData;
 	--instruction_out <= EX_ALUresult;
+	instruction_out(15) <= ID_EX_T_Enable;
+	instruction_out(14 downto 12) <= EX_ME_regWrite;
+	instruction_out(5 downto 0) <= EX_ME_Result(5 downto 0);
+	instruction_out(9) <= branchControl_PC_Choose;
+	instruction_out(8 downto 6) <= ID_EX_branchOrJump;
+	instruction_out(11 downto 10) <= byPass_Fbranch;
+	--instruction_out(15) <= s
 	--instruction_out(15 downto 0) <= EX_ME_Result(15 downto 0);
-	--instruction_out(15 downto 14) <= byPass_Fsrc1;
-	--instruction_out(13 downto 12) <= byPass_Fsrc2;
+	--instruction_out(3 downto 2) <= byPass_Fsrc1;
+	--instruction_out(1 downto 0) <= byPass_Fsrc2;
+	--instruction_out(15 downto 13) <= EX_ME_Rtarget;
+	--instruction_out(12 downto 10) <= ID_EX_instruction_7_5;
+	--instruction_out(9 downto 7) <= ID_EX_ALUsrc2;
+	--instruction_out(6 downto 4) <= EX_ME_regWrite;
+	--instruction_out(3 downto 0) <= (others => '1');
 	--instruction_out(11 downto 8) <= (others => '0');
-	instruction_out(15 downto 8) <= tmp1(7 downto 0);
-	instruction_out(7 downto 0) <= tmp2(7 downto 0);
+	--instruction_out(15 downto 8) <= tmp1(15 downto 8);
+	--instruction_out(11 downto 0) <= tmp2(11 downto 0);
+	--instruction_out(15 downto 12) <= ID_EX_ALUop;
 	--instruction_out(7 downto 0) <= ID_EX_imm_exp_result(7 downto 0);
 	--instruction_out(15 downto 0) <= IF_instruction;
 	--instruction_out(15 downto 13) <= ID_EX_ALUsrc1;
 	--instruction_out(12 downto 10) <= ID_EX_ALUsrc2;
 	--instruction_out(9 downto 8) <= "00";
+	--instruction_out(7 downto 0) <= ID_EX_imm_exp_result(7 downto 0);
 	--instruction_out(9) <= branchControl_PC_Choose;
 	--instruction_out(8) <= branchControl_kill;
-	
+	--instruction_out <= ID_imm_exp_result;
+
+	process(clk1)
+	begin
+		if (falling_edge(clk1)) then
+			clk2 <= not clk2;
+		end if;
+	end process;
+
+	process(clk2) 
+	begin
+		if (falling_edge(clk2)) then
+			clk <= not clk;
+		end if;
+	end process;
+--	clk <= clk1;
+
 	Inst_PC: PC PORT MAP(
 		clk => clk,
 		rst => rst,

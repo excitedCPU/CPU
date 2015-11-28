@@ -55,8 +55,8 @@ begin
 				when "01100" => --ADDSP BTEQZ BTNEZ MTSP 
 					case instruction(10 downto 8) is
 						when "100" =>	--MTSP
-							ALUsrc2 <= "111";
-							ALUop <= "1110";
+							ALUsrc1 <= "111";
+							ALUop <= "1111";
 							regWrite <= "011";
 
 						when "011" => 	--ADDSP
