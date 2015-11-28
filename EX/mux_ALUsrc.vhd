@@ -20,32 +20,41 @@ end mux_ALUsrc;
 architecture behavioral of mux_ALUsrc is
 
 begin
-	process(control_ALUsrc, control_Fsrc, from_pc, from_HI, from_SP, from_EX_ME, from_ME_WB, from_imm_exp, from_register)
-	begin
-		case control_Fsrc is
-		when "00" => --no bypass
-			case control_ALUsrc is
-			when "000" => --from register
-				result <= from_register;
-			when "001" => --from imm
-				result <= from_imm_exp;
-			when "010" => --from SP
-				result <= from_SP;
-			when "100" => --from HI
-				result <= from_HI;
-			when "011" => --from pc
-				result <= from_pc;
-			when "111" => --all zeros
-				result <= "0000000000000000"; --16bit
-			when others =>
-				result <= "0000000000000000"; --16bit
-			end case;
-		when "01" => --memory
-			result <= from_EX_ME;
-		when "10" => --writeback
-			result <= from_ME_WB;
-		when others =>
-			result <= "0000000000000000"; --16bit
-		end case;
-	end process;
+	result <= from_EX_ME when control_Fsrc = "01" else
+				 from_ME_WB when control_Fsrc = "10" else
+				 from_register when control_Fsrc = "00" and control_AlUsrc = "000" else
+				 from_imm_exp when control_Fsrc = "00" and control_ALUsrc = "001" else
+				 from_SP when control_Fsrc = "00" and control_ALUsrc = "010" else
+				 from_HI when control_Fsrc = "00" and control_ALUsrc = "100" else
+				 from_pc when control_Fsrc = "00" and control_ALUsrc = "011" else
+				 (others => '0');
+
+--	process(control_ALUsrc, control_Fsrc, from_pc, from_HI, from_SP, from_EX_ME, from_ME_WB, from_imm_exp, from_register)
+--	begin
+--		case control_Fsrc is
+--		when "00" => --no bypass
+--			case control_ALUsrc is
+--			when "000" => --from register
+--				result <= from_register;
+--			when "001" => --from imm
+--				result <= from_imm_exp;
+--			when "010" => --from SP
+--				result <= from_SP;
+--			when "100" => --from HI
+--				result <= from_HI;
+--			when "011" => --from pc
+--				result <= from_pc;
+--			when "111" => --all zeros
+--				result <= "0000000000000000"; --16bit
+--			when others =>
+--				result <= "0000000000000000"; --16bit
+--			end case;
+--		when "01" => --memory
+--			result <= from_EX_ME;
+--		when "10" => --writeback
+--			result <= from_ME_WB;
+--		when others =>
+--			result <= "0000000000000000"; --16bit
+--		end case;
+--	end process;
 end architecture ; -- behavioral

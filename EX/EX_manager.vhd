@@ -3,8 +3,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity EX_manager is
 	port (
-		op1: out std_logic_vector(15 downto 0);
-		op2: out std_logic_vector(15 downto 0);
+		--op1: out std_logic_vector(15 downto 0);
+		--op2: out std_logic_vector(15 downto 0);
 		
 		--control_branchOrJump: in std_logic_vector(2 downto 0);
 		control_desRegister: in std_logic_vector(1 downto 0);
@@ -118,8 +118,8 @@ begin
 	--op1 <= result_from_EX_ME;
 	--op2(15 downto 2) <= (others => '0');
 	--op2(1 downto 0) <= Fsrc1;
-	op1 <= alu_src1;
-	op2 <= alu_src2;
+	--op1 <= alu_src1;
+	--op2 <= alu_src2;
 	
 	Inst_mux_ALUsrc1: mux_ALUsrc PORT MAP(
 		control_ALUsrc => control_ALUsrc1,

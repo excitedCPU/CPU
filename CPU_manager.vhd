@@ -52,7 +52,7 @@ entity CPU_manager is
 	Ram2EN: out std_logic;
 	Ram2OE: out std_logic;
 	Ram2WE: out std_logic;
-	instruction_out: out std_logic_vector(15 downto 0);
+	--instruction_out: out std_logic_vector(15 downto 0);
 	DIGITAL_H: out std_logic_vector(6 downto 0);
 	DIGITAL_L: out std_logic_vector(6 downto 0)
 	);
@@ -186,12 +186,12 @@ architecture Behavioral of CPU_manager is
 		);
 	END COMPONENT;
 
-	signal tmp1: std_logic_vector(15 downto 0);
-	signal tmp2: std_logic_vector(15 downto 0);
+	--signal tmp1: std_logic_vector(15 downto 0);
+	--signal tmp2: std_logic_vector(15 downto 0);
 	COMPONENT EX_manager
 	PORT(
-		op1: out std_logic_vector(15 downto 0);	
-		op2: out std_logic_vector(15 downto 0);
+		--op1: out std_logic_vector(15 downto 0);	
+		--op2: out std_logic_vector(15 downto 0);
 		--control_branchOrJump : IN std_logic_vector(2 downto 0);
 		control_desRegister : IN std_logic_vector(1 downto 0);
 		control_ALUsrc1 : IN std_logic_vector(2 downto 0);
@@ -457,12 +457,12 @@ begin
 	--instruction_out(11 downto 10) <= byPass_Fbranch;
 	--instruction_out(9 downto 8) <= byPass_FmemData;
 	--instruction_out <= EX_ALUresult;
-	instruction_out(15) <= ID_EX_T_Enable;
-	instruction_out(14 downto 12) <= EX_ME_regWrite;
-	instruction_out(5 downto 0) <= EX_ME_Result(5 downto 0);
-	instruction_out(9) <= branchControl_PC_Choose;
-	instruction_out(8 downto 6) <= ID_EX_branchOrJump;
-	instruction_out(11 downto 10) <= byPass_Fbranch;
+--	instruction_out(15) <= ID_EX_T_Enable;
+--	instruction_out(14 downto 12) <= EX_ME_regWrite;
+--	instruction_out(5 downto 0) <= EX_ME_Result(5 downto 0);
+--	instruction_out(9) <= branchControl_PC_Choose;
+--	instruction_out(8 downto 6) <= ID_EX_branchOrJump;
+--	instruction_out(11 downto 10) <= byPass_Fbranch;
 	--instruction_out(15) <= s
 	--instruction_out(15 downto 0) <= EX_ME_Result(15 downto 0);
 	--instruction_out(3 downto 2) <= byPass_Fsrc1;
@@ -627,8 +627,8 @@ begin
 	);
 
 	Inst_EX_manager: EX_manager PORT MAP(
-		op1 => tmp1,
-		op2 => tmp2,
+		--op1 => tmp1,
+		--op2 => tmp2,
 		control_desRegister => ID_EX_disRegister,
 		control_ALUsrc1 => ID_EX_ALUsrc1,
 		control_ALUsrc2 => ID_EX_ALUsrc2,
