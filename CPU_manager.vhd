@@ -486,20 +486,20 @@ begin
 	--instruction_out(8) <= branchControl_kill;
 	--instruction_out <= ID_imm_exp_result;
 
-	process(clk1)
-	begin
-		if (falling_edge(clk1)) then
-			clk2 <= not clk2;
-		end if;
-	end process;
+--	process(clk1)
+--	begin
+--		if (falling_edge(clk1)) then
+--			clk <= not clk;
+--		end if;
+--	end process;
 
-	process(clk2) 
-	begin
-		if (falling_edge(clk2)) then
-			clk <= not clk;
-		end if;
-	end process;
---	clk <= clk1;
+--	process(clk2) 
+--	begin
+--		if (falling_edge(clk2)) then
+--			clk <= not clk;
+--		end if;
+--	end process;
+	clk <= clk1;
 
 	Inst_PC: PC PORT MAP(
 		clk => clk,
