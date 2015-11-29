@@ -104,6 +104,7 @@ architecture Behavioral of CPU_manager is
 	PORT(
 		clk : IN std_logic;
 		rst : IN std_logic;
+		from_ME_Write_Enable: IN std_logic;
 		control_branchOrJump_in : IN std_logic_vector(2 downto 0);
 		control_desRegister_in : IN std_logic_vector(1 downto 0);
 		control_ALUsrc1_in : IN std_logic_vector(2 downto 0);
@@ -283,6 +284,7 @@ architecture Behavioral of CPU_manager is
 	PORT(
 		clk : IN std_logic;
 		rst : IN std_logic;
+		from_ME_Write_Enable: IN std_logic;
 		control_memToReg_in : IN std_logic;
 		control_regWrite_in : IN std_logic_vector(2 downto 0);
 		control_memRead_in : IN std_logic;
@@ -321,6 +323,9 @@ architecture Behavioral of CPU_manager is
 		Ram1EN : OUT std_logic;
 		Ram1OE : OUT std_logic;
 		Ram1WE : OUT std_logic;
+		Ram2WriteEnable: out std_logic;
+		Ram2WriteData: out std_logic_vector(15 downto 0);
+		Ram2WriteAddr: out std_logic_vector(15 downto 0);
 		ToRam1_addr : OUT std_logic_vector(15 downto 0);
 		wrn : OUT std_logic;
 		rdn : OUT std_logic;
@@ -445,12 +450,18 @@ architecture Behavioral of CPU_manager is
 	signal ME_WB_regWrite: std_logic_vector(2 downto 0);
 	signal ME_WB_Rtarget: std_logic_vector(2 downto 0);
 	
+	signal ME_Ram2WriteEnable: std_logic;
+	signal ME_Ram2WriteData: std_logic_vector(15 downto 0);
+	signal ME_Ram2WriteAddr: std_logic_vector(15 downto 0);
+	
 	signal out_register1: std_logic_vector(15 downto 0);--debug
 	signal out_register2: std_logic_vector(15 downto 0);--debug
 	
+	signal keep_signal: std_logic;
 begin
 	ToRam1_addr(17 downto 16) <= "00";
 	ToRam2_addr(17 downto 16) <= "00";
+	keep_signal<= riskCheck_waitEnable or ME_Ram2WriteEnable;
 	--instruction_out <= IF_instruction;
 	--instruction_out(15 downto 14) <= byPass_Fsrc1;--debug
 	--instruction_out(13 downto 12) <= byPass_Fsrc2;--debug
@@ -486,12 +497,12 @@ begin
 	--instruction_out(8) <= branchControl_kill;
 	--instruction_out <= ID_imm_exp_result;
 
---	process(clk1)
---	begin
---		if (falling_edge(clk1)) then
---			clk <= not clk;
---		end if;
---	end process;
+	process(clk1)
+	begin
+		if (falling_edge(clk1)) then
+			clk <= not clk;
+		end if;
+	end process;
 
 --	process(clk2) 
 --	begin
@@ -499,13 +510,13 @@ begin
 --			clk <= not clk;
 --		end if;
 --	end process;
-	clk <= clk1;
+--	clk <= clk1;
 
 	Inst_PC: PC PORT MAP(
 		clk => clk,
 		rst => rst,
 		from_mux_pc => mux_PC_PC,
-		from_riskCheck => riskCheck_waitEnable,
+		from_riskCheck => keep_signal,
 		pc_out => PC_PC
 	);
 
@@ -515,9 +526,9 @@ begin
 		old_pc => PC_PC,
 		new_pc => IF_PC,
 		Instruction => IF_instruction,
-		write_enable => '0',
-		write_Data => (others => '0'),
-		target_Addr => (others => '0'),
+		write_enable => ME_Ram2WriteEnable,
+		write_Data => ME_Ram2WriteData,
+		target_Addr => ME_Ram2WriteAddr,
 		RAddr => PC_PC,
 		Ram2Data => Ram2Data,
 		ToRam2_addr => ToRam2_addr(15 downto 0),
@@ -529,7 +540,7 @@ begin
 	Inst_IF_ID: IF_ID PORT MAP(
 		clk => clk,
 		rst => rst,
-		from_riskCheck => riskCheck_waitEnable,
+		from_riskCheck => keep_signal,
 		updated_pc_in => IF_PC,
 		instruction_in => IF_instruction,
 		updated_pc_out => IF_ID_pc,
@@ -582,6 +593,7 @@ begin
 	Inst_ID_EX: ID_EX PORT MAP(
 		clk => clk,
 		rst => rst,
+		from_ME_Write_Enable => ME_Ram2WriteEnable,
 		control_branchOrJump_in => ID_branchOrJump,
 		control_desRegister_in => ID_disRegister,
 		control_ALUsrc1_in => ID_ALUsrc1,
@@ -702,6 +714,7 @@ begin
 	Inst_EX_ME: EX_ME PORT MAP(
 		clk => clk,
 		rst => rst,
+		from_ME_Write_Enable => ME_Ram2WriteEnable,
 		control_memToReg_in => EX_memToReg,
 		control_regWrite_in => EX_regWrite,
 		control_memRead_in => EX_memRead,
@@ -734,6 +747,9 @@ begin
 		Ram1EN => Ram1EN,
 		Ram1OE => Ram1OE,
 		Ram1WE => Ram1WE,
+		Ram2WriteEnable => ME_Ram2WriteEnable,
+		Ram2WriteData => ME_Ram2WriteData,	
+		Ram2WriteAddr => ME_Ram2WriteAddr,
 		ToRam1_addr => ToRam1_addr(15 downto 0),
 		data => Ram1Data,
 		wrn => wrn,

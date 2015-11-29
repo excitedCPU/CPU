@@ -5,6 +5,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity ID_EX is
 	port (
 		clk, rst: in std_logic;
+		from_ME_Write_Enable: in std_logic;
 		control_branchOrJump_in: in std_logic_vector(2 downto 0);
 		control_desRegister_in: in std_logic_vector(1 downto 0);
 		control_ALUsrc1_in: in std_logic_vector(2 downto 0);
@@ -80,7 +81,7 @@ begin
 			from_instruction_4_2_out <= "000";
 			from_instruction_10_8_out <= "000";
 			
-		elsif clk'event and clk = '0' then
+		elsif clk'event and clk = '0'  and from_ME_Write_Enable = '0' then
 			control_branchOrJump_out <= control_branchOrJump_in;
 			control_desRegister_out <= control_desRegister_in;
 			control_ALUsrc1_out <= control_ALUsrc1_in;
