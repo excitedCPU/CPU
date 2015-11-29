@@ -65,18 +65,17 @@ begin
 					case scancode is
 						--when X"29" => tmp <= None;
 						when X"45" => Be_Pushed <= X"00";
-						when X"45" => Be_Pushed <= X"01";
-						when X"45" => Be_Pushed <= X"02";
-						when X"45" => Be_Pushed <= X"03";
-						when X"45" => Be_Pushed <= X"04";
-						when X"45" => Be_Pushed <= X"05";
-						when X"45" => Be_Pushed <= X"06";
-						when X"45" => Be_Pushed <= X"07";
-						when X"45" => Be_Pushed <= X"08";
-						when X"45" => Be_Pushed <= X"09";
+						when X"16" => Be_Pushed <= X"01";
+						when X"1E" => Be_Pushed <= X"02";
+						when X"26" => Be_Pushed <= X"03";
+						when X"25" => Be_Pushed <= X"04";
+						when X"2E" => Be_Pushed <= X"05";
+						when X"36" => Be_Pushed <= X"06";
+						when X"3D" => Be_Pushed <= X"07";
+						when X"3E" => Be_Pushed <= X"08";
 						when others => Be_Pushed <= X"FF";
 					end case;
-					tmp := None
+					tmp := None;
 					
 				when others => tmp := None;
 			end case;
