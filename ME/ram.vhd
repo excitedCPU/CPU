@@ -6,23 +6,27 @@ entity ram is
 		clk: in std_logic;
 		rst: in std_logic;
 
-		memWrite: in std_logic;
-		memRead: in std_logic;
+		memWrite: in std_logic;--是否要写 0不写
+		memRead: in std_logic;--是否要读 0不读
 
-		write_data: in std_logic_vector(15 downto 0);
-		target_addr: in std_logic_vector(15 downto 0);
+		write_data: in std_logic_vector(15 downto 0);--写的数据
+		target_addr: in std_logic_vector(15 downto 0);--写的地址
 
-		Rdata: out std_logic_vector(15 downto 0);
+		Rdata: out std_logic_vector(15 downto 0);--读出来的数据
+		
+		Ram2WriteEnable: out std_logic;
+		Ram2WriteData: out std_logic_vector(15 downto 0);
+		Ram2WriteAddr: out std_logic_vector(15 downto 0);
 
 		Ram1EN: out std_logic;
 		Ram1WE: out std_logic;
 		Ram1OE: out std_logic;
 
-		data: inout std_logic_vector(15 downto 0);
-		ToRam_addr: out std_logic_vector(15 downto 0);
+		data: inout std_logic_vector(15 downto 0);--数据总线
+		ToRam_addr: out std_logic_vector(15 downto 0);--地址总线
 
-		wrn: out std_logic;
-		rdn: out std_logic;
+		wrn: out std_logic;--串口写使能
+		rdn: out std_logic;--串口读使能
 		data_ready: in std_logic;
 		tbre: in std_logic;
 		tsre: in std_logic
@@ -48,7 +52,7 @@ begin
 	begin
 		if (rising_edge(clk)) then
 			if (target_addr = x"BF00" or target_addr = x"BF01") then
-				
+				Ram2WriteEnable <= '0';
 				comVisit <= '1';
 				if (target_addr = x"BF01") then
 					mask <= (others => '0');
@@ -74,8 +78,12 @@ begin
 					end if;
 		
 				end if;
-
-			elsif (target_addr /= x"BF00" and target_addr /= x"BF01") then
+			elsif (target_addr >= x"4000" and target_addr <= x"7FFF") then
+				Ram2WriteEnable <= '1';
+				Ram2WriteData <= write_data;
+				Ram2WriteAddr <= target_addr;
+			else --if (target_addr /= x"BF00" and target_addr /= x"BF01") then
+				Ram2WriteEnable <= '0';
 				com <= (others => '0');
 				mask <= (others => '1');
 				crdn <= '1';

@@ -4,6 +4,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity EX_ME is
 	port (
 		clk, rst: in std_logic;
+		from_ME_Write_Enable: in std_logic;
 		control_memToReg_in: in std_logic;
 		control_regWrite_in: in std_logic_vector(2 downto 0);
 		control_memRead_in: in std_logic;
@@ -40,14 +41,25 @@ begin
 			target_Addr_out <= "000";
 			ALUresult_out <= "0000000000000000";
 		elsif clk'event and clk = '0' then
-			control_memToReg_out <= control_memToReg_in;
-			control_regWrite_out <= control_regWrite_in;
-			control_memRead_out <= control_memRead_in;
-			control_memWrite_out <= control_memWrite_in;
-			from_branch_control_out <= from_branch_control_in;
-			store_data_out <= store_data;
-			target_Addr_out <= target_Addr;
-			ALUresult_out <= ALUresult_in;
+			if from_ME_Write_Enable = '1' then
+				control_memToReg_out <= '0';
+				control_regWrite_out <= "100";
+				control_memRead_out <= '0';
+				control_memWrite_out <= '0';
+				from_branch_control_out <= '0';
+				store_data_out <= (others => '0');
+				target_Addr_out <= (others => '0');
+				ALUresult_out <= (others => '0');
+			elsif from_ME_Write_Enable = '0' then
+				control_memToReg_out <= control_memToReg_in;
+				control_regWrite_out <= control_regWrite_in;
+				control_memRead_out <= control_memRead_in;
+				control_memWrite_out <= control_memWrite_in;
+				from_branch_control_out <= from_branch_control_in;
+				store_data_out <= store_data;
+				target_Addr_out <= target_Addr;
+				ALUresult_out <= ALUresult_in;
+			end if;
 		end if;
 	end process;
 
