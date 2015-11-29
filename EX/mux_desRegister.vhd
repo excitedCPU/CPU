@@ -14,17 +14,24 @@ end mux_desRegister;
 
 architecture behavioral of mux_desRegister is
 begin
-	process(control_regDest, instruction_7_5, instruction_4_2, instruction_10_8)
-	begin
-		case control_regDest is
-		when "00" => --rx
-			desRegister <= instruction_10_8; 
-		when "01" => --ry
-			desRegister <= instruction_7_5;
-		when "10" => --rz
-			desRegister <= instruction_4_2;
-		when others => --no target
-			desRegister <= "000";
-		end case;
-	end process;
+	
+	desRegister <= instruction_10_8 when control_regDest = "00" else
+				   instruction_7_5 when control_regDest = "01" else
+				   instruction_4_2 when control_regDest = "10" else
+				   "000";
+	
+--	process(control_regDest, instruction_7_5, instruction_4_2, instruction_10_8)
+--	begin
+--		case control_regDest is
+--		when "00" => --rx
+--			desRegister <= instruction_10_8; 
+--		when "01" => --ry
+--			desRegister <= instruction_7_5;
+--		when "10" => --rz
+--			desRegister <= instruction_4_2;
+--		when others => --no target
+--			desRegister <= "000";
+--		end case;
+--	end process;
+
 end architecture ; -- behavioral
