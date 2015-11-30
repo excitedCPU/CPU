@@ -13,7 +13,9 @@ port
 	PS_clk: in std_logic;	--PS/2 clock;
 	rst: in std_logic;		--reset;
 	
-	Be_Pushed: out std_logic_vector(7 downto 0)	--The Key was being pushed;
+	Be_Pushed: out std_logic_vector(7 downto 0);	--The Key was being pushed;
+	scancode_out: out std_logic_vector(7 downto 0);
+	status: out std_logic
 	--debug: out std_logic_vector(7 downto 0)
 );
 end KNController;
@@ -39,7 +41,7 @@ architecture achieve of KNController is
 	signal clk2 : std_logic := '0';
 begin
 	KB:	keyboard port map (PS_data, PS_clk, sys_clk, not rst, enable, scancode);
-	--debug <= scancode;
+	scancode_out <= scancode;
 	
 	process(sys_clk)
 	begin
@@ -52,16 +54,8 @@ begin
 	begin
 		
 		if (enable = '1' and rising_edge(sys_clk)) then
-			tmp := s0;
-			
-			case s0 is
-				when None =>
-					case scancode is
-						when X"E0" => tmp := E0;
-						when others => tmp := None;
-					end case;
-					
-				when E0 => 
+
+					status <= '0';
 					case scancode is
 						--when X"29" => tmp <= None;
 						when X"45" => Be_Pushed <= X"00";
@@ -76,9 +70,6 @@ begin
 						when others => Be_Pushed <= X"FF";
 					end case;
 					tmp := None;
-					
-				when others => tmp := None;
-			end case;
 			
 		end if;
 		

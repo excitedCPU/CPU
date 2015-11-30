@@ -6,6 +6,7 @@ port (
 	clk: in std_logic;
 	rst: in std_logic;
 
+	read_Enable: in std_logic;
 	write_Enable: in std_logic;
 	write_Data: in std_logic_vector(15 downto 0);
 	target_Addr: in std_logic_vector(15 downto 0);
@@ -34,8 +35,13 @@ begin
 	begin
 		if (rising_edge(clk)) then
 			if (write_Enable = '0') then
-				ToRam_addr <= RAddr;
-				data <= (others => 'Z');
+				if (read_Enable = '0') then
+					ToRam_addr <= RAddr;
+					data <= (others => 'Z');
+				elsif (read_Enable = '1') then
+					ToRam_addr <= target_Addr;
+					data <= (others => 'Z');
+				end if;
 			elsif (write_Enable = '1') then
 				ToRam_addr <= target_Addr;
 				data <= write_Data;

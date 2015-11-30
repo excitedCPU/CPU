@@ -32,7 +32,14 @@ entity ME_manager is
 		tsre: in std_logic;
 		
 		Rtarget_in: in std_logic_vector(2 downto 0);
-		Rtarget_out: out std_logic_vector(2 downto 0)
+		Rtarget_out: out std_logic_vector(2 downto 0);
+		
+		Ram2ReadEnable: out std_logic;
+		Ram2WriteEnable: out std_logic;
+		Ram2Data: out std_logic_vector(15 downto 0);
+		Ram2Addr: out std_logic_vector(15 downto 0);
+		
+		From_Ram2Data: in std_logic_vector(15 downto 0)
 	);
 end ME_manager;
 
@@ -48,7 +55,8 @@ architecture behavioral of ME_manager is
 		target_addr : IN std_logic_vector(15 downto 0);
 		data_ready : IN std_logic;
 		tbre : IN std_logic;
-		tsre : IN std_logic;    
+		tsre : IN std_logic;
+		From_Ram2Data : IN std_logic_vector(15 downto 0);    
 		data : INOUT std_logic_vector(15 downto 0);      
 		Rdata : OUT std_logic_vector(15 downto 0);
 		Ram1EN : OUT std_logic;
@@ -56,7 +64,11 @@ architecture behavioral of ME_manager is
 		Ram1OE : OUT std_logic;
 		ToRam_addr : OUT std_logic_vector(15 downto 0);
 		wrn : OUT std_logic;
-		rdn : OUT std_logic
+		rdn : OUT std_logic;
+		Ram2ReadEnable : OUT std_logic;
+		Ram2WriteEnable : OUT std_logic;
+		Ram2Data : OUT std_logic_vector(15 downto 0);
+		Ram2Addr : OUT std_logic_vector(15 downto 0)
 		);
 	END COMPONENT;
 
@@ -91,7 +103,13 @@ begin
 		rdn => rdn,
 		data_ready => data_ready,
 		tbre => tbre,
-		tsre => tsre
+		tsre => tsre,
+		
+		Ram2ReadEnable => Ram2ReadEnable,
+		Ram2WriteEnable => Ram2WriteEnable,
+		Ram2Data => Ram2Data,
+		Ram2Addr => Ram2Addr,
+		From_Ram2Data => From_Ram2Data
 	);
 
 	Inst_mux_wbData: mux_wbData PORT MAP(

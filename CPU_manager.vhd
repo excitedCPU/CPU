@@ -52,7 +52,7 @@ entity CPU_manager is
 	Ram2EN: out std_logic;
 	Ram2OE: out std_logic;
 	Ram2WE: out std_logic;
-	--instruction_out: out std_logic_vector(15 downto 0);
+	instruction_out: out std_logic_vector(15 downto 0);
 	DIGITAL_H: out std_logic_vector(6 downto 0);
 	DIGITAL_L: out std_logic_vector(6 downto 0)
 	);
@@ -64,7 +64,7 @@ architecture Behavioral of CPU_manager is
 		clk : IN std_logic;
 		rst : IN std_logic;
 		from_mux_pc : IN std_logic_vector(15 downto 0);
-		from_riskCheck : IN std_logic;          
+		To_Keep : IN std_logic;          
 		pc_out : OUT std_logic_vector(15 downto 0)
 		);
 	END COMPONENT;
@@ -74,6 +74,7 @@ architecture Behavioral of CPU_manager is
 		clk : IN std_logic;
 		rst : IN std_logic;
 		old_pc : IN std_logic_vector(15 downto 0);
+		read_enable: IN std_logic;
 		write_enable : IN std_logic;
 		write_Data : IN std_logic_vector(15 downto 0);
 		target_Addr : IN std_logic_vector(15 downto 0);
@@ -92,7 +93,7 @@ architecture Behavioral of CPU_manager is
 	PORT(
 		clk : IN std_logic;
 		rst : IN std_logic;
-		from_riskCheck : IN std_logic;
+		To_Keep : IN std_logic;
 		updated_pc_in : IN std_logic_vector(15 downto 0);
 		instruction_in : IN std_logic_vector(15 downto 0);          
 		updated_pc_out : OUT std_logic_vector(15 downto 0);
@@ -104,7 +105,7 @@ architecture Behavioral of CPU_manager is
 	PORT(
 		clk : IN std_logic;
 		rst : IN std_logic;
-		from_ME_Write_Enable: IN std_logic;
+		To_Keep: IN std_logic;
 		control_branchOrJump_in : IN std_logic_vector(2 downto 0);
 		control_desRegister_in : IN std_logic_vector(1 downto 0);
 		control_ALUsrc1_in : IN std_logic_vector(2 downto 0);
@@ -187,12 +188,12 @@ architecture Behavioral of CPU_manager is
 		);
 	END COMPONENT;
 
-	--signal tmp1: std_logic_vector(15 downto 0);
-	--signal tmp2: std_logic_vector(15 downto 0);
+	signal tmp1: std_logic_vector(15 downto 0);
+	signal tmp2: std_logic_vector(15 downto 0);
 	COMPONENT EX_manager
 	PORT(
-		--op1: out std_logic_vector(15 downto 0);	
-		--op2: out std_logic_vector(15 downto 0);
+		op1: out std_logic_vector(15 downto 0);	
+		op2: out std_logic_vector(15 downto 0);
 		--control_branchOrJump : IN std_logic_vector(2 downto 0);
 		control_desRegister : IN std_logic_vector(1 downto 0);
 		control_ALUsrc1 : IN std_logic_vector(2 downto 0);
@@ -284,7 +285,7 @@ architecture Behavioral of CPU_manager is
 	PORT(
 		clk : IN std_logic;
 		rst : IN std_logic;
-		from_ME_Write_Enable: IN std_logic;
+		To_Nop: IN std_logic;
 		control_memToReg_in : IN std_logic;
 		control_regWrite_in : IN std_logic_vector(2 downto 0);
 		control_memRead_in : IN std_logic;
@@ -316,22 +317,23 @@ architecture Behavioral of CPU_manager is
 		store_data : IN std_logic_vector(15 downto 0);
 		data_ready : IN std_logic;
 		tbre : IN std_logic;
-		tsre : IN std_logic;    
+		tsre : IN std_logic;
+		Rtarget_in : IN std_logic_vector(2 downto 0);
+		From_Ram2Data : IN std_logic_vector(15 downto 0);    
 		data : INOUT std_logic_vector(15 downto 0);      
 		control_regWrite_out : OUT std_logic_vector(2 downto 0);
 		result_out : OUT std_logic_vector(15 downto 0);
 		Ram1EN : OUT std_logic;
 		Ram1OE : OUT std_logic;
 		Ram1WE : OUT std_logic;
-		Ram2WriteEnable: out std_logic;
-		Ram2WriteData: out std_logic_vector(15 downto 0);
-		Ram2WriteAddr: out std_logic_vector(15 downto 0);
 		ToRam1_addr : OUT std_logic_vector(15 downto 0);
 		wrn : OUT std_logic;
 		rdn : OUT std_logic;
-
-		Rtarget_in: in std_logic_vector(2 downto 0);
-		Rtarget_out: out std_logic_vector(2 downto 0)
+		Rtarget_out : OUT std_logic_vector(2 downto 0);
+		Ram2ReadEnable : OUT std_logic;
+		Ram2WriteEnable : OUT std_logic;
+		Ram2Data : OUT std_logic_vector(15 downto 0);
+		Ram2Addr : OUT std_logic_vector(15 downto 0)
 		);
 	END COMPONENT;
 
@@ -359,121 +361,154 @@ architecture Behavioral of CPU_manager is
 	signal clk: std_logic := '1';
 	signal clk2: std_logic := '1';
 
-	signal PC_PC: std_logic_vector(15 downto 0);
+	signal PC_PC: std_logic_vector(15 downto 0) := (others => '0');
 	
-	signal IF_PC: std_logic_vector(15 downto 0);
-	signal IF_instruction: std_logic_vector(15 downto 0);
+	signal IF_PC: std_logic_vector(15 downto 0) := (others => '0');
+	signal IF_instruction: std_logic_vector(15 downto 0) := "0000100000000000";
 
-	signal riskCheck_waitEnable: std_logic;
-	signal riskCheck_Nop: std_logic;
+	signal riskCheck_waitEnable: std_logic := '0';
+	signal riskCheck_Nop: std_logic := '0';
 	
-	signal IF_ID_pc: std_logic_vector(15 downto 0);
-	signal IF_ID_instruction: std_logic_vector(15 downto 0);
+	signal IF_ID_pc: std_logic_vector(15 downto 0) := (others => '0');
+	signal IF_ID_instruction: std_logic_vector(15 downto 0) := "0000100000000000";
 
-	signal ID_branchOrJump: std_logic_vector(2 downto 0);
-	signal ID_disRegister: std_logic_vector(1 downto 0);
-	signal ID_ALUsrc1: std_logic_vector(2 downto 0);
-	signal ID_ALUsrc2: std_logic_vector(2 downto 0);
-	signal ID_ALUop: std_logic_vector(3 downto 0);
-	signal ID_memToReg: std_logic;
-	signal ID_regWrite: std_logic_vector(2 downto 0);
-	signal ID_memWrite: std_logic;
-	signal ID_memRead: std_logic;
-	signal ID_WC: std_logic;
-	signal ID_T_Enable: std_logic;
-	signal ID_register_result1: std_logic_vector(15 downto 0);
-	signal ID_register_result2: std_logic_vector(15 downto 0);
-	signal ID_PC: std_logic_vector(15 downto 0);
-	signal ID_imm_exp_result: std_logic_vector(15 downto 0);
-	signal ID_IH: std_logic_vector(15 downto 0);
-	signal ID_SP: std_logic_vector(15 downto 0);
-	signal ID_T: std_logic_vector(15 downto 0);
-	signal ID_instruction_10_8: std_logic_vector(2 downto 0);
-	signal ID_instruction_7_5: std_logic_vector(2 downto 0);
-	signal ID_instruction_4_2: std_logic_vector(2 downto 0);
+	signal ID_branchOrJump: std_logic_vector(2 downto 0) := "000";
+	signal ID_disRegister: std_logic_vector(1 downto 0) := "00";
+	signal ID_ALUsrc1: std_logic_vector(2 downto 0) := "111";
+	signal ID_ALUsrc2: std_logic_vector(2 downto 0) := "111";
+	signal ID_ALUop: std_logic_vector(3 downto 0) := "0000";
+	signal ID_memToReg: std_logic := '0';
+	signal ID_regWrite: std_logic_vector(2 downto 0) := "100";
+	signal ID_memWrite: std_logic := '0';
+	signal ID_memRead: std_logic := '0';
+	signal ID_WC: std_logic := '0';
+	signal ID_T_Enable: std_logic := '0';
+	signal ID_register_result1: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_register_result2: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_PC: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_imm_exp_result: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_IH: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_SP: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_T: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_instruction_10_8: std_logic_vector(2 downto 0) := "000";
+	signal ID_instruction_7_5: std_logic_vector(2 downto 0) := "000";
+	signal ID_instruction_4_2: std_logic_vector(2 downto 0) := "000";
 
-	signal ID_EX_branchOrJump: std_logic_vector(2 downto 0);
-	signal ID_EX_disRegister: std_logic_vector(1 downto 0);
-	signal ID_EX_ALUsrc1: std_logic_vector(2 downto 0);
-	signal ID_EX_ALUsrc2: std_logic_vector(2 downto 0);
-	signal ID_EX_ALUop: std_logic_vector(3 downto 0);
-	signal ID_EX_memToReg: std_logic;
-	signal ID_EX_regWrite: std_logic_vector(2 downto 0);
-	signal ID_EX_memWrite: std_logic;
-	signal ID_EX_memRead: std_logic;
-	signal ID_EX_WC: std_logic;
-	signal ID_EX_T_Enable: std_logic;
-	signal ID_EX_PC: std_logic_vector(15 downto 0);
-	signal ID_EX_register_result1: std_logic_vector(15 downto 0);
-	signal ID_EX_register_result2: std_logic_vector(15 downto 0);
-	signal ID_EX_IH: std_logic_vector(15 downto 0);
-	signal ID_EX_SP: std_logic_vector(15 downto 0);
-	signal ID_EX_imm_exp_result: std_logic_vector(15 downto 0);
-	signal ID_EX_T: std_logic_vector(15 downto 0);
-	signal ID_EX_instruction_7_5: std_logic_vector(2 downto 0);
-	signal ID_EX_instruction_4_2: std_logic_vector(2 downto 0);
-	signal ID_EX_instruction_10_8: std_logic_vector(2 downto 0);
+	signal ID_EX_branchOrJump: std_logic_vector(2 downto 0) := "000";
+	signal ID_EX_disRegister: std_logic_vector(1 downto 0) := "00";
+	signal ID_EX_ALUsrc1: std_logic_vector(2 downto 0) := "111";
+	signal ID_EX_ALUsrc2: std_logic_vector(2 downto 0) := "111";
+	signal ID_EX_ALUop: std_logic_vector(3 downto 0) := "0000";
+	signal ID_EX_memToReg: std_logic := '0';
+	signal ID_EX_regWrite: std_logic_vector(2 downto 0) := "100";
+	signal ID_EX_memWrite: std_logic := '0';
+	signal ID_EX_memRead: std_logic := '0';
+	signal ID_EX_WC: std_logic := '0';
+	signal ID_EX_T_Enable: std_logic := '0';
+	signal ID_EX_PC: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_EX_register_result1: std_logic_vector(15 downto 0)  := (others => '0');
+	signal ID_EX_register_result2: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_EX_IH: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_EX_SP: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_EX_imm_exp_result: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_EX_T: std_logic_vector(15 downto 0) := (others => '0');
+	signal ID_EX_instruction_7_5: std_logic_vector(2 downto 0) := "000";
+	signal ID_EX_instruction_4_2: std_logic_vector(2 downto 0) := "000";
+	signal ID_EX_instruction_10_8: std_logic_vector(2 downto 0) := "000";
 
-	signal branchControl_PC_Choose: std_logic;
-	signal branchControl_kill: std_logic;
+	signal branchControl_PC_Choose: std_logic := '0';
+	signal branchControl_kill: std_logic := '0';
 
-	signal byPass_Fsrc1: std_logic_vector(1 downto 0);
-	signal byPass_Fsrc2: std_logic_vector(1 downto 0);
-	signal byPass_Fbranch: std_logic_vector(1 downto 0);
-	signal byPass_FmemData: std_logic_vector(1 downto 0);
+	signal byPass_Fsrc1: std_logic_vector(1 downto 0) := "00";
+	signal byPass_Fsrc2: std_logic_vector(1 downto 0) := "00";
+	signal byPass_Fbranch: std_logic_vector(1 downto 0) := "00";
+	signal byPass_FmemData: std_logic_vector(1 downto 0) := "00";
 
-	signal EX_memToReg: std_logic;
-	signal EX_regWrite: std_logic_vector(2 downto 0);
-	signal EX_memWrite: std_logic;
-	signal EX_memRead: std_logic;
-	signal EX_Rtarget: std_logic_vector(2 downto 0);
-	signal EX_ALUresult: std_logic_vector(15 downto 0);
-	signal EX_sum: std_logic_vector(15 downto 0);
-	signal EX_wrireData: std_logic_vector(15 downto 0);
+	signal EX_memToReg: std_logic := '0';
+	signal EX_regWrite: std_logic_vector(2 downto 0) := "100";
+	signal EX_memWrite: std_logic := '0';
+	signal EX_memRead: std_logic := '0';
+	signal EX_Rtarget: std_logic_vector(2 downto 0) := "000";
+	signal EX_ALUresult: std_logic_vector(15 downto 0) := (others => '0');
+	signal EX_sum: std_logic_vector(15 downto 0) := (others => '0');
+	signal EX_wrireData: std_logic_vector(15 downto 0) := (others => '0');
 	
-	signal mux_PC_PC: std_logic_vector(15 downto 0);
+	signal mux_PC_PC: std_logic_vector(15 downto 0) := (others => '0');
 
-	signal EX_ME_memtoReg: std_logic;
-	signal EX_ME_regWrite: std_logic_vector(2 downto 0);
-	signal EX_ME_memWrite: std_logic;
-	signal EX_ME_memRead: std_logic;
-	signal EX_ME_kill: std_logic;
-	signal EX_ME_Result: std_logic_vector(15 downto 0);
-	signal EX_ME_store_data: std_logic_vector(15 downto 0);
-	signal EX_ME_Rtarget: std_logic_vector(2 downto 0);
+	signal EX_ME_memtoReg: std_logic := '0';
+	signal EX_ME_regWrite: std_logic_vector(2 downto 0) := "100";
+	signal EX_ME_memWrite: std_logic := '0';
+	signal EX_ME_memRead: std_logic := '0';
+	signal EX_ME_kill: std_logic := '0';
+	signal EX_ME_Result: std_logic_vector(15 downto 0) := (others => '0');
+	signal EX_ME_store_data: std_logic_vector(15 downto 0) := (others => '0');
+	signal EX_ME_Rtarget: std_logic_vector(2 downto 0) := (others => '0');
 
-	signal ME_Result: std_logic_vector(15 downto 0);
-	signal ME_regWrite: std_logic_vector(2 downto 0);	
-	signal ME_Rtarget: std_logic_vector(2 downto 0);
+	signal ME_Result: std_logic_vector(15 downto 0) := (others => '0');
+	signal ME_regWrite: std_logic_vector(2 downto 0) := "100";	
+	signal ME_Rtarget: std_logic_vector(2 downto 0) := "000";
 
-	signal ME_WB_Result: std_logic_vector(15 downto 0);
-	signal ME_WB_regWrite: std_logic_vector(2 downto 0);
-	signal ME_WB_Rtarget: std_logic_vector(2 downto 0);
+	signal ME_WB_Result: std_logic_vector(15 downto 0) := (others => '0');
+	signal ME_WB_regWrite: std_logic_vector(2 downto 0) := "100";
+	signal ME_WB_Rtarget: std_logic_vector(2 downto 0) := "000";
 	
-	signal ME_Ram2WriteEnable: std_logic;
-	signal ME_Ram2WriteData: std_logic_vector(15 downto 0);
-	signal ME_Ram2WriteAddr: std_logic_vector(15 downto 0);
+	signal ME_Ram2ReadEnable: std_logic := '0';
+	signal ME_Ram2WriteEnable: std_logic := '0';
+	signal ME_Ram2Data: std_logic_vector(15 downto 0) := (others => '0');
+	signal ME_Ram2Addr: std_logic_vector(15 downto 0) := (others => '0');
 	
-	signal out_register1: std_logic_vector(15 downto 0);--debug
-	signal out_register2: std_logic_vector(15 downto 0);--debug
+	signal out_register1: std_logic_vector(15 downto 0) := (others => '0');--debug
+	signal out_register2: std_logic_vector(15 downto 0) := (others => '0');--debug
 	
-	signal keep_signal: std_logic;
+	signal Ram2Enable: std_logic := '0';
+	signal keep_signal: std_logic := '0';
 begin
 	ToRam1_addr(17 downto 16) <= "00";
 	ToRam2_addr(17 downto 16) <= "00";
-	keep_signal<= riskCheck_waitEnable or ME_Ram2WriteEnable;
+	Ram2Enable <= ME_Ram2ReadEnable or ME_Ram2WriteEnable;
+	keep_signal<= riskCheck_waitEnable or Ram2Enable;
 	--instruction_out <= IF_instruction;
 	--instruction_out(15 downto 14) <= byPass_Fsrc1;--debug
 	--instruction_out(13 downto 12) <= byPass_Fsrc2;--debug
 	--instruction_out(11 downto 10) <= byPass_Fbranch;
 	--instruction_out(9 downto 8) <= byPass_FmemData;
-	--instruction_out <= EX_ALUresult;
+--	instruction_out(15 downto 14) <= byPass_FmemData;
+--	instruction_out(13) <= ID_EX_WC; 
+--	instruction_out(12) <= riskCheck_waitEnable;
+--	instruction_out(11 downto 0) <= EX_wrireData(11 downto 0);
+	instruction_out <= EX_ALUResult;
+--	instruction_out(15) <= ID_EX_WC;
+--	instruction_out(14 downto 12) <= EX_ME_RegWrite;
+--	instruction_out(11 downto 9) <= ME_WB_RegWrite;
+--	instruction_out(8 downto 6) <= EX_ME_Rtarget;
+--	instruction_out(5 downto 3) <= ME_WB_Rtarget;
+--	instruction_out(2 downto 0) <= ID_EX_instruction_7_5;
+--	instruction_out(15 downto 14) <= byPass_FmemData;
+--	instruction_out(13 downto 11) <= ID_EX_instruction_7_5;
+--	instruction_out(10 downto 8) <= EX_ME_Rtarget;
+--	instruction_out(7 downto 5) <= ME_WB_Rtarget;
+--	instruction_out(4 downto 2) <= ME_WB_RegWrite;
+--	instruction_out(1) <= ID_EX_WC;
+--	instruction_out(0) <= '0';
 --	instruction_out(15) <= ID_EX_T_Enable;
 --	instruction_out(14 downto 12) <= EX_ME_regWrite;
 --	instruction_out(5 downto 0) <= EX_ME_Result(5 downto 0);
 --	instruction_out(9) <= branchControl_PC_Choose;
 --	instruction_out(8 downto 6) <= ID_EX_branchOrJump;
 --	instruction_out(11 downto 10) <= byPass_Fbranch;
+	--instruction_out <= IF_instruction;
+--	instruction_out(15) <= ME_Ram2WriteEnable;
+--	instruction_out(14) <= ME_Ram2ReadEnable;
+--	instruction_out(13) <= EX_ME_memRead;
+--	instruction_out(12) <= EX_ME_memWrite;
+--	--instruction_out(11) <= '1' when EX_ME_result(15) = '0' else
+--	--								'0';
+--	instruction_out(11) <= EX_ME_kill;
+----	instruction_out(9) <= Ram2Enable;
+--	instruction_out(10) <= riskCheck_waitEnable;
+--	instruction_out(9 downto 0) <= (others => '0');
+--									
+--	instruction_out(7 downto 0) <= EX_ME_result(15 downto 8);
 	--instruction_out(15) <= s
 	--instruction_out(15 downto 0) <= EX_ME_Result(15 downto 0);
 	--instruction_out(3 downto 2) <= byPass_Fsrc1;
@@ -484,8 +519,9 @@ begin
 	--instruction_out(6 downto 4) <= EX_ME_regWrite;
 	--instruction_out(3 downto 0) <= (others => '1');
 	--instruction_out(11 downto 8) <= (others => '0');
-	--instruction_out(15 downto 8) <= tmp1(15 downto 8);
-	--instruction_out(11 downto 0) <= tmp2(11 downto 0);
+	--instruction_out <= tmp2;
+	--instruction_out(7 downto 0) <= tmp2(7 downto 0);
+	--instruction_out <= tmp1;
 	--instruction_out(15 downto 12) <= ID_EX_ALUop;
 	--instruction_out(7 downto 0) <= ID_EX_imm_exp_result(7 downto 0);
 	--instruction_out(15 downto 0) <= IF_instruction;
@@ -500,23 +536,23 @@ begin
 	process(clk1)
 	begin
 		if (falling_edge(clk1)) then
-			clk <= not clk;
+			clk2 <= not clk2;
 		end if;
 	end process;
-
+--
 --	process(clk2) 
 --	begin
 --		if (falling_edge(clk2)) then
 --			clk <= not clk;
 --		end if;
 --	end process;
---	clk <= clk1;
+	clk <= clk2;
 
 	Inst_PC: PC PORT MAP(
 		clk => clk,
 		rst => rst,
 		from_mux_pc => mux_PC_PC,
-		from_riskCheck => keep_signal,
+		To_Keep => keep_signal,
 		pc_out => PC_PC
 	);
 
@@ -526,9 +562,10 @@ begin
 		old_pc => PC_PC,
 		new_pc => IF_PC,
 		Instruction => IF_instruction,
+		read_enable => ME_Ram2ReadEnable,
 		write_enable => ME_Ram2WriteEnable,
-		write_Data => ME_Ram2WriteData,
-		target_Addr => ME_Ram2WriteAddr,
+		write_Data => ME_Ram2Data,
+		target_Addr => ME_Ram2Addr,
 		RAddr => PC_PC,
 		Ram2Data => Ram2Data,
 		ToRam2_addr => ToRam2_addr(15 downto 0),
@@ -540,7 +577,7 @@ begin
 	Inst_IF_ID: IF_ID PORT MAP(
 		clk => clk,
 		rst => rst,
-		from_riskCheck => keep_signal,
+		To_Keep => keep_signal,
 		updated_pc_in => IF_PC,
 		instruction_in => IF_instruction,
 		updated_pc_out => IF_ID_pc,
@@ -593,7 +630,7 @@ begin
 	Inst_ID_EX: ID_EX PORT MAP(
 		clk => clk,
 		rst => rst,
-		from_ME_Write_Enable => ME_Ram2WriteEnable,
+		To_Keep => Ram2Enable,
 		control_branchOrJump_in => ID_branchOrJump,
 		control_desRegister_in => ID_disRegister,
 		control_ALUsrc1_in => ID_ALUsrc1,
@@ -639,8 +676,8 @@ begin
 	);
 
 	Inst_EX_manager: EX_manager PORT MAP(
-		--op1 => tmp1,
-		--op2 => tmp2,
+		op1 => tmp1,
+		op2 => tmp2,
 		control_desRegister => ID_EX_disRegister,
 		control_ALUsrc1 => ID_EX_ALUsrc1,
 		control_ALUsrc2 => ID_EX_ALUsrc2,
@@ -714,7 +751,7 @@ begin
 	Inst_EX_ME: EX_ME PORT MAP(
 		clk => clk,
 		rst => rst,
-		from_ME_Write_Enable => ME_Ram2WriteEnable,
+		To_Nop => Ram2Enable,
 		control_memToReg_in => EX_memToReg,
 		control_regWrite_in => EX_regWrite,
 		control_memRead_in => EX_memRead,
@@ -747,9 +784,6 @@ begin
 		Ram1EN => Ram1EN,
 		Ram1OE => Ram1OE,
 		Ram1WE => Ram1WE,
-		Ram2WriteEnable => ME_Ram2WriteEnable,
-		Ram2WriteData => ME_Ram2WriteData,	
-		Ram2WriteAddr => ME_Ram2WriteAddr,
 		ToRam1_addr => ToRam1_addr(15 downto 0),
 		data => Ram1Data,
 		wrn => wrn,
@@ -758,7 +792,13 @@ begin
 		tbre => tbre,
 		tsre => tsre,
 		Rtarget_in => EX_ME_Rtarget,
-		Rtarget_out => ME_Rtarget
+		Rtarget_out => ME_Rtarget,
+		
+		Ram2ReadEnable => ME_Ram2ReadEnable,
+		Ram2WriteEnable => ME_Ram2WriteEnable,
+		Ram2Data => ME_Ram2Data,
+		Ram2Addr => ME_Ram2Addr,
+		From_Ram2Data => IF_instruction
 	);
 
 	Inst_ME_WB: ME_WB PORT MAP(
