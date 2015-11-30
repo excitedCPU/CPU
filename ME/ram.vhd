@@ -13,10 +13,6 @@ entity ram is
 		target_addr: in std_logic_vector(15 downto 0);--写的地址
 
 		Rdata: out std_logic_vector(15 downto 0);--读出来的数据
-		
-		Ram2WriteEnable: out std_logic;
-		Ram2WriteData: out std_logic_vector(15 downto 0);
-		Ram2WriteAddr: out std_logic_vector(15 downto 0);
 
 		Ram1EN: out std_logic;
 		Ram1WE: out std_logic;
@@ -29,7 +25,14 @@ entity ram is
 		rdn: out std_logic;--串口读使能
 		data_ready: in std_logic;
 		tbre: in std_logic;
-		tsre: in std_logic
+		tsre: in std_logic;
+		
+		Ram2ReadEnable: out std_logic;
+		Ram2WriteEnable: out std_logic;
+		Ram2Data: out std_logic_vector(15 downto 0);
+		Ram2Addr: out std_logic_vector(15 downto 0);
+		
+		From_Ram2Data: in std_logic_vector(15 downto 0)
 	);
 end ram;
 
@@ -40,19 +43,31 @@ architecture behavioral of ram is
 	signal comVisit: std_logic := '0';
 	signal crdn: std_logic;
 	signal cwrn: std_logic;
+	
+	signal rOE: std_logic;
+	signal rWE: std_logic;
 begin
-	RData <= (mask and data) or com;
 	Ram1WE <= (not clk) or (not memWrite);
 	Ram1OE <= (not clk) or (not memRead);
 	Ram1EN <= (not clk) or comVisit; 
 	rdn <= (not clk) or (not memRead) or (crdn);
 	wrn <= (not clk) or (not memWrite) or (cwrn);
+	
+	RData <= (mask and data) or com when target_addr(15) = '1' else
+				From_Ram2Data;
+	
+	Ram2ReadEnable <= memRead when target_addr(15) = '0' else
+							'0';			
+	Ram2WriteEnable <= memWrite when target_addr(15) = '0' else
+							'0';							
+	Ram2Data <= write_data;
+	Ram2Addr <= target_addr;
 
 	process(clk)
 	begin
 		if (rising_edge(clk)) then
 			if (target_addr = x"BF00" or target_addr = x"BF01") then
-				Ram2WriteEnable <= '0';
+				--Ram2WriteEnable <= '0';
 				comVisit <= '1';
 				if (target_addr = x"BF01") then
 					mask <= (others => '0');
@@ -76,14 +91,10 @@ begin
 						cwrn <= '1';
 						data <= (others => 'Z');
 					end if;
-		
 				end if;
-			elsif (target_addr >= x"4000" and target_addr <= x"7FFF") then
-				Ram2WriteEnable <= '1';
-				Ram2WriteData <= write_data;
-				Ram2WriteAddr <= target_addr;
-			else --if (target_addr /= x"BF00" and target_addr /= x"BF01") then
-				Ram2WriteEnable <= '0';
+				
+			elsif (target_addr(15) = '1') then 
+				--Ram2WriteEnable <= '0';
 				com <= (others => '0');
 				mask <= (others => '1');
 				crdn <= '1';

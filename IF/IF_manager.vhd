@@ -9,6 +9,7 @@ entity IF_manager is
 		new_pc: out std_logic_vector(15 downto 0);
 		Instruction: out std_logic_vector(15 downto 0);
 
+		read_enable: in std_logic;
 		write_enable: in std_logic;
 		write_Data: in std_logic_vector(15 downto 0);
 		target_Addr: in std_logic_vector(15 downto 0);
@@ -34,6 +35,7 @@ architecture structural of IF_manager is
 	PORT(
 		clk : IN std_logic;
 		rst : IN std_logic;
+		read_Enable: IN std_logic;
 		write_Enable : IN std_logic;
 		write_Data : IN std_logic_vector(15 downto 0);
 		target_Addr : IN std_logic_vector(15 downto 0);
@@ -56,7 +58,8 @@ begin
 	Inst_Instruction_MEM: Instruction_MEM PORT MAP(
 		clk => clk,
 		rst => rst,
-		write_Enable => write_Enable,
+		read_Enable => read_enable,
+		write_Enable => write_enable,
 		write_Data => write_Data,
 		target_Addr => target_Addr,
 		RAddr => RAddr,
