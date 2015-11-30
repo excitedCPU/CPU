@@ -472,7 +472,24 @@ begin
 	--instruction_out(13 downto 12) <= byPass_Fsrc2;--debug
 	--instruction_out(11 downto 10) <= byPass_Fbranch;
 	--instruction_out(9 downto 8) <= byPass_FmemData;
-	instruction_out <= EX_ALUresult;
+--	instruction_out(15 downto 14) <= byPass_FmemData;
+--	instruction_out(13) <= ID_EX_WC; 
+--	instruction_out(12) <= riskCheck_waitEnable;
+--	instruction_out(11 downto 0) <= EX_wrireData(11 downto 0);
+	instruction_out <= EX_ALUResult;
+--	instruction_out(15) <= ID_EX_WC;
+--	instruction_out(14 downto 12) <= EX_ME_RegWrite;
+--	instruction_out(11 downto 9) <= ME_WB_RegWrite;
+--	instruction_out(8 downto 6) <= EX_ME_Rtarget;
+--	instruction_out(5 downto 3) <= ME_WB_Rtarget;
+--	instruction_out(2 downto 0) <= ID_EX_instruction_7_5;
+--	instruction_out(15 downto 14) <= byPass_FmemData;
+--	instruction_out(13 downto 11) <= ID_EX_instruction_7_5;
+--	instruction_out(10 downto 8) <= EX_ME_Rtarget;
+--	instruction_out(7 downto 5) <= ME_WB_Rtarget;
+--	instruction_out(4 downto 2) <= ME_WB_RegWrite;
+--	instruction_out(1) <= ID_EX_WC;
+--	instruction_out(0) <= '0';
 --	instruction_out(15) <= ID_EX_T_Enable;
 --	instruction_out(14 downto 12) <= EX_ME_regWrite;
 --	instruction_out(5 downto 0) <= EX_ME_Result(5 downto 0);
@@ -484,11 +501,12 @@ begin
 --	instruction_out(14) <= ME_Ram2ReadEnable;
 --	instruction_out(13) <= EX_ME_memRead;
 --	instruction_out(12) <= EX_ME_memWrite;
---	instruction_out(11) <= '1' when EX_ME_result(15) = '0' else
---									'0';
---	instruction_out(10) <= EX_ME_kill;
---	instruction_out(9) <= Ram2Enable;
---	instruction_out(8) <= keep_signal;
+--	--instruction_out(11) <= '1' when EX_ME_result(15) = '0' else
+--	--								'0';
+--	instruction_out(11) <= EX_ME_kill;
+----	instruction_out(9) <= Ram2Enable;
+--	instruction_out(10) <= riskCheck_waitEnable;
+--	instruction_out(9 downto 0) <= (others => '0');
 --									
 --	instruction_out(7 downto 0) <= EX_ME_result(15 downto 8);
 	--instruction_out(15) <= s
@@ -501,8 +519,8 @@ begin
 	--instruction_out(6 downto 4) <= EX_ME_regWrite;
 	--instruction_out(3 downto 0) <= (others => '1');
 	--instruction_out(11 downto 8) <= (others => '0');
-	--instruction_out(15 downto 8) <= tmp1(15 downto 8);
-	--instruction_out(11 downto 0) <= tmp2(11 downto 0);
+	--instruction_out <= tmp2;
+	--instruction_out(7 downto 0) <= tmp2(7 downto 0);
 	--instruction_out <= tmp1;
 	--instruction_out(15 downto 12) <= ID_EX_ALUop;
 	--instruction_out(7 downto 0) <= ID_EX_imm_exp_result(7 downto 0);
@@ -515,12 +533,12 @@ begin
 	--instruction_out(8) <= branchControl_kill;
 	--instruction_out <= ID_imm_exp_result;
 
---	process(clk1)
---	begin
---		if (falling_edge(clk1)) then
---			clk2 <= not clk2;
---		end if;
---	end process;
+	process(clk1)
+	begin
+		if (falling_edge(clk1)) then
+			clk2 <= not clk2;
+		end if;
+	end process;
 --
 --	process(clk2) 
 --	begin
@@ -528,7 +546,7 @@ begin
 --			clk <= not clk;
 --		end if;
 --	end process;
-	clk <= clk1;
+	clk <= clk2;
 
 	Inst_PC: PC PORT MAP(
 		clk => clk,

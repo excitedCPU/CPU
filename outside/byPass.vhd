@@ -34,13 +34,13 @@ begin
 		if (Control_WC = '0') then
 			if (ME_target = rx_addr and ME_ReqWrite = "000") then
 				FmemData <= "01";
-			elsif (WB_target = rx_addr and ME_ReqWrite = "000") then
+			elsif (WB_target = rx_addr and WB_ReqWrite = "000") then
 				FmemData <= "10";
 			end if;
 		elsif (Control_WC = '1') then
 			if (ME_target = ry_addr and ME_ReqWrite = "000") then
 				FmemData <= "01";
-			elsif (WB_target = ry_addr and ME_ReqWrite = "000") then
+			elsif (WB_target = ry_addr and WB_ReqWrite = "000") then
 				FmemData <= "10";
 			end if;			
 		end if;
