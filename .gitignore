@@ -42,7 +42,6 @@ planAhead_run_1/
 *.ucf
 *.unroutes
 *.ut
-*.vhd
 *.xpi
 *.xwbt
 *.csv
