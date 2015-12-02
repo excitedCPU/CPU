@@ -180,7 +180,7 @@ begin
 				
 				when "01111" => --MOVE
 					ALUsrc1 <= "111";
-					ALUsrc2 <= "111";
+					ALUsrc2 <= "000";
 
 				when "00001" =>	--NOP
 					ALUsrc1 <= "111";

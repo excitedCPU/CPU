@@ -32,6 +32,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity CPU_manager is
 	port (
+	step_clk: IN std_logic;
 	clk1: IN std_logic;
 	rst: IN std_logic;
 	--instruction: IN std_logic_vector(15 downto 0);
@@ -544,6 +545,9 @@ architecture Behavioral of CPU_manager is
 	signal clk9: std_logic := '1';
 	signal clk10: std_logic := '1';
 	signal clk11: std_logic := '1';
+	signal clk12: std_logic := '1';
+	signal clk13: std_logic := '1';
+	signal clk14: std_logic := '1';
 begin
 	ToRam1_addr(17 downto 16) <= "00";
 	ToRam2_addr(17 downto 16) <= "00";
@@ -556,80 +560,95 @@ begin
 	ToIF_target_Addr <= ME_Ram2Addr when Flash_Ready = '1' else Flash_ToRam2_Addr;
 
 --	instruction_out <= IF_instruction;
-	instruction_out <= tmp1 when Flash_Ready = '1' else Flash_Ram2Data;
+	instruction_out <= EX_ALUResult;
+--	instruction_out <= tmp2;
+--	instruction_out(15 downto 8) <= EX_ME_Result(7 downto 0);
+--	instruction_out(7 downto 0) <= ME_WB_Result(7 downto 0);
+--	instruction_out(15 downto 14) <= byPass_Fsrc1;
+--	instruction_out(15 downto 14) <= byPass_Fsrc2;
+--	instruction_out(13 downto 11) <= EX_ME_Rtarget;
+--	--instruction_out(10 downto 8) <= ME_WB_Rtarget;
+--	instruction_out(10 downto 8) <= EX_ME_regWrite;
+--	instruction_out(7 downto 5) <= ID_EX_instruction_7_5;
+--	instruction_out(4 downto 2) <= ID_EX_ALUsrc2;
+--	instruction_out(1 downto 0) <= (others => '0');
+	--instruction_out(5 downto 3) <= EX_ME_regWrite;
+--	instruction_out(11 downto 0) <= (others => '0');
 --	instruction_out(15) <= clk10;
 --	instruction_out(14) <= Flash_Ram2WE;
 --	instruction_out(13 downto 0) <= (others => '0');
 
 
-	clk <= clk1 or (not Flash_Ready);
+
+
+	clk <= clk2 or (not Flash_Ready);
 	--clk10 <= clk10;
-	--clk11 <= clk1 when Flash_Ready = '1' else clk10;
-	clk10 <= clk1;
-	clk11 <= clk1;
+	clk11 <= clk2 when Flash_Ready = '1' else clk10;
+	--clk10 <= clk1;
+	--clk11 <= clk1;
 	
---	process(clk1)
---	begin
---		if (falling_edge(clk1)) then
---			clk2 <= not clk2;
---		end if;
---	end process;
---
---	process(clk2)
---	begin
---		if (falling_edge(clk2)) then
---			clk3 <= not clk3;
---		end if;
---	end process;
---	
---	process(clk3)
---	begin
---		if (falling_edge(clk3)) then
---			clk4 <= not clk4;
---		end if;
---	end process;
---	
---	process(clk4)
---	begin
---		if (falling_edge(clk4)) then
---			clk5 <= not clk5;
---		end if;
---	end process;
---	
---	process(clk5)
---	begin
---		if (falling_edge(clk5)) then
---			clk6 <= not clk6;
---		end if;
---	end process;
---	
---	process(clk6)
---	begin
---		if (falling_edge(clk6)) then
---			clk7 <= not clk7;
---		end if;
---	end process;
---	
---	process(clk7)
---	begin
---		if (falling_edge(clk7)) then
---			clk8 <= not clk8;
---		end if;
---	end process;
---	
---	process(clk8)
---	begin
---		if (falling_edge(clk8)) then
---			clk9 <= not clk9;
---		end if;
---	end process;
---	
---	process(clk9)
---	begin
---		if (falling_edge(clk9)) then
---			clk10 <= not clk10;
---		end if;
---	end process;
+	process(clk1)
+	begin
+		if (falling_edge(clk1)) then
+			clk2 <= not clk2;
+		end if;
+	end process;
+
+	process(clk2)
+	begin
+		if (falling_edge(clk2)) then
+			clk3 <= not clk3;
+		end if;
+	end process;
+	
+	process(clk3)
+	begin
+		if (falling_edge(clk3)) then
+			clk4 <= not clk4;
+		end if;
+	end process;
+	
+	process(clk4)
+	begin
+		if (falling_edge(clk4)) then
+			clk5 <= not clk5;
+		end if;
+	end process;
+	
+	process(clk5)
+	begin
+		if (falling_edge(clk5)) then
+			clk6 <= not clk6;
+		end if;
+	end process;
+	
+	process(clk6)
+	begin
+		if (falling_edge(clk6)) then
+			clk7 <= not clk7;
+		end if;
+	end process;
+	
+	process(clk7)
+	begin
+		if (falling_edge(clk7)) then
+			clk8 <= not clk8;
+		end if;
+	end process;
+	
+	process(clk8)
+	begin
+		if (falling_edge(clk8)) then
+			clk9 <= not clk9;
+		end if;
+	end process;
+	
+	process(clk9)
+	begin
+		if (falling_edge(clk9)) then
+			clk10 <= not clk10;
+		end if;
+	end process;
 
 
 	
@@ -691,7 +710,7 @@ begin
 	);
 
 	Inst_ID_manager: ID_manager PORT MAP(
-		clk => clk2,
+		clk => clk,
 		rst => rst,
 		instruction => IF_ID_instruction,
 		from_PC => IF_ID_PC,
