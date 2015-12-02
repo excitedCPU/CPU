@@ -556,7 +556,7 @@ begin
 	ToIF_target_Addr <= ME_Ram2Addr when Flash_Ready = '1' else Flash_ToRam2_Addr;
 
 --	instruction_out <= IF_instruction;
-	instruction_out <= EX_ALUResult when Flash_Ready = '1' else Flash_Ram2Data;
+	instruction_out <= tmp1 when Flash_Ready = '1' else Flash_Ram2Data;
 --	instruction_out(15) <= clk10;
 --	instruction_out(14) <= Flash_Ram2WE;
 --	instruction_out(13 downto 0) <= (others => '0');
