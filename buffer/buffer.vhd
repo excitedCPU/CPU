@@ -77,7 +77,7 @@ begin
 				write_col <= 0;
 			end if;
 			addra <= conv_std_logic_vector(write_row, 5);
-			dina((write_col*7) downto (write_col*7+7)) <= input_ascii;
+			dina((write_col*7+6) downto (write_col*7)) <= input_ascii;
 		end if;
 	end process;
 
@@ -91,12 +91,12 @@ begin
 		elsif read_col <= MAX_COL then
 			not_exceed_max_col <= '1';
 			addrb <= conv_std_logic_vector(read_row, 5);
-			ascii_to_vga <= doutb((read_col*7) to (read_col*7+6));
+			ascii_to_vga <= doutb((read_col*7+6) downto (read_col*7));
 		end if;
 	end process;
 
-	ascii_with_bit_addr(10 downto 4) <= ascii_to_vga;
-	ascii_with_bit_addr(3 downto 0) <= bit_addr(6 downto 3);
+	ascii_with_bit_addr(10 downto 7) <= bit_addr(6 downto 3);
+	ascii_with_bit_addr(6 downto 0) <= ascii_to_vga;
 	bit_addr_last_three <= bit_addr(2 downto 0);
 end architecture ; -- behavioral
 
