@@ -77,7 +77,7 @@ begin
 				write_col <= 0;
 			end if;
 			addra <= conv_std_logic_vector(write_row, 5);
-			dina((write_col*7+6) downto (write_col*7)) <= input_ascii;
+			dina((255 - write_col*7) downto (255 - write_col*7 - 6)) <= input_ascii;
 		end if;
 	end process;
 
@@ -91,7 +91,7 @@ begin
 		elsif read_col <= MAX_COL then
 			not_exceed_max_col <= '1';
 			addrb <= conv_std_logic_vector(read_row, 5);
-			ascii_to_vga <= doutb((256 - read_col*7) downto (256 - read_col*7 - 6));
+			ascii_to_vga <= doutb((255 - read_col*7) downto (255 - read_col*7 - 6));
 		end if;
 	end process;
 
