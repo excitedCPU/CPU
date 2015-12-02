@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.11 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.11 secs
  
 --> Reading design: KNController.prj
 
@@ -161,7 +161,7 @@ Entity <fontROM> analyzed. Unit <fontROM> generated.
 
 Analyzing Entity <my_buffer> in library <work> (Architecture <behavioral>).
 WARNING:Xst:2211 - "C:/Projects/CPU/myVGA/buffer.vhd" line 61: Instantiating black box module <core_buffer_ram>.
-WARNING:Xst:819 - "C:/Projects/CPU/myVGA/buffer.vhd" line 96: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+WARNING:Xst:819 - "C:/Projects/CPU/myVGA/buffer.vhd" line 97: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
    <MAX_COL>, <doutb>
 Entity <my_buffer> analyzed. Unit <my_buffer> generated.
 
@@ -257,19 +257,19 @@ WARNING:Xst:1780 - Signal <data_to_write> is never used or assigned. This unconn
 WARNING:Xst:1780 - Signal <MAX_ROW> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:653 - Signal <MAX_COL> is used but never assigned. This sourceless signal will be automatically connected to value 00000000000000000000000000100000.
 WARNING:Xst:737 - Found 5-bit latch for signal <addrb>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-WARNING:Xst:643 - "C:/Projects/CPU/myVGA/buffer.vhd" line 90: The result of a 32x4-bit multiplication is partially used. Only the 32 least significant bits are used. If you are doing this on purpose, you may safely ignore this warning. Otherwise, make sure you are not losing information, leading to unexpected circuit behavior.
+WARNING:Xst:643 - "C:/Projects/CPU/myVGA/buffer.vhd" line 91: The result of a 32x4-bit multiplication is partially used. Only the 32 least significant bits are used. If you are doing this on purpose, you may safely ignore this warning. Otherwise, make sure you are not losing information, leading to unexpected circuit behavior.
     Found 5-bit register for signal <addra>.
-    Found 5-bit adder for signal <addra$sub0000> created at line 88.
-    Found 32-bit comparator greater for signal <addrb$cmp_gt0000> created at line 100.
-    Found 5-bit adder for signal <addrb$sub0000> created at line 105.
-    Found 7x3-bit multiplier for signal <ascii_to_vga$mult0000> created at line 106.
+    Found 5-bit adder for signal <addra$sub0000> created at line 89.
+    Found 32-bit comparator greater for signal <addrb$cmp_gt0000> created at line 101.
+    Found 5-bit adder for signal <addrb$sub0000> created at line 106.
+    Found 7x3-bit multiplier for signal <ascii_to_vga$mult0000> created at line 107.
     Found 256-bit register for signal <dina>.
-    Found 32x4-bit multiplier for signal <dina_34$mult0000> created at line 90.
-    Found 32-bit comparator greater for signal <not_exceed_max_col$cmp_gt0000> created at line 100.
-    Found 32-bit up counter for signal <write_col>.
-    Found 32-bit updown counter for signal <write_row>.
-    Found 32-bit comparator greatequal for signal <write_row$cmp_ge0000> created at line 79.
-    Found 32-bit comparator greatequal for signal <write_row$cmp_ge0001> created at line 84.
+    Found 32x4-bit multiplier for signal <dina_34$mult0000> created at line 91.
+    Found 32-bit comparator greater for signal <not_exceed_max_col$cmp_gt0000> created at line 101.
+    Found 32-bit updown counter for signal <write_col>.
+    Found 32-bit comparator greatequal for signal <write_col$cmp_ge0000> created at line 84.
+    Found 32-bit comparator less for signal <write_col$cmp_lt0000> created at line 79.
+    Found 32-bit up counter for signal <write_row>.
     Found 32-bit comparator less for signal <write_row$cmp_lt0000> created at line 84.
 INFO:Xst:738 - HDL ADVISOR - 256 flip-flops were inferred for signal <dina>. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
     Summary:
@@ -332,9 +332,9 @@ Macro Statistics
  10-bit comparator less                                : 2
  11-bit comparator greatequal                          : 1
  11-bit comparator less                                : 2
- 32-bit comparator greatequal                          : 2
+ 32-bit comparator greatequal                          : 1
  32-bit comparator greater                             : 2
- 32-bit comparator less                                : 1
+ 32-bit comparator less                                : 2
 # Multiplexers                                         : 1
  1-bit 8-to-1 multiplexer                              : 1
 # Xors                                                 : 1
@@ -407,9 +407,9 @@ Macro Statistics
  10-bit comparator less                                : 2
  11-bit comparator greatequal                          : 1
  11-bit comparator less                                : 2
- 32-bit comparator greatequal                          : 2
+ 32-bit comparator greatequal                          : 1
  32-bit comparator greater                             : 2
- 32-bit comparator less                                : 1
+ 32-bit comparator less                                : 2
 # Multiplexers                                         : 1
  1-bit 8-to-1 multiplexer                              : 1
 # Xors                                                 : 1
@@ -516,21 +516,20 @@ Design Statistics
 # IOs                              : 33
 
 Cell Usage :
-# BELS                             : 2312
+# BELS                             : 2306
 #      GND                         : 2
-#      INV                         : 18
-#      LUT1                        : 49
-#      LUT2                        : 70
-#      LUT2_D                      : 10
-#      LUT2_L                      : 2
-#      LUT3                        : 291
-#      LUT3_D                      : 32
-#      LUT3_L                      : 12
-#      LUT4                        : 1064
-#      LUT4_D                      : 126
-#      LUT4_L                      : 76
+#      INV                         : 17
+#      LUT1                        : 22
+#      LUT2                        : 79
+#      LUT2_D                      : 11
+#      LUT3                        : 333
+#      LUT3_D                      : 29
+#      LUT3_L                      : 8
+#      LUT4                        : 1042
+#      LUT4_D                      : 124
+#      LUT4_L                      : 77
 #      MUXCY                       : 112
-#      MUXF5                       : 243
+#      MUXF5                       : 245
 #      MUXF6                       : 83
 #      MUXF7                       : 32
 #      MUXF8                       : 10
@@ -565,9 +564,9 @@ Device utilization summary:
 
 Selected Device : 3s1200efg320-4 
 
- Number of Slices:                      916  out of   8672    10%  
+ Number of Slices:                      914  out of   8672    10%  
  Number of Slice Flip Flops:            376  out of  17344     2%  
- Number of 4 input LUTs:               1750  out of  17344    10%  
+ Number of 4 input LUTs:               1742  out of  17344    10%  
  Number of IOs:                          33
  Number of bonded IOBs:                  32  out of    250    12%  
     IOB Flip Flops:                       8
@@ -618,7 +617,7 @@ Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 22.102ns (Maximum Frequency: 45.244MHz)
+   Minimum period: 21.751ns (Maximum Frequency: 45.974MHz)
    Minimum input arrival time before clock: 4.061ns
    Maximum output required time after clock: 7.343ns
    Maximum combinational path delay: No path found
@@ -629,54 +628,66 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'sys_clk'
-  Clock period: 18.124ns (frequency: 55.175MHz)
-  Total number of paths / destination ports: 2566810 / 944
+  Clock period: 18.539ns (frequency: 53.942MHz)
+  Total number of paths / destination ports: 2570592 / 944
 -------------------------------------------------------------------------
-Delay:               18.124ns (Levels of Logic = 23)
-  Source:            Inst_VGAController/Inst_my_buffer/write_col_12 (FF)
-  Destination:       Inst_VGAController/Inst_my_buffer/dina_165 (FF)
-  Source Clock:      sys_clk rising
+Delay:               9.269ns (Levels of Logic = 35)
+  Source:            tem_ascii_2 (FF)
+  Destination:       Inst_VGAController/Inst_my_buffer/write_col_31 (FF)
+  Source Clock:      sys_clk falling
   Destination Clock: sys_clk rising
 
-  Data Path: Inst_VGAController/Inst_my_buffer/write_col_12 to Inst_VGAController/Inst_my_buffer/dina_165
+  Data Path: tem_ascii_2 to Inst_VGAController/Inst_my_buffer/write_col_31
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q             3   0.591   0.531  Inst_VGAController/Inst_my_buffer/write_col_12 (Inst_VGAController/Inst_my_buffer/write_col_12)
-     MULT18X18SIO:A12->P17    1   4.873   0.499  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult0000 (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult0000_P_to_Adder_A_17)
-     LUT2:I1->O            1   0.704   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_lut<17> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_lut<17>)
-     MUXCY:S->O            1   0.464   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<17> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<17>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<18> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<18>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<19> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<19>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<20> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<20>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<21> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<21>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<22> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<22>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<23> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<23>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<24> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<24>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<25> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<25>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<26> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<26>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<27> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<27>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<28> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<28>)
-     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<29> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<29>)
-     MUXCY:CI->O           0   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<30> (Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_cy<30>)
-     XORCY:CI->O           1   0.804   0.455  Inst_VGAController/Inst_my_buffer/Mmult_dina_34_mult00000_Madd_xor<31> (Inst_VGAController/Inst_my_buffer/dina_34_mult0000<31>)
-     LUT4:I2->O            1   0.704   0.000  Inst_VGAController/Inst_my_buffer/dina_100_cmp_eq00001_wg_lut<5> (Inst_VGAController/Inst_my_buffer/dina_100_cmp_eq00001_wg_lut<5>)
-     MUXCY:S->O           41   0.864   1.440  Inst_VGAController/Inst_my_buffer/dina_100_cmp_eq00001_wg_cy<5> (Inst_VGAController/Inst_my_buffer/dina_100_cmp_eq00001_wg_cy<5>)
-     LUT4_D:I0->O          6   0.704   0.844  Inst_VGAController/Inst_my_buffer/dina_110_cmp_eq000011 (Inst_VGAController/N145)
-     LUT4_D:I0->O          7   0.704   0.787  Inst_VGAController/Inst_my_buffer/dina_165_cmp_eq00001 (Inst_VGAController/Inst_my_buffer/dina_165_cmp_eq0000)
-     LUT4_D:I1->O          6   0.704   0.673  Inst_VGAController/Inst_my_buffer/dina_165_mux00002 (Inst_VGAController/N70)
-     LUT4:I3->O            1   0.704   0.000  Inst_VGAController/Inst_my_buffer/dina_170_mux00001 (Inst_VGAController/Inst_my_buffer/dina_170_mux0000)
-     FDE:D                     0.308          Inst_VGAController/Inst_my_buffer/dina_170
+     FDCE_1:C->Q          38   0.591   1.439  tem_ascii_2 (tem_ascii_2)
+     LUT3:I0->O            1   0.704   0.424  Inst_VGAController/Inst_my_buffer/write_col_cmp_eq00001_SW0 (N138)
+     LUT4:I3->O           35   0.704   1.342  Inst_VGAController/Inst_my_buffer/write_col_cmp_eq00001 (Inst_VGAController/N321)
+     LUT2:I1->O            1   0.704   0.420  Inst_VGAController/Inst_my_buffer/write_row_cmp_eq00001 (Inst_VGAController/Inst_my_buffer/write_col_not0001_inv)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<0> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<1> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<2> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<3> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<4> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<5> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<6> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<7> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<8> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<9> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<10> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<11> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<12> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<13> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<14> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<15> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<16> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<17> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<18> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<19> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<20> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<21> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<22> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<23> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<24> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<25> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<26> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<27> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<28> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<29> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<30> (Inst_VGAController/Inst_my_buffer/Mcount_write_col_cy<30>)
+     XORCY:CI->O           1   0.804   0.000  Inst_VGAController/Inst_my_buffer/Mcount_write_col_xor<31> (Inst_VGAController/Result<31>)
+     FDRE:D                    0.308          Inst_VGAController/Inst_my_buffer/write_col_31
     ----------------------------------------
-    Total                     18.124ns (12.895ns logic, 5.229ns route)
-                                       (71.1% logic, 28.9% route)
+    Total                      9.269ns (5.644ns logic, 3.625ns route)
+                                       (60.9% logic, 39.1% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'Inst_VGAController/Inst_vga640480/clk1'
-  Clock period: 22.102ns (frequency: 45.244MHz)
-  Total number of paths / destination ports: 3878864 / 73
+  Clock period: 21.751ns (frequency: 45.974MHz)
+  Total number of paths / destination ports: 3850427 / 73
 -------------------------------------------------------------------------
-Delay:               22.102ns (Levels of Logic = 20)
+Delay:               21.751ns (Levels of Logic = 21)
   Source:            Inst_VGAController/Inst_vga640480/char_addr_1 (FF)
   Destination:       Inst_VGAController/Inst_vga640480/b1_0 (FF)
   Source Clock:      Inst_VGAController/Inst_vga640480/clk1 rising
@@ -691,26 +702,27 @@ Delay:               22.102ns (Levels of Logic = 20)
      LUT2:I1->O            1   0.704   0.000  Inst_VGAController/Inst_my_buffer/Mmult_ascii_to_vga_mult0000_Madd1_lut<5> (Inst_VGAController/Inst_my_buffer/Mmult_ascii_to_vga_mult0000_Madd1_lut<5>)
      MUXCY:S->O            1   0.464   0.000  Inst_VGAController/Inst_my_buffer/Mmult_ascii_to_vga_mult0000_Madd1_cy<5> (Inst_VGAController/Inst_my_buffer/Mmult_ascii_to_vga_mult0000_Madd1_cy<5>)
      MUXCY:CI->O           0   0.059   0.000  Inst_VGAController/Inst_my_buffer/Mmult_ascii_to_vga_mult0000_Madd1_cy<6> (Inst_VGAController/Inst_my_buffer/Mmult_ascii_to_vga_mult0000_Madd1_cy<6>)
-     XORCY:CI->O          31   0.804   1.341  Inst_VGAController/Inst_my_buffer/Mmult_ascii_to_vga_mult0000_Madd1_xor<7> (Inst_VGAController/Inst_my_buffer/ascii_to_vga_mult0000<7>)
-     LUT2_D:I1->O         10   0.704   0.886  Inst_VGAController/Inst_my_buffer/ascii_to_vga_cmp_eq003521 (Inst_VGAController/N109)
-     LUT4_D:I3->O          6   0.704   0.673  Inst_VGAController/Inst_my_buffer/ascii_to_vga_cmp_eq00311 (Inst_VGAController/Inst_my_buffer/ascii_to_vga_cmp_eq0031)
-     LUT4:I3->O            2   0.704   0.482  Inst_VGAController/Inst_my_buffer/ascii_to_vga<0>219 (Inst_VGAController/Inst_my_buffer/ascii_to_vga<0>219)
-     LUT4_D:I2->O          9   0.704   0.855  Inst_VGAController/Inst_my_buffer/ascii_to_vga<0>229_1 (Inst_VGAController/Inst_my_buffer/ascii_to_vga<0>2291)
-     LUT4:I2->O          375   0.704   1.371  Inst_VGAController/Inst_my_buffer/ascii_to_vga<0>253 (Inst_VGAController/to_rom_row<4>)
-     MUXF5:S->O            1   0.739   0.455  Inst_VGAController/to_rom_row<4>81 (Inst_VGAController/to_rom_row<4>9)
-     LUT3:I2->O            1   0.704   0.000  Inst_VGAController/Inst_fontROM/Mmux_dataOut_21_f5_24_F (N522)
-     MUXF5:I0->O           1   0.321   0.455  Inst_VGAController/Inst_fontROM/Mmux_dataOut_21_f5_24 (Inst_VGAController/Inst_fontROM/Mmux_dataOut_21_f525)
-     LUT3:I2->O            1   0.704   0.455  Inst_VGAController/Inst_fontROM/Mmux_dataOut_143_SW0 (N236)
-     LUT3:I2->O            1   0.704   0.000  Inst_VGAController/Inst_fontROM/Mmux_dataOut_143 (Inst_VGAController/Inst_fontROM/Mmux_dataOut_142)
-     MUXF5:I1->O           1   0.321   0.000  Inst_VGAController/Inst_fontROM/Mmux_dataOut_13_f5_0 (Inst_VGAController/Inst_fontROM/Mmux_dataOut_13_f51)
-     MUXF6:I1->O           1   0.521   0.455  Inst_VGAController/Inst_fontROM/Mmux_dataOut_12_f6 (Inst_VGAController/Inst_fontROM/Mmux_dataOut_12_f6)
-     LUT3:I2->O            1   0.704   0.424  Inst_VGAController/to_buffer_bit_addr<0>11 (Inst_VGAController/to_buffer_bit_addr<0>2)
-     LUT4:I3->O            1   0.704   0.000  Inst_VGAController/Inst_vga640480/r1_mux0001<0>1_F (N512)
-     MUXF5:I0->O           1   0.321   0.000  Inst_VGAController/Inst_vga640480/r1_mux0001<0>1 (Inst_VGAController/Inst_vga640480/r1_mux0001<0>)
+     XORCY:CI->O          33   0.804   1.298  Inst_VGAController/Inst_my_buffer/Mmult_ascii_to_vga_mult0000_Madd1_xor<7> (Inst_VGAController/Inst_my_buffer/ascii_to_vga_mult0000<7>)
+     LUT3_D:I2->O          6   0.704   0.673  Inst_VGAController/Inst_my_buffer/ascii_to_vga_cmp_eq0005111 (Inst_VGAController/N611)
+     LUT4:I3->O            7   0.704   0.712  Inst_VGAController/Inst_my_buffer/ascii_to_vga_cmp_eq00131 (Inst_VGAController/Inst_my_buffer/ascii_to_vga_cmp_eq0013)
+     LUT4_L:I3->LO         1   0.704   0.104  Inst_VGAController/Inst_my_buffer/ascii_to_vga<1>69 (Inst_VGAController/Inst_my_buffer/ascii_to_vga<1>69)
+     LUT4:I3->O            1   0.704   0.424  Inst_VGAController/Inst_my_buffer/ascii_to_vga<1>79 (Inst_VGAController/Inst_my_buffer/ascii_to_vga<1>79)
+     LUT4_L:I3->LO         1   0.704   0.104  Inst_VGAController/Inst_my_buffer/ascii_to_vga<1>253_SW0_SW0 (N332)
+     LUT4:I3->O          243   0.704   1.504  Inst_VGAController/Inst_my_buffer/ascii_to_vga<1>253 (Inst_VGAController/to_rom_row<5>)
+     LUT3:I0->O            1   0.704   0.000  Inst_VGAController/Inst_fontROM/Mmux_dataOut_25_f5_0_F (N640)
+     MUXF5:I0->O           1   0.321   0.424  Inst_VGAController/Inst_fontROM/Mmux_dataOut_25_f5_0 (Inst_VGAController/Inst_fontROM/Mmux_dataOut_25_f51)
+     LUT4:I3->O            1   0.704   0.455  Inst_VGAController/to_rom_row<6>5 (Inst_VGAController/to_rom_row<6>6)
+     LUT3:I2->O            1   0.704   0.000  Inst_VGAController/Inst_fontROM/Mmux_dataOut_16_f5_10_F (N494)
+     MUXF5:I0->O           1   0.321   0.455  Inst_VGAController/Inst_fontROM/Mmux_dataOut_16_f5_10 (Inst_VGAController/Inst_fontROM/Mmux_dataOut_16_f511)
+     LUT3:I2->O            1   0.704   0.455  Inst_VGAController/Inst_fontROM/Mmux_dataOut_12 (Inst_VGAController/Inst_fontROM/Mmux_dataOut_12)
+     LUT3:I2->O            1   0.704   0.000  Inst_VGAController/to_buffer_bit_addr<0>_F (N468)
+     MUXF5:I0->O           1   0.321   0.424  Inst_VGAController/to_buffer_bit_addr<0> (Inst_VGAController/to_buffer_bit_addr<0>1)
+     LUT4:I3->O            1   0.704   0.000  Inst_VGAController/Inst_vga640480/r1_mux0001<0>1_G (N503)
+     MUXF5:I1->O           1   0.321   0.000  Inst_VGAController/Inst_vga640480/r1_mux0001<0>1 (Inst_VGAController/Inst_vga640480/r1_mux0001<0>)
      FDC:D                     0.308          Inst_VGAController/Inst_vga640480/b1_0
     ----------------------------------------
-    Total                     22.102ns (12.897ns logic, 9.205ns route)
-                                       (58.4% logic, 41.6% route)
+    Total                     21.751ns (13.366ns logic, 8.385ns route)
+                                       (61.4% logic, 38.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'sys_clk'
@@ -784,7 +796,7 @@ Offset:              7.343ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q             27   0.591   1.436  KB/fok (KB/fok)
+     FDC:C->Q             28   0.591   1.436  KB/fok (KB/fok)
      LUT2:I0->O          278   0.704   1.340  is_ready1 (is_ready_OBUF)
      OBUF:I->O                 3.272          is_ready_OBUF (is_ready)
     ----------------------------------------
@@ -813,12 +825,12 @@ Offset:              4.368ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 36.00 secs
-Total CPU time to Xst completion: 36.64 secs
+Total REAL time to Xst completion: 39.00 secs
+Total CPU time to Xst completion: 39.80 secs
  
 --> 
 
-Total memory usage is 276320 kilobytes
+Total memory usage is 277856 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   63 (   0 filtered)

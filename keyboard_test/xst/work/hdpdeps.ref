@@ -9,28 +9,28 @@ FL C:/jiyuan/myVGA/VGAController.vhd 2015/12/02.15:59:24 P.20131013
 FL C:/jiyuan/myVGA/VGA_640480.vhd 2015/12/02.13:59:22 P.20131013
 FL C:/Projects/CPU/buffer/buffer.vhd 2015/12/02.17:57:25 P.20131013
 FL C:/Projects/CPU/keyboard/ascii_define.vhd 2015/12/03.00:52:17 P.20131013
-PH work/ascii_define 1449075428 FL C:/Projects/CPU/keyboard/ascii_define.vhd \
+PH work/ascii_define 1449075948 FL C:/Projects/CPU/keyboard/ascii_define.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
 FL C:/Projects/CPU/keyboard/Keyboard.vhd 2015/12/02.14:11:29 P.20131013
-EN work/Keyboard 1449075437 FL C:/Projects/CPU/keyboard/Keyboard.vhd \
+EN work/Keyboard 1449075957 FL C:/Projects/CPU/keyboard/Keyboard.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179 \
       PB ieee/std_logic_arith 1381692177
-AR work/Keyboard/rtl 1449075438 \
-      FL C:/Projects/CPU/keyboard/Keyboard.vhd EN work/Keyboard 1449075437
-FL C:/Projects/CPU/keyboard/KNController.vhd 2015/12/03.00:52:56 P.20131013
-EN work/KNController 1449075441 FL C:/Projects/CPU/keyboard/KNController.vhd \
+AR work/Keyboard/rtl 1449075958 \
+      FL C:/Projects/CPU/keyboard/Keyboard.vhd EN work/Keyboard 1449075957
+FL C:/Projects/CPU/keyboard/KNController.vhd 2015/12/03.01:02:04 P.20131013
+EN work/KNController 1449075961 FL C:/Projects/CPU/keyboard/KNController.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179 \
-      PB ieee/std_logic_arith 1381692177 PH work/ascii_define 1449075428
-AR work/KNController/achieve 1449075442 \
-      FL C:/Projects/CPU/keyboard/KNController.vhd EN work/KNController 1449075441 \
+      PB ieee/std_logic_arith 1381692177 PH work/ascii_define 1449075948
+AR work/KNController/achieve 1449075962 \
+      FL C:/Projects/CPU/keyboard/KNController.vhd EN work/KNController 1449075961 \
       CP keyboard CP VGAController
 FL C:/Projects/CPU/keyboard_test/ipcore_dir/core_buffer_ram.vhd 2015/12/02.18:14:51 P.20131013
-EN work/core_buffer_ram 1449075429 \
+EN work/core_buffer_ram 1449075949 \
       FL C:/Projects/CPU/keyboard_test/ipcore_dir/core_buffer_ram.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/core_buffer_ram/core_buffer_ram_a 1449075430 \
+AR work/core_buffer_ram/core_buffer_ram_a 1449075950 \
       FL C:/Projects/CPU/keyboard_test/ipcore_dir/core_buffer_ram.vhd \
-      EN work/core_buffer_ram 1449075429
+      EN work/core_buffer_ram 1449075949
 FL C:/Projects/CPU/keyboard_test/ipcore_dir/new_buffer_ram.vhd 2015/12/02.18:08:13 P.20131013
 EN work/new_buffer_ram 1449050923 \
       FL C:/Projects/CPU/keyboard_test/ipcore_dir/new_buffer_ram.vhd \
@@ -38,31 +38,31 @@ EN work/new_buffer_ram 1449050923 \
 AR work/new_buffer_ram/new_buffer_ram_a 1449050924 \
       FL C:/Projects/CPU/keyboard_test/ipcore_dir/new_buffer_ram.vhd \
       EN work/new_buffer_ram 1449050923
-FL C:/Projects/CPU/myVGA/buffer.vhd 2015/12/03.00:57:06 P.20131013
-EN work/my_buffer 1449075435 FL C:/Projects/CPU/myVGA/buffer.vhd \
+FL C:/Projects/CPU/myVGA/buffer.vhd 2015/12/03.01:05:38 P.20131013
+EN work/my_buffer 1449075955 FL C:/Projects/CPU/myVGA/buffer.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181 \
       PB ieee/std_logic_arith 1381692177 PB ieee/STD_LOGIC_UNSIGNED 1381692179 \
-      PH work/ascii_define 1449075428
-AR work/my_buffer/behavioral 1449075436 \
-      FL C:/Projects/CPU/myVGA/buffer.vhd EN work/my_buffer 1449075435 \
+      PH work/ascii_define 1449075948
+AR work/my_buffer/behavioral 1449075956 \
+      FL C:/Projects/CPU/myVGA/buffer.vhd EN work/my_buffer 1449075955 \
       CP core_buffer_ram
 FL C:/Projects/CPU/myVGA/font_rom.vhd 2015/12/02.17:26:08 P.20131013
-EN work/fontROM 1449075433 FL C:/Projects/CPU/myVGA/font_rom.vhd \
+EN work/fontROM 1449075953 FL C:/Projects/CPU/myVGA/font_rom.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
-AR work/fontROM/Behavioral 1449075434 \
-      FL C:/Projects/CPU/myVGA/font_rom.vhd EN work/fontROM 1449075433
+AR work/fontROM/Behavioral 1449075954 \
+      FL C:/Projects/CPU/myVGA/font_rom.vhd EN work/fontROM 1449075953
 FL C:/Projects/CPU/myVGA/VGAController.vhd 2015/12/02.17:26:08 P.20131013
-EN work/VGAController 1449075439 FL C:/Projects/CPU/myVGA/VGAController.vhd \
+EN work/VGAController 1449075959 FL C:/Projects/CPU/myVGA/VGAController.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/VGAController/Behavioral 1449075440 \
-      FL C:/Projects/CPU/myVGA/VGAController.vhd EN work/VGAController 1449075439 \
+AR work/VGAController/Behavioral 1449075960 \
+      FL C:/Projects/CPU/myVGA/VGAController.vhd EN work/VGAController 1449075959 \
       CP vga640480 CP fontROM CP my_buffer
 FL C:/Projects/CPU/myVGA/VGA_640480.vhd 2015/12/02.17:26:08 P.20131013
-EN work/vga640480 1449075431 FL C:/Projects/CPU/myVGA/VGA_640480.vhd \
+EN work/vga640480 1449075951 FL C:/Projects/CPU/myVGA/VGA_640480.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179 \
       PB ieee/std_logic_arith 1381692177
-AR work/vga640480/behavior 1449075432 \
-      FL C:/Projects/CPU/myVGA/VGA_640480.vhd EN work/vga640480 1449075431
+AR work/vga640480/behavior 1449075952 \
+      FL C:/Projects/CPU/myVGA/VGA_640480.vhd EN work/vga640480 1449075951
 FL C:/Projects/CPU/VGA/font_rom.vhd 2015/12/01.19:41:36 P.20131013
 FL C:/Projects/CPU/VGA/VGA_640480.vhd 2015/12/01.19:41:36 P.20131013
 FL C:/Projects/myVGA/VGAController.vhd 2015/12/02.15:18:23 P.20131013

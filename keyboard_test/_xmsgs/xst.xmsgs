@@ -11,7 +11,7 @@
 <msg type="warning" file="Xst" num="2211" delta="old" >&quot;<arg fmt="%s" index="1">C:/Projects/CPU/myVGA/buffer.vhd</arg>&quot; line <arg fmt="%d" index="2">61</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">core_buffer_ram</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="819" delta="new" >&quot;<arg fmt="%s" index="1">C:/Projects/CPU/myVGA/buffer.vhd</arg>&quot; line <arg fmt="%d" index="2">96</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+<msg type="warning" file="Xst" num="819" delta="new" >&quot;<arg fmt="%s" index="1">C:/Projects/CPU/myVGA/buffer.vhd</arg>&quot; line <arg fmt="%d" index="2">97</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
 <arg fmt="%s" index="3">&lt;MAX_COL&gt;, &lt;doutb&gt;</arg>
 </msg>
 
@@ -66,7 +66,7 @@
 <msg type="warning" file="Xst" num="737" delta="old" >Found <arg fmt="%d" index="1">5</arg>-bit latch for signal &lt;<arg fmt="%s" index="2">addrb</arg>&gt;. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 </msg>
 
-<msg type="warning" file="Xst" num="643" delta="new" >&quot;<arg fmt="%s" index="1">C:/Projects/CPU/myVGA/buffer.vhd</arg>&quot; line <arg fmt="%d" index="2">90</arg>: The result of a <arg fmt="%d" index="3">32</arg>x<arg fmt="%d" index="4">4</arg>-bit multiplication is partially used. Only the <arg fmt="%d" index="5">32</arg> least significant bits are used. If you are doing this on purpose, you may safely ignore this warning. Otherwise, make sure you are not losing information, leading to unexpected circuit behavior.
+<msg type="warning" file="Xst" num="643" delta="new" >&quot;<arg fmt="%s" index="1">C:/Projects/CPU/myVGA/buffer.vhd</arg>&quot; line <arg fmt="%d" index="2">91</arg>: The result of a <arg fmt="%d" index="3">32</arg>x<arg fmt="%d" index="4">4</arg>-bit multiplication is partially used. Only the <arg fmt="%d" index="5">32</arg> least significant bits are used. If you are doing this on purpose, you may safely ignore this warning. Otherwise, make sure you are not losing information, leading to unexpected circuit behavior.
 </msg>
 
 <msg type="info" file="Xst" num="738" delta="old" >HDL ADVISOR - <arg fmt="%d" index="1">256</arg> flip-flops were inferred for signal &lt;<arg fmt="%s" index="2">dina</arg>&gt;. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.

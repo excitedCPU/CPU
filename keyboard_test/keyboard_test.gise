@@ -113,13 +113,11 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1449075466" xil_pn:in_ck="3940218291364819958" xil_pn:name="TRANEXT_xstsynthesize_spartan3e" xil_pn:prop_ck="5049961795928198315" xil_pn:start_ts="1449075426">
+    <transform xil_pn:end_ts="1449075989" xil_pn:in_ck="3940218291364819958" xil_pn:name="TRANEXT_xstsynthesize_spartan3e" xil_pn:prop_ck="5049961795928198315" xil_pn:start_ts="1449075946">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="KNController.lso"/>
       <outfile xil_pn:name="KNController.ngc"/>
@@ -138,21 +136,19 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1449075472" xil_pn:in_ck="-6642290597553910846" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="954656141964806235" xil_pn:start_ts="1449075466">
+    <transform xil_pn:end_ts="1449075995" xil_pn:in_ck="-6642290597553910846" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="954656141964806235" xil_pn:start_ts="1449075989">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="KNController.bld"/>
       <outfile xil_pn:name="KNController.ngd"/>
       <outfile xil_pn:name="KNController_ngdbuild.xrpt"/>
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1449075477" xil_pn:in_ck="-1663875880787207155" xil_pn:name="TRANEXT_map_spartan3" xil_pn:prop_ck="3188416950630775481" xil_pn:start_ts="1449075472">
+    <transform xil_pn:end_ts="1449076000" xil_pn:in_ck="-1663875880787207155" xil_pn:name="TRANEXT_map_spartan3" xil_pn:prop_ck="3188416950630775481" xil_pn:start_ts="1449075995">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="KNController.pcf"/>
       <outfile xil_pn:name="KNController_map.map"/>
       <outfile xil_pn:name="KNController_map.mrp"/>
@@ -163,11 +159,10 @@
       <outfile xil_pn:name="KNController_usage.xml"/>
       <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1449075505" xil_pn:in_ck="-8271283879063743578" xil_pn:name="TRANEXT_par_spartan3" xil_pn:prop_ck="2995727411353281558" xil_pn:start_ts="1449075477">
+    <transform xil_pn:end_ts="1449076034" xil_pn:in_ck="-8271283879063743578" xil_pn:name="TRANEXT_par_spartan3" xil_pn:prop_ck="2995727411353281558" xil_pn:start_ts="1449076000">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="KNController.ncd"/>
       <outfile xil_pn:name="KNController.pad"/>
       <outfile xil_pn:name="KNController.par"/>
@@ -179,11 +174,10 @@
       <outfile xil_pn:name="KNController_par.xrpt"/>
       <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1449075521" xil_pn:in_ck="-6082222029112468768" xil_pn:name="TRANEXT_bitFile_spartan3e" xil_pn:prop_ck="-7817169320884990698" xil_pn:start_ts="1449075505">
+    <transform xil_pn:end_ts="1449076054" xil_pn:in_ck="-6082222029112468768" xil_pn:name="TRANEXT_bitFile_spartan3e" xil_pn:prop_ck="-7817169320884990698" xil_pn:start_ts="1449076034">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="KNController.ut"/>
       <outfile xil_pn:name="_xmsgs/bitgen.xmsgs"/>
       <outfile xil_pn:name="kncontroller.bgn"/>
@@ -197,15 +191,11 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="InputChanged"/>
     </transform>
-    <transform xil_pn:end_ts="1449075298" xil_pn:in_ck="5217474697196606345" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416186" xil_pn:start_ts="1449075293">
-      <status xil_pn:value="AbortedRun"/>
+    <transform xil_pn:end_ts="1449076034" xil_pn:in_ck="5217474697196606345" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416186" xil_pn:start_ts="1449076030">
+      <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name="KNController.twr"/>
       <outfile xil_pn:name="KNController.twx"/>
       <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
