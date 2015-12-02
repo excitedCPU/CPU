@@ -38,8 +38,9 @@ architecture behavioral of my_buffer is
 	  );
 	END COMPONENT;
 
-	signal write_row: integer := 0;
-	signal write_col: integer := -1;
+	signal write_row: integer := 1;
+	signal write_col: integer := 3;
+	signal start_col: integer := 3;
 	signal read_row: integer := 0;
 	signal read_col: integer := 0;
 	signal physical_row: integer := 0;
@@ -74,28 +75,37 @@ begin
 		if clk'event and clk = '1' then
 			-- write process
 			if isNewChar = '1' then
-				if input_ascii = ASCII_BACK then
-					write_col <= write_col - 1;
-					if write_col < 0 then
-						write_col <= 0;
-					end if;
-				else
-					write_col <= write_col + 1;
-					if write_col >= MAX_COL or input_ascii = ASCII_ENTER then
+				case input_ascii is
+					when ASCII_BACK(6 downto 0) =>
+						write_col <= write_col - 1;
+						if write_col < start_col then
+							write_col <= start_col;
+						end if;
+					when ASCII_ENTER(6 downto 0) =>
+						write_col <= start_col;
 						write_row <= write_row + 1;
-						write_col <= 0;
-					end if;
-				end if;
+						addra <= conv_std_logic_vector(31 - write_row, 5);
+						dina(255 downto 255 - 20) <= ASCII_row_start;
+					when others => 
+						write_col <= write_col + 1;
+						if write_col >= MAX_COL then
+							write_row <= write_row + 1;
+							write_col <= start_col;
+						end if;
+				end case;
 				addra <= conv_std_logic_vector(31 - write_row, 5);
-				dina(255 - write_col*7 downto 0) <= init_string(255 - write_col*7 downto 0);
+				dina(255 - write_col*7 - 7 downto 0) <= init_string(255 - write_col*7 - 7 downto 0);
 				dina((255 - write_col*7) downto (255 - write_col*7 - 6)) <= input_ascii;
+				dina(255 downto 255 - 20) <= ASCII_row_start;
 			end if;
 		end if;
+		
 	end process;
 	
 	-- read process
 	process(clk, char_addr)
 	begin
+	
 	read_row <= conv_integer(char_addr(11 downto 7));
 	read_col <= conv_integer(char_addr(6 downto 0));
 	if read_col > MAX_COL then

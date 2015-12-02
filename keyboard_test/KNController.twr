@@ -46,7 +46,7 @@ Setup/Hold to clock sys_clk
 Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 ------------+------------+------------+------------------+--------+
 PS_clk      |    1.836(R)|   -0.186(R)|sys_clk_BUFGP     |   0.000|
-PS_data     |    2.201(R)|   -0.479(R)|sys_clk_BUFGP     |   0.000|
+PS_data     |    1.483(R)|    0.058(R)|sys_clk_BUFGP     |   0.000|
 ------------+------------+------------+------------------+--------+
 
 Clock sys_clk to Pad
@@ -54,15 +54,15 @@ Clock sys_clk to Pad
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-Be_Pushed<0>|   10.464(F)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<1>|   10.430(F)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<2>|   10.921(F)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<3>|   12.549(F)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<4>|   11.133(F)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<5>|   10.906(F)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<6>|   10.940(F)|sys_clk_BUFGP     |   0.000|
-is_ready    |   16.353(R)|sys_clk_BUFGP     |   0.000|
-            |   14.035(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<0>|   10.552(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<1>|   10.888(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<2>|   10.867(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<3>|   14.842(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<4>|   11.309(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<5>|   10.330(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<6>|   10.581(F)|sys_clk_BUFGP     |   0.000|
+is_ready    |   15.243(R)|sys_clk_BUFGP     |   0.000|
+            |   13.501(F)|sys_clk_BUFGP     |   0.000|
 ------------+------------+------------------+--------+
 
 Clock to Setup on destination clock sys_clk
@@ -70,18 +70,18 @@ Clock to Setup on destination clock sys_clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-sys_clk        |   24.635|   11.791|    4.451|    2.029|
+sys_clk        |   30.403|   11.491|    4.364|    1.980|
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Thu Dec 03 01:23:47 2015 
+Analysis completed Thu Dec 03 03:09:27 2015 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 141 MB
+Peak Memory Usage: 142 MB
 
 
 

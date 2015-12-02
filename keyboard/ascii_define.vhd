@@ -72,6 +72,8 @@ package ascii_define is
 	constant ASCII_bx: std_logic_vector(7 downto 0) := x"78";
 	constant ASCII_by: std_logic_vector(7 downto 0) := x"79";
 	constant ASCII_bz: std_logic_vector(7 downto 0) := x"7A";
+	
+	constant ASCII_row_start: std_logic_vector(20 downto 0) := "011111001111100111110";
 
 end ascii_define;
 

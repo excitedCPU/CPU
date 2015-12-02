@@ -331,3 +331,131 @@ map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNCont
 par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
 trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
 bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
+xst -intstyle ise -ifn "C:/Projects/CPU/keyboard_test/KNController.xst" -ofn "C:/Projects/CPU/keyboard_test/KNController.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc KNController.ucf -p xc3s1200e-fg320-4 KNController.ngc KNController.ngd  
+map -intstyle ise -p xc3s1200e-fg320-4 -cm area -ir off -pr off -c 100 -o KNController_map.ncd KNController.ngd KNController.pcf 
+par -w -intstyle ise -pl std -rl std -t 1 KNController_map.ncd KNController.ncd KNController.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr KNController.pcf -ucf KNController.ucf 
+bitgen -intstyle ise -f KNController.ut KNController.ncd 
