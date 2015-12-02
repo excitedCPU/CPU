@@ -8,10 +8,10 @@
 <msg type="info" file="Xst" num="2679" delta="old" >Register &lt;<arg fmt="%s" index="1">tmp</arg>&gt; in unit &lt;<arg fmt="%s" index="2">KNController</arg>&gt; has a constant value of <arg fmt="%s" index="3">00</arg> during circuit operation. The register is replaced by logic.
 </msg>
 
-<msg type="warning" file="Xst" num="2211" delta="old" >&quot;<arg fmt="%s" index="1">C:/Projects/CPU/myVGA/buffer.vhd</arg>&quot; line <arg fmt="%d" index="2">61</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">core_buffer_ram</arg>&gt;.
+<msg type="warning" file="Xst" num="2211" delta="new" >&quot;<arg fmt="%s" index="1">C:/Projects/CPU/myVGA/buffer.vhd</arg>&quot; line <arg fmt="%d" index="2">61</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">core_buffer_ram</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="819" delta="new" >&quot;<arg fmt="%s" index="1">C:/Projects/CPU/myVGA/buffer.vhd</arg>&quot; line <arg fmt="%d" index="2">97</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+<msg type="warning" file="Xst" num="819" delta="old" >&quot;<arg fmt="%s" index="1">C:/Projects/CPU/myVGA/buffer.vhd</arg>&quot; line <arg fmt="%d" index="2">97</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
 <arg fmt="%s" index="3">&lt;MAX_COL&gt;, &lt;doutb&gt;</arg>
 </msg>
 
@@ -66,7 +66,7 @@
 <msg type="warning" file="Xst" num="737" delta="old" >Found <arg fmt="%d" index="1">5</arg>-bit latch for signal &lt;<arg fmt="%s" index="2">addrb</arg>&gt;. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 </msg>
 
-<msg type="warning" file="Xst" num="643" delta="new" >&quot;<arg fmt="%s" index="1">C:/Projects/CPU/myVGA/buffer.vhd</arg>&quot; line <arg fmt="%d" index="2">91</arg>: The result of a <arg fmt="%d" index="3">32</arg>x<arg fmt="%d" index="4">4</arg>-bit multiplication is partially used. Only the <arg fmt="%d" index="5">32</arg> least significant bits are used. If you are doing this on purpose, you may safely ignore this warning. Otherwise, make sure you are not losing information, leading to unexpected circuit behavior.
+<msg type="warning" file="Xst" num="643" delta="old" >&quot;<arg fmt="%s" index="1">C:/Projects/CPU/myVGA/buffer.vhd</arg>&quot; line <arg fmt="%d" index="2">91</arg>: The result of a <arg fmt="%d" index="3">32</arg>x<arg fmt="%d" index="4">4</arg>-bit multiplication is partially used. Only the <arg fmt="%d" index="5">32</arg> least significant bits are used. If you are doing this on purpose, you may safely ignore this warning. Otherwise, make sure you are not losing information, leading to unexpected circuit behavior.
 </msg>
 
 <msg type="info" file="Xst" num="738" delta="old" >HDL ADVISOR - <arg fmt="%d" index="1">256</arg> flip-flops were inferred for signal &lt;<arg fmt="%s" index="2">dina</arg>&gt;. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
@@ -93,16 +93,16 @@
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">b1_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Inst_vga640480</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;b1_1&gt; &lt;b1_2&gt; </arg>
 </msg>
 
-<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">dina_0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Inst_my_buffer</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1710" delta="new" >FF/Latch &lt;<arg fmt="%s" index="1">dina_0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Inst_my_buffer</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">dina_1</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Inst_my_buffer</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1710" delta="new" >FF/Latch &lt;<arg fmt="%s" index="1">dina_1</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Inst_my_buffer</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">dina_2</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Inst_my_buffer</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1710" delta="new" >FF/Latch &lt;<arg fmt="%s" index="1">dina_2</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Inst_my_buffer</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">dina_3</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Inst_my_buffer</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1710" delta="new" >FF/Latch &lt;<arg fmt="%s" index="1">dina_3</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Inst_my_buffer</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">7</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">tem_ascii</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
@@ -129,106 +129,106 @@
 <msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">7</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">LPM_DFF_11</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_5</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_5</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_6</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_6</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_7</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_7</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_8</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_8</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_9</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_9</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_10</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_10</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_11</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_11</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_12</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_12</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_13</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_13</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_14</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_14</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_15</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_15</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_16</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_16</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_17</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_17</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_18</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_18</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_19</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_19</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_20</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_20</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_21</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_21</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_22</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_22</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_23</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_23</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_24</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_24</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_25</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_25</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_26</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_26</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_27</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_27</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_28</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_28</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_29</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_29</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_30</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_30</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_31</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">Inst_my_buffer/write_row_31</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">VGAController</arg>&gt;.
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_5&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="new" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_5&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_2</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_4&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="new" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_2</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_4&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_3</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_3&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="new" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_3</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_3&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_4</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_2&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="new" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_4</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_2&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_5</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_1&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="new" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_5</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_1&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_6</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_0&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="new" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_6</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_0&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_6&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="new" >The FF/Latch &lt;<arg fmt="%s" index="1">Inst_vga640480/char_addr_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">VGAController</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Inst_my_buffer/Mmult_ascii_to_vga_mult0000_6&gt; </arg>
 </msg>
 
 <msg type="info" file="Xst" num="2169" delta="old" >HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
