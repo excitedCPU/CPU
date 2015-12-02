@@ -32,10 +32,12 @@ begin
 	
 	process(rst, fclk)
 	begin
+		
 		if rst = '1' then
 			state <= delay ;
 			code <= (others => '0') ;
 			fok <= '0' ;
+			
 		elsif rising_edge(fclk) then
 			fok <= '0' ;
 			case state is 

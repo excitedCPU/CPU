@@ -91,7 +91,7 @@ begin
 		elsif read_col <= MAX_COL then
 			not_exceed_max_col <= '1';
 			addrb <= conv_std_logic_vector(read_row, 5);
-			ascii_to_vga <= doutb((read_col*7+6) downto read_col*7);
+			ascii_to_vga <= doutb((read_col*7) to (read_col*7+6));
 		end if;
 	end process;
 
