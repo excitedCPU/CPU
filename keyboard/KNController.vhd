@@ -60,7 +60,7 @@ architecture achieve of KNController is
 	signal scancode: std_logic_vector(7 downto 0); 
 	signal enable: std_logic;
 	signal is_valid_char: std_logic := '0';
-	signal is_being_pressed: std_logic := '1';
+	signal is_being_pressed: std_logic := '0';
 	signal tem_is_ready: std_logic := '0';
 	signal tem_ascii: std_logic_vector(7 downto 0);
 	
@@ -90,7 +90,7 @@ begin
 	process(enable, sys_clk, rst)
 	begin
 		
-		if (enable = '1' and rising_edge(sys_clk)) then
+		if (enable = '1' and falling_edge(sys_clk)) then
 			is_valid_char <= '1';
 			is_being_pressed <= not is_being_pressed;
 			case scancode is
@@ -131,10 +131,15 @@ begin
 				when X"22" => tem_ascii <= ASCII_X;
 				when X"35" => tem_ascii <= ASCII_Y;
 				when X"1A" => tem_ascii <= ASCII_Z;
-				when others => 
-					tem_ascii <= ASCII_Q; 
+				when X"5A" => tem_ascii <= ASCII_ENTER;
+				when X"29" => tem_ascii <= ASCII_SPACE;
+				when X"66" => tem_ascii <= ASCII_BACK;
+				when X"F0" =>
+					tem_ascii <= ASCII_bg; 
 					is_valid_char <= '0';
 					is_being_pressed <= '0';
+				when others => 
+					tem_ascii <= ASCII_bx;
 			end case;
 			tmp := None;
 			

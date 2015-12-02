@@ -26,7 +26,7 @@ end my_buffer;
 
 architecture behavioral of my_buffer is
 
-	COMPONENT new_buffer_ram
+	COMPONENT core_buffer_ram
 	  PORT (
 	    clka : IN STD_LOGIC;
 	    wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
@@ -39,7 +39,7 @@ architecture behavioral of my_buffer is
 	END COMPONENT;
 
 	signal write_row: integer := 0;
-	signal write_col: integer := 0;
+	signal write_col: integer := -1;
 	signal read_row: integer := 0;
 	signal read_col: integer := 0;
 	signal physical_row: integer := 0;
@@ -53,9 +53,12 @@ architecture behavioral of my_buffer is
 	signal dina: std_logic_vector(255 downto 0);
 	signal doutb: std_logic_vector(255 downto 0);
 	signal ascii_to_vga: std_logic_vector(6 downto 0) := "1000000";
+	signal data_to_write: std_logic_vector(255 downto 0);
+	signal init_string: std_logic_vector(255 downto 0) := (others => '0');
+	signal tem_ascii: std_logic_vector(6 downto 0);
 begin
 
-	my_buffer_ram : new_buffer_ram
+	my_buffer_ram : core_buffer_ram
 	  PORT MAP (
 	    clka => clk,	
 	    wea => ram_en,	-- enable
@@ -68,29 +71,41 @@ begin
 	
 	ram_write_process: process(clk, isNewChar)
 	begin
-		if clk'event and clk = '0' then
+		if clk'event and clk = '1' then
 			-- write process
 			if isNewChar = '1' then
-				write_col <= write_col + 1;
-				if write_col >= MAX_COL then
-					write_row <= write_row + 1;
-					write_col <= 0;
+				if input_ascii = ASCII_BACK then
+					write_col <= write_col - 1;
+					if write_col < 0 then
+						write_col <= 0;
+					end if;
+				else
+					write_col <= write_col + 1;
+					if write_col >= MAX_COL or input_ascii = ASCII_ENTER then
+						write_row <= write_row + 1;
+						write_col <= 0;
+					end if;
 				end if;
 				addra <= conv_std_logic_vector(31 - write_row, 5);
+				dina(255 - write_col*7 downto 0) <= init_string(255 - write_col*7 downto 0);
 				dina((255 - write_col*7) downto (255 - write_col*7 - 6)) <= input_ascii;
 			end if;
-			-- read process
-			read_row <= conv_integer(char_addr(11 downto 7));
-			read_col <= conv_integer(char_addr(6 downto 0));
-			if read_col > MAX_COL then
-				not_exceed_max_col <= '0';
-				ascii_to_vga <= ASCII_SPACE(6 downto 0);
-			elsif read_col <= MAX_COL then
-				not_exceed_max_col <= '1';
-				addrb <= conv_std_logic_vector(31 - read_row, 5);
-				ascii_to_vga <= doutb((255 - read_col*7) downto (255 - read_col*7 - 6));
-			end if;
 		end if;
+	end process;
+	
+	-- read process
+	process(clk, char_addr)
+	begin
+	read_row <= conv_integer(char_addr(11 downto 7));
+	read_col <= conv_integer(char_addr(6 downto 0));
+	if read_col > MAX_COL then
+		not_exceed_max_col <= '0';
+		ascii_to_vga <= ASCII_SPACE(6 downto 0);
+	elsif read_col <= MAX_COL then
+		not_exceed_max_col <= '1';
+		addrb <= conv_std_logic_vector(31 - read_row, 5);
+		ascii_to_vga <= doutb((255 - read_col*7) downto (255 - read_col*7 - 6));
+	end if;
 	end process;
 
 	ascii_with_bit_addr(3 downto 0) <= bit_addr(6 downto 3);

@@ -4,8 +4,9 @@ use IEEE.NUMERIC_STD.ALL;
 
 package ascii_define is
 
-	constant ASCII_ENTER: std_logic_vector(7 downto 0) := x"0D";
+	constant ASCII_ENTER: std_logic_vector(7 downto 0) := x"00";
 	constant ASCII_SPACE: std_logic_vector(7 downto 0) := x"20";
+	constant ASCII_BACK: std_logic_vector(7 downto 0) := x"08";
 
 	constant ASCII_0: std_logic_vector(7 downto 0) := x"30";
 	constant ASCII_1: std_logic_vector(7 downto 0) := x"31";
