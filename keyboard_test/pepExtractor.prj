@@ -1,0 +1,6 @@
+work	"../CPU/src/keyboard/ascii_define.vhd"
+work	"../myVGA/VGAController.vhd"
+work	"../myVGA/VGA_640480.vhd"
+work	"../myVGA/buffer.vhd"
+work	"../myVGA/font_rom.vhd"
+work	"../myVGA/ipcore_dir/new_buffer_ram.vhd"

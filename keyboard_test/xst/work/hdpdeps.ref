@@ -1,0 +1,45 @@
+V3 29
+FL C:/jiyuan/CPU/src/keyboard/ascii_define.vhd 2015/12/01.23:21:34 P.20131013
+PH work/ascii_define 1449046519 FL C:/jiyuan/CPU/src/keyboard/ascii_define.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+FL C:/jiyuan/CPU/src/keyboard/Keyboard.vhd 2015/12/02.10:29:55 P.20131013
+EN work/Keyboard 1449046528 FL C:/jiyuan/CPU/src/keyboard/Keyboard.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179 \
+      PB ieee/std_logic_arith 1381692177
+AR work/Keyboard/rtl 1449046529 \
+      FL C:/jiyuan/CPU/src/keyboard/Keyboard.vhd EN work/Keyboard 1449046528
+FL C:/jiyuan/CPU/src/keyboard/KNController.vhd 2015/12/02.16:54:51 P.20131013
+EN work/KNController 1449046532 FL C:/jiyuan/CPU/src/keyboard/KNController.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179 \
+      PB ieee/std_logic_arith 1381692177 PH work/ascii_define 1449046519
+AR work/KNController/achieve 1449046533 \
+      FL C:/jiyuan/CPU/src/keyboard/KNController.vhd EN work/KNController 1449046532 \
+      CP keyboard CP VGAController
+FL C:/jiyuan/myVGA/buffer.vhd 2015/12/02.16:55:13 P.20131013
+EN work/my_buffer 1449046526 FL C:/jiyuan/myVGA/buffer.vhd PB ieee/std_logic_1164 1381692176 \
+      PB ieee/NUMERIC_STD 1381692181 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179 PH work/ascii_define 1449046519
+AR work/my_buffer/behavioral 1449046527 \
+      FL C:/jiyuan/myVGA/buffer.vhd EN work/my_buffer 1449046526 CP new_buffer_ram
+FL C:/jiyuan/myVGA/font_rom.vhd 2015/12/02.15:24:48 P.20131013
+EN work/fontROM 1449046524 FL C:/jiyuan/myVGA/font_rom.vhd PB ieee/std_logic_1164 1381692176 \
+      PB ieee/NUMERIC_STD 1381692181
+AR work/fontROM/Behavioral 1449046525 \
+      FL C:/jiyuan/myVGA/font_rom.vhd EN work/fontROM 1449046524
+FL C:/jiyuan/myVGA/ipcore_dir/new_buffer_ram.vhd 2015/12/02.13:59:02 P.20131013
+EN work/new_buffer_ram 1449046520 \
+      FL C:/jiyuan/myVGA/ipcore_dir/new_buffer_ram.vhd PB ieee/std_logic_1164 1381692176
+AR work/new_buffer_ram/new_buffer_ram_a 1449046521 \
+      FL C:/jiyuan/myVGA/ipcore_dir/new_buffer_ram.vhd EN work/new_buffer_ram 1449046520
+FL C:/jiyuan/myVGA/VGAController.vhd 2015/12/02.15:59:24 P.20131013
+EN work/VGAController 1449046530 FL C:/jiyuan/myVGA/VGAController.vhd \
+      PB ieee/std_logic_1164 1381692176
+AR work/VGAController/Behavioral 1449046531 \
+      FL C:/jiyuan/myVGA/VGAController.vhd EN work/VGAController 1449046530 \
+      CP vga640480 CP fontROM CP my_buffer
+FL C:/jiyuan/myVGA/VGA_640480.vhd 2015/12/02.13:59:22 P.20131013
+EN work/vga640480 1449046522 FL C:/jiyuan/myVGA/VGA_640480.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179 \
+      PB ieee/std_logic_arith 1381692177
+AR work/vga640480/behavior 1449046523 \
+      FL C:/jiyuan/myVGA/VGA_640480.vhd EN work/vga640480 1449046522

@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:29:51 MDT 2013
+# Start of session at: Wed Dec 02 16:12:08 2015
+# Process ID: 3156
+# Log file: C:/jiyuan/keyboard_test/planAhead_run_3/planAhead.log
+# Journal file: C:/jiyuan/keyboard_test/planAhead_run_3/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source C:/jiyuan/keyboard_test/pa.fromNetlist.tcl

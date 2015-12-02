@@ -1,0 +1,8 @@
+vhdl work "../myVGA/ipcore_dir/new_buffer_ram.vhd"
+vhdl work "../CPU/src/keyboard/ascii_define.vhd"
+vhdl work "../myVGA/VGA_640480.vhd"
+vhdl work "../myVGA/font_rom.vhd"
+vhdl work "../myVGA/buffer.vhd"
+vhdl work "../myVGA/VGAController.vhd"
+vhdl work "../CPU/src/keyboard/Keyboard.vhd"
+vhdl work "../CPU/src/keyboard/KNController.vhd"

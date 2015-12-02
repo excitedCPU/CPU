@@ -1,0 +1,32 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Wed Dec 02 16:55:46 2015
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "hs" LOCATE = SITE "D6" LEVEL 1;
+COMP "vs" LOCATE = SITE "E6" LEVEL 1;
+COMP "rst" LOCATE = SITE "U10" LEVEL 1;
+COMP "PS_data" LOCATE = SITE "V6" LEVEL 1;
+COMP "b<0>" LOCATE = SITE "D5" LEVEL 1;
+COMP "b<1>" LOCATE = SITE "A6" LEVEL 1;
+COMP "b<2>" LOCATE = SITE "B6" LEVEL 1;
+COMP "g<0>" LOCATE = SITE "B4" LEVEL 1;
+COMP "g<1>" LOCATE = SITE "C4" LEVEL 1;
+COMP "g<2>" LOCATE = SITE "C5" LEVEL 1;
+COMP "r<0>" LOCATE = SITE "A7" LEVEL 1;
+COMP "r<1>" LOCATE = SITE "C3" LEVEL 1;
+COMP "r<2>" LOCATE = SITE "A4" LEVEL 1;
+COMP "sys_clk" LOCATE = SITE "B9" LEVEL 1;
+COMP "PS_clk" LOCATE = SITE "U6" LEVEL 1;
+COMP "Be_Pushed<0>" LOCATE = SITE "D10" LEVEL 1;
+COMP "Be_Pushed<1>" LOCATE = SITE "E10" LEVEL 1;
+COMP "Be_Pushed<2>" LOCATE = SITE "A11" LEVEL 1;
+COMP "Be_Pushed<3>" LOCATE = SITE "B11" LEVEL 1;
+COMP "Be_Pushed<4>" LOCATE = SITE "C11" LEVEL 1;
+COMP "Be_Pushed<5>" LOCATE = SITE "D11" LEVEL 1;
+COMP "Be_Pushed<6>" LOCATE = SITE "E11" LEVEL 1;
+COMP "Be_Pushed<7>" LOCATE = SITE "F11" LEVEL 1;
+COMP "is_ready" LOCATE = SITE "A14" LEVEL 1;
+NET "sys_clk_BUFGP/IBUFG" BEL "sys_clk_BUFGP/BUFG.GCLKMUX" USELOCALCONNECT;
+SCHEMATIC END;
+

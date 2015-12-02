@@ -1,0 +1,51 @@
+Release 14.7 Drc P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Wed Dec 02 16:56:17 2015
+
+drc -z KNController.ncd KNController.pcf
+
+WARNING:PhysDesignRules:1060 - Issue with pin connections and/or configuration
+   on
+   block:<Inst_VGAController/Inst_my_buffer/my_buffer_ram/U0/xst_blk_mem_generat
+   or/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3_init.ram/dpra
+   m.dp36x36.ram.A>:<RAMB16_RAMB16A>.  The block is configured to use input
+   parity pins. There are dangling output parity pins.
+WARNING:PhysDesignRules:1060 - Issue with pin connections and/or configuration
+   on
+   block:<Inst_VGAController/Inst_my_buffer/my_buffer_ram/U0/xst_blk_mem_generat
+   or/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s3_init.ram/dpra
+   m.dp36x36.ram.A>:<RAMB16_RAMB16A>.  The block is configured to use input
+   parity pins. There are dangling output parity pins.
+WARNING:PhysDesignRules:1060 - Issue with pin connections and/or configuration
+   on
+   block:<Inst_VGAController/Inst_my_buffer/my_buffer_ram/U0/xst_blk_mem_generat
+   or/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/s3_init.ram/dpra
+   m.dp36x36.ram.A>:<RAMB16_RAMB16A>.  The block is configured to use input
+   parity pins. There are dangling output parity pins.
+WARNING:PhysDesignRules:1060 - Issue with pin connections and/or configuration
+   on
+   block:<Inst_VGAController/Inst_my_buffer/my_buffer_ram/U0/xst_blk_mem_generat
+   or/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/s3_init.ram/dpra
+   m.dp36x36.ram.A>:<RAMB16_RAMB16A>.  The block is configured to use input
+   parity pins. There are dangling output parity pins.
+WARNING:PhysDesignRules:1060 - Issue with pin connections and/or configuration
+   on
+   block:<Inst_VGAController/Inst_my_buffer/my_buffer_ram/U0/xst_blk_mem_generat
+   or/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/s3_init.ram/dpra
+   m.dp36x36.ram.A>:<RAMB16_RAMB16A>.  The block is configured to use input
+   parity pins. There are dangling output parity pins.
+WARNING:PhysDesignRules:1060 - Issue with pin connections and/or configuration
+   on
+   block:<Inst_VGAController/Inst_my_buffer/my_buffer_ram/U0/xst_blk_mem_generat
+   or/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[5].ram.r/s3_init.ram/dpra
+   m.dp36x36.ram.A>:<RAMB16_RAMB16A>.  The block is configured to use input
+   parity pins. There are dangling output parity pins.
+WARNING:PhysDesignRules:1060 - Issue with pin connections and/or configuration
+   on
+   block:<Inst_VGAController/Inst_my_buffer/my_buffer_ram/U0/xst_blk_mem_generat
+   or/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/s3_init.ram/dpra
+   m.dp36x36.ram.A>:<RAMB16_RAMB16A>.  The block is configured to use input
+   parity pins. There are dangling output parity pins.
+DRC detected 0 errors and 7 warnings.  Please see the previously displayed
+individual error or warning messages for more details.

@@ -19,7 +19,14 @@ port
 	
 	-- to ram
 	is_ready: out std_logic;
-	Be_Pushed: out std_logic_vector(7 downto 0)	--The Key being pushed;
+	Be_Pushed: out std_logic_vector(7 downto 0);	--The Key being pushed;
+	
+	
+	hs : OUT std_logic;
+	vs : OUT std_logic;
+	r : OUT std_logic_vector(2 downto 0);
+	g : OUT std_logic_vector(2 downto 0);
+	b : OUT std_logic_vector(2 downto 0)
 );
 end KNController;
 
@@ -34,10 +41,28 @@ architecture achieve of KNController is
 	);
 	end component;
 	
+	
+	COMPONENT VGAController
+	PORT(
+		rst : IN std_logic;
+		clk : IN std_logic;     
+		isNewChar: IN std_logic;
+		input_ascii: IN std_logic_vector(6 downto 0);     
+		hs : OUT std_logic;
+		vs : OUT std_logic;
+		r : OUT std_logic_vector(2 downto 0);
+		g : OUT std_logic_vector(2 downto 0);
+		b : OUT std_logic_vector(2 downto 0)
+		);
+	END COMPONENT;
+	
+	-- keyboard tem_signal
 	signal scancode: std_logic_vector(7 downto 0); 
 	signal enable: std_logic;
 	signal is_valid_char: std_logic := '0';
 	signal is_being_pressed: std_logic := '1';
+	signal tem_is_ready: std_logic := '0';
+	signal tem_ascii: std_logic_vector(7 downto 0);
 	
 	type state is
 		(None, E0, F0, E0F0); 
@@ -45,9 +70,23 @@ architecture achieve of KNController is
 	shared variable tmp: state;
 begin
 	KB:	keyboard port map (PS_data, PS_clk, sys_clk, not rst, enable, scancode);
+	
+	
+	Inst_VGAController: VGAController PORT MAP(
+		rst => rst,
+		clk => sys_clk,
+		isNewChar => tem_is_ready,
+		input_ascii => tem_ascii(6 downto 0),
+		hs => hs,
+		vs => vs,
+		r => r,
+		g => g,
+		b => b
+	);
 	scancode_out <= scancode;
 	is_ready <= enable and is_being_pressed;
-	
+	tem_is_ready <= enable and is_being_pressed;
+	Be_Pushed <= tem_ascii;
 	process(enable, sys_clk, rst)
 	begin
 		
@@ -56,46 +95,46 @@ begin
 			is_being_pressed <= not is_being_pressed;
 			case scancode is
 				--when X"29" => tmp <= None;
-				when X"45" => Be_Pushed <= ASCII_0;
-				when X"16" => Be_Pushed <= ASCII_1;
-				when X"1E" => Be_Pushed <= ASCII_2;
-				when X"26" => Be_Pushed <= ASCII_3;
-				when X"25" => Be_Pushed <= ASCII_4;
-				when X"2E" => Be_Pushed <= ASCII_5;
-				when X"36" => Be_Pushed <= ASCII_6;
-				when X"3D" => Be_Pushed <= ASCII_7;
-				when X"3E" => Be_Pushed <= ASCII_8;
-				when X"46" => Be_Pushed <= ASCII_9;
-				when X"1C" => Be_Pushed <= ASCII_A;
-				when X"32" => Be_Pushed <= ASCII_B;
-				when X"21" => Be_Pushed <= ASCII_C;
-				when X"23" => Be_Pushed <= ASCII_D;
-				when X"24" => Be_Pushed <= ASCII_E;
-				when X"2B" => Be_Pushed <= ASCII_F;
-				when X"34" => Be_Pushed <= ASCII_G;
-				when X"33" => Be_Pushed <= ASCII_H;
-				when X"43" => Be_Pushed <= ASCII_I;
-				when X"3B" => Be_Pushed <= ASCII_J;
-				when X"42" => Be_Pushed <= ASCII_K;
-				when X"4B" => Be_Pushed <= ASCII_L;
-				when X"3A" => Be_Pushed <= ASCII_M;
-				when X"31" => Be_Pushed <= ASCII_N;
-				when X"44" => Be_Pushed <= ASCII_O;
-				when X"4D" => Be_Pushed <= ASCII_P;
-				when X"15" => Be_Pushed <= ASCII_Q;
-				when X"2D" => Be_Pushed <= ASCII_R;
-				when X"1B" => Be_Pushed <= ASCII_S;
-				when X"2C" => Be_Pushed <= ASCII_T;
-				when X"3C" => Be_Pushed <= ASCII_U;
-				when X"2A" => Be_Pushed <= ASCII_V;
-				when X"1D" => Be_Pushed <= ASCII_W;
-				when X"22" => Be_Pushed <= ASCII_X;
-				when X"35" => Be_Pushed <= ASCII_Y;
-				when X"1A" => Be_Pushed <= ASCII_Z;
+				when X"45" => tem_ascii <= ASCII_0;
+				when X"16" => tem_ascii <= ASCII_1;
+				when X"1E" => tem_ascii <= ASCII_2;
+				when X"26" => tem_ascii <= ASCII_3;
+				when X"25" => tem_ascii <= ASCII_4;
+				when X"2E" => tem_ascii <= ASCII_5;
+				when X"36" => tem_ascii <= ASCII_6;
+				when X"3D" => tem_ascii <= ASCII_7;
+				when X"3E" => tem_ascii <= ASCII_8;
+				when X"46" => tem_ascii <= ASCII_9;
+				when X"1C" => tem_ascii <= ASCII_A;
+				when X"32" => tem_ascii <= ASCII_B;
+				when X"21" => tem_ascii <= ASCII_C;
+				when X"23" => tem_ascii <= ASCII_D;
+				when X"24" => tem_ascii <= ASCII_E;
+				when X"2B" => tem_ascii <= ASCII_F;
+				when X"34" => tem_ascii <= ASCII_G;
+				when X"33" => tem_ascii <= ASCII_H;
+				when X"43" => tem_ascii <= ASCII_I;
+				when X"3B" => tem_ascii <= ASCII_J;
+				when X"42" => tem_ascii <= ASCII_K;
+				when X"4B" => tem_ascii <= ASCII_L;
+				when X"3A" => tem_ascii <= ASCII_M;
+				when X"31" => tem_ascii <= ASCII_N;
+				when X"44" => tem_ascii <= ASCII_O;
+				when X"4D" => tem_ascii <= ASCII_P;
+				when X"15" => tem_ascii <= ASCII_Q;
+				when X"2D" => tem_ascii <= ASCII_R;
+				when X"1B" => tem_ascii <= ASCII_S;
+				when X"2C" => tem_ascii <= ASCII_T;
+				when X"3C" => tem_ascii <= ASCII_U;
+				when X"2A" => tem_ascii <= ASCII_V;
+				when X"1D" => tem_ascii <= ASCII_W;
+				when X"22" => tem_ascii <= ASCII_X;
+				when X"35" => tem_ascii <= ASCII_Y;
+				when X"1A" => tem_ascii <= ASCII_Z;
 				when others => 
-					Be_Pushed <= X"FF"; 
+					tem_ascii <= ASCII_Q; 
 					is_valid_char <= '0';
-					is_being_pressed <= '1';
+					is_being_pressed <= '0';
 			end case;
 			tmp := None;
 			
@@ -103,7 +142,7 @@ begin
 		
 		if (rst = '0') then
 			tmp := None;
-			Be_Pushed <= X"FF";
+			tem_ascii <= ASCII_SPACE;
 		end if;
 		
 		s0 := tmp;
