@@ -1,0 +1,6 @@
+vhdl work "ipcore_dir/new_buffer_ram.vhd"
+vhdl work "ascii_define.vhd"
+vhdl work "VGA_640480.vhd"
+vhdl work "font_rom.vhd"
+vhdl work "buffer.vhd"
+vhdl work "VGAController.vhd"

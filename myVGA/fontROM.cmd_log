@@ -1,0 +1,4 @@
+xst -intstyle ise -ifn "C:/Projects/myVGA/fontROM.xst" -ofn "C:/Projects/myVGA/fontROM.syr" 
+xst -intstyle ise -ifn "C:/Projects/myVGA/fontROM.xst" -ofn "C:/Projects/myVGA/fontROM.syr" 
+xst -intstyle ise -ifn "C:/Projects/myVGA/fontROM.xst" -ofn "C:/Projects/myVGA/fontROM.syr" 
+vhdtdtfi -prj myVGA -o C:/Projects/myVGA/fontROM.vhi -module fontROM -template C:/Xilinx/14.7/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work font_rom.vhd 

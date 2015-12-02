@@ -1,0 +1,884 @@
+Release 14.7 - xst P.20131013 (nt)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.09 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.09 secs
+ 
+--> Reading design: VGAController.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "VGAController.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "VGAController"
+Output Format                      : NGC
+Target Device                      : xc3s1200e-4-fg320
+
+---- Source Options
+Top Module Name                    : VGAController
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "C:/Projects/myVGA/ascii_define.vhd" in Library work.
+Compiling vhdl file "C:/Projects/myVGA/ipcore_dir/new_buffer_ram.vhd" in Library work.
+Architecture new_buffer_ram_a of Entity new_buffer_ram is up to date.
+Compiling vhdl file "C:/Projects/myVGA/VGA_640480.vhd" in Library work.
+Architecture behavior of Entity vga640480 is up to date.
+Compiling vhdl file "C:/Projects/myVGA/font_rom.vhd" in Library work.
+Entity <fontrom> compiled.
+Entity <fontrom> (Architecture <behavioral>) compiled.
+Compiling vhdl file "C:/Projects/myVGA/buffer.vhd" in Library work.
+Architecture behavioral of Entity my_buffer is up to date.
+Compiling vhdl file "C:/Projects/myVGA/VGAController.vhd" in Library work.
+Architecture behavioral of Entity vgacontroller is up to date.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <VGAController> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <vga640480> in library <work> (architecture <behavior>).
+
+Analyzing hierarchy for entity <fontROM> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <my_buffer> in library <work> (architecture <behavioral>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <VGAController> in library <work> (Architecture <behavioral>).
+Entity <VGAController> analyzed. Unit <VGAController> generated.
+
+Analyzing Entity <vga640480> in library <work> (Architecture <behavior>).
+Entity <vga640480> analyzed. Unit <vga640480> generated.
+
+Analyzing Entity <fontROM> in library <work> (Architecture <behavioral>).
+Entity <fontROM> analyzed. Unit <fontROM> generated.
+
+Analyzing Entity <my_buffer> in library <work> (Architecture <behavioral>).
+WARNING:Xst:2211 - "C:/Projects/myVGA/buffer.vhd" line 58: Instantiating black box module <new_buffer_ram>.
+Entity <my_buffer> analyzed. Unit <my_buffer> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <vga640480>.
+    Related source file is "C:/Projects/myVGA/VGA_640480.vhd".
+    Register <g1> equivalent to <b1> has been removed
+    Register <r1> equivalent to <b1> has been removed
+    Found 7-bit register for signal <bit_addr>.
+    Found 1-bit register for signal <hs>.
+    Found 12-bit register for signal <char_addr>.
+    Found 1-bit register for signal <vs>.
+    Found 3-bit register for signal <b1>.
+    Found 1-bit register for signal <clk>.
+    Found 1-bit register for signal <hs1>.
+    Found 11-bit comparator greatequal for signal <hs1$cmp_ge0000> created at line 70.
+    Found 11-bit comparator less for signal <hs1$cmp_lt0000> created at line 70.
+    Found 11-bit comparator less for signal <r1$cmp_lt0000> created at line 118.
+    Found 10-bit comparator less for signal <r1$cmp_lt0001> created at line 118.
+    Found 10-bit up counter for signal <vector_x>.
+    Found 9-bit up counter for signal <vector_y>.
+    Found 1-bit register for signal <vs1>.
+    Found 10-bit comparator greatequal for signal <vs1$cmp_ge0000> created at line 83.
+    Found 10-bit comparator less for signal <vs1$cmp_lt0000> created at line 83.
+    Summary:
+	inferred   2 Counter(s).
+	inferred  27 D-type flip-flop(s).
+	inferred   6 Comparator(s).
+Unit <vga640480> synthesized.
+
+
+Synthesizing Unit <fontROM>.
+    Related source file is "C:/Projects/myVGA/font_rom.vhd".
+WARNING:Xst:647 - Input <clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1781 - Signal <ROM> is used but never assigned. Tied to default value.
+    Found 2048x8-bit ROM for signal <dataOut$varindex0000> created at line 2213.
+    Found 1-bit 8-to-1 multiplexer for signal <dataOut>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   1 Multiplexer(s).
+Unit <fontROM> synthesized.
+
+
+Synthesizing Unit <my_buffer>.
+    Related source file is "C:/Projects/myVGA/buffer.vhd".
+WARNING:Xst:647 - Input <rst> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1305 - Output <can_write> is never assigned. Tied to value 0.
+WARNING:Xst:646 - Signal <read_row<31:5>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <ram_en<0>> is used but never assigned. This sourceless signal will be automatically connected to value 1.
+WARNING:Xst:1780 - Signal <physical_row> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <physical_col> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <doutb<3:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <dina<3:0>> is used but never assigned. This sourceless signal will be automatically connected to value 0000.
+WARNING:Xst:1780 - Signal <MAX_ROW> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <MAX_COL> is used but never assigned. This sourceless signal will be automatically connected to value 00000000000000000000000000100000.
+    Register <dina<101>> equivalent to <dina<100>> has been removed
+    Register <dina<102>> equivalent to <dina<100>> has been removed
+    Register <dina<103>> equivalent to <dina<100>> has been removed
+    Register <dina<104>> equivalent to <dina<100>> has been removed
+    Register <dina<105>> equivalent to <dina<100>> has been removed
+    Register <dina<106>> equivalent to <dina<100>> has been removed
+    Register <dina<107>> equivalent to <dina<100>> has been removed
+    Register <dina<108>> equivalent to <dina<100>> has been removed
+    Register <dina<109>> equivalent to <dina<100>> has been removed
+    Register <dina<10>> equivalent to <dina<100>> has been removed
+    Register <dina<110>> equivalent to <dina<100>> has been removed
+    Register <dina<111>> equivalent to <dina<100>> has been removed
+    Register <dina<112>> equivalent to <dina<100>> has been removed
+    Register <dina<113>> equivalent to <dina<100>> has been removed
+    Register <dina<114>> equivalent to <dina<100>> has been removed
+    Register <dina<115>> equivalent to <dina<100>> has been removed
+    Register <dina<116>> equivalent to <dina<100>> has been removed
+    Register <dina<117>> equivalent to <dina<100>> has been removed
+    Register <dina<118>> equivalent to <dina<100>> has been removed
+    Register <dina<119>> equivalent to <dina<100>> has been removed
+    Register <dina<11>> equivalent to <dina<100>> has been removed
+    Register <dina<120>> equivalent to <dina<100>> has been removed
+    Register <dina<121>> equivalent to <dina<100>> has been removed
+    Register <dina<122>> equivalent to <dina<100>> has been removed
+    Register <dina<123>> equivalent to <dina<100>> has been removed
+    Register <dina<124>> equivalent to <dina<100>> has been removed
+    Register <dina<125>> equivalent to <dina<100>> has been removed
+    Register <dina<126>> equivalent to <dina<100>> has been removed
+    Register <dina<127>> equivalent to <dina<100>> has been removed
+    Register <dina<128>> equivalent to <dina<100>> has been removed
+    Register <dina<129>> equivalent to <dina<100>> has been removed
+    Register <dina<12>> equivalent to <dina<100>> has been removed
+    Register <dina<130>> equivalent to <dina<100>> has been removed
+    Register <dina<131>> equivalent to <dina<100>> has been removed
+    Register <dina<132>> equivalent to <dina<100>> has been removed
+    Register <dina<133>> equivalent to <dina<100>> has been removed
+    Register <dina<134>> equivalent to <dina<100>> has been removed
+    Register <dina<135>> equivalent to <dina<100>> has been removed
+    Register <dina<136>> equivalent to <dina<100>> has been removed
+    Register <dina<137>> equivalent to <dina<100>> has been removed
+    Register <dina<138>> equivalent to <dina<100>> has been removed
+    Register <dina<139>> equivalent to <dina<100>> has been removed
+    Register <dina<13>> equivalent to <dina<100>> has been removed
+    Register <dina<140>> equivalent to <dina<100>> has been removed
+    Register <dina<141>> equivalent to <dina<100>> has been removed
+    Register <dina<142>> equivalent to <dina<100>> has been removed
+    Register <dina<143>> equivalent to <dina<100>> has been removed
+    Register <dina<144>> equivalent to <dina<100>> has been removed
+    Register <dina<145>> equivalent to <dina<100>> has been removed
+    Register <dina<146>> equivalent to <dina<100>> has been removed
+    Register <dina<147>> equivalent to <dina<100>> has been removed
+    Register <dina<148>> equivalent to <dina<100>> has been removed
+    Register <dina<149>> equivalent to <dina<100>> has been removed
+    Register <dina<14>> equivalent to <dina<100>> has been removed
+    Register <dina<150>> equivalent to <dina<100>> has been removed
+    Register <dina<151>> equivalent to <dina<100>> has been removed
+    Register <dina<152>> equivalent to <dina<100>> has been removed
+    Register <dina<153>> equivalent to <dina<100>> has been removed
+    Register <dina<154>> equivalent to <dina<100>> has been removed
+    Register <dina<155>> equivalent to <dina<100>> has been removed
+    Register <dina<156>> equivalent to <dina<100>> has been removed
+    Register <dina<157>> equivalent to <dina<100>> has been removed
+    Register <dina<158>> equivalent to <dina<100>> has been removed
+    Register <dina<159>> equivalent to <dina<100>> has been removed
+    Register <dina<15>> equivalent to <dina<100>> has been removed
+    Register <dina<160>> equivalent to <dina<100>> has been removed
+    Register <dina<161>> equivalent to <dina<100>> has been removed
+    Register <dina<162>> equivalent to <dina<100>> has been removed
+    Register <dina<163>> equivalent to <dina<100>> has been removed
+    Register <dina<164>> equivalent to <dina<100>> has been removed
+    Register <dina<165>> equivalent to <dina<100>> has been removed
+    Register <dina<166>> equivalent to <dina<100>> has been removed
+    Register <dina<167>> equivalent to <dina<100>> has been removed
+    Register <dina<168>> equivalent to <dina<100>> has been removed
+    Register <dina<169>> equivalent to <dina<100>> has been removed
+    Register <dina<16>> equivalent to <dina<100>> has been removed
+    Register <dina<170>> equivalent to <dina<100>> has been removed
+    Register <dina<171>> equivalent to <dina<100>> has been removed
+    Register <dina<172>> equivalent to <dina<100>> has been removed
+    Register <dina<173>> equivalent to <dina<100>> has been removed
+    Register <dina<174>> equivalent to <dina<100>> has been removed
+    Register <dina<175>> equivalent to <dina<100>> has been removed
+    Register <dina<176>> equivalent to <dina<100>> has been removed
+    Register <dina<177>> equivalent to <dina<100>> has been removed
+    Register <dina<178>> equivalent to <dina<100>> has been removed
+    Register <dina<179>> equivalent to <dina<100>> has been removed
+    Register <dina<17>> equivalent to <dina<100>> has been removed
+    Register <dina<180>> equivalent to <dina<100>> has been removed
+    Register <dina<181>> equivalent to <dina<100>> has been removed
+    Register <dina<182>> equivalent to <dina<100>> has been removed
+    Register <dina<183>> equivalent to <dina<100>> has been removed
+    Register <dina<184>> equivalent to <dina<100>> has been removed
+    Register <dina<185>> equivalent to <dina<100>> has been removed
+    Register <dina<186>> equivalent to <dina<100>> has been removed
+    Register <dina<187>> equivalent to <dina<100>> has been removed
+    Register <dina<188>> equivalent to <dina<100>> has been removed
+    Register <dina<189>> equivalent to <dina<100>> has been removed
+    Register <dina<18>> equivalent to <dina<100>> has been removed
+    Register <dina<190>> equivalent to <dina<100>> has been removed
+    Register <dina<191>> equivalent to <dina<100>> has been removed
+    Register <dina<192>> equivalent to <dina<100>> has been removed
+    Register <dina<193>> equivalent to <dina<100>> has been removed
+    Register <dina<194>> equivalent to <dina<100>> has been removed
+    Register <dina<195>> equivalent to <dina<100>> has been removed
+    Register <dina<196>> equivalent to <dina<100>> has been removed
+    Register <dina<197>> equivalent to <dina<100>> has been removed
+    Register <dina<198>> equivalent to <dina<100>> has been removed
+    Register <dina<199>> equivalent to <dina<100>> has been removed
+    Register <dina<19>> equivalent to <dina<100>> has been removed
+    Register <dina<200>> equivalent to <dina<100>> has been removed
+    Register <dina<201>> equivalent to <dina<100>> has been removed
+    Register <dina<202>> equivalent to <dina<100>> has been removed
+    Register <dina<203>> equivalent to <dina<100>> has been removed
+    Register <dina<204>> equivalent to <dina<100>> has been removed
+    Register <dina<205>> equivalent to <dina<100>> has been removed
+    Register <dina<206>> equivalent to <dina<100>> has been removed
+    Register <dina<207>> equivalent to <dina<100>> has been removed
+    Register <dina<208>> equivalent to <dina<100>> has been removed
+    Register <dina<209>> equivalent to <dina<100>> has been removed
+    Register <dina<20>> equivalent to <dina<100>> has been removed
+    Register <dina<210>> equivalent to <dina<100>> has been removed
+    Register <dina<211>> equivalent to <dina<100>> has been removed
+    Register <dina<212>> equivalent to <dina<100>> has been removed
+    Register <dina<213>> equivalent to <dina<100>> has been removed
+    Register <dina<214>> equivalent to <dina<100>> has been removed
+    Register <dina<215>> equivalent to <dina<100>> has been removed
+    Register <dina<216>> equivalent to <dina<100>> has been removed
+    Register <dina<217>> equivalent to <dina<100>> has been removed
+    Register <dina<218>> equivalent to <dina<100>> has been removed
+    Register <dina<219>> equivalent to <dina<100>> has been removed
+    Register <dina<21>> equivalent to <dina<100>> has been removed
+    Register <dina<220>> equivalent to <dina<100>> has been removed
+    Register <dina<221>> equivalent to <dina<100>> has been removed
+    Register <dina<222>> equivalent to <dina<100>> has been removed
+    Register <dina<223>> equivalent to <dina<100>> has been removed
+    Register <dina<224>> equivalent to <dina<100>> has been removed
+    Register <dina<225>> equivalent to <dina<100>> has been removed
+    Register <dina<226>> equivalent to <dina<100>> has been removed
+    Register <dina<227>> equivalent to <dina<100>> has been removed
+    Register <dina<228>> equivalent to <dina<100>> has been removed
+    Register <dina<229>> equivalent to <dina<100>> has been removed
+    Register <dina<22>> equivalent to <dina<100>> has been removed
+    Register <dina<230>> equivalent to <dina<100>> has been removed
+    Register <dina<231>> equivalent to <dina<100>> has been removed
+    Register <dina<232>> equivalent to <dina<100>> has been removed
+    Register <dina<233>> equivalent to <dina<100>> has been removed
+    Register <dina<234>> equivalent to <dina<100>> has been removed
+    Register <dina<235>> equivalent to <dina<100>> has been removed
+    Register <dina<236>> equivalent to <dina<100>> has been removed
+    Register <dina<237>> equivalent to <dina<100>> has been removed
+    Register <dina<238>> equivalent to <dina<100>> has been removed
+    Register <dina<239>> equivalent to <dina<100>> has been removed
+    Register <dina<23>> equivalent to <dina<100>> has been removed
+    Register <dina<240>> equivalent to <dina<100>> has been removed
+    Register <dina<241>> equivalent to <dina<100>> has been removed
+    Register <dina<242>> equivalent to <dina<100>> has been removed
+    Register <dina<243>> equivalent to <dina<100>> has been removed
+    Register <dina<244>> equivalent to <dina<100>> has been removed
+    Register <dina<245>> equivalent to <dina<100>> has been removed
+    Register <dina<246>> equivalent to <dina<100>> has been removed
+    Register <dina<247>> equivalent to <dina<100>> has been removed
+    Register <dina<248>> equivalent to <dina<100>> has been removed
+    Register <dina<249>> equivalent to <dina<100>> has been removed
+    Register <dina<24>> equivalent to <dina<100>> has been removed
+    Register <dina<250>> equivalent to <dina<100>> has been removed
+    Register <dina<251>> equivalent to <dina<100>> has been removed
+    Register <dina<252>> equivalent to <dina<100>> has been removed
+    Register <dina<253>> equivalent to <dina<100>> has been removed
+    Register <dina<254>> equivalent to <dina<100>> has been removed
+    Register <dina<255>> equivalent to <dina<100>> has been removed
+    Register <dina<25>> equivalent to <dina<100>> has been removed
+    Register <dina<26>> equivalent to <dina<100>> has been removed
+    Register <dina<27>> equivalent to <dina<100>> has been removed
+    Register <dina<28>> equivalent to <dina<100>> has been removed
+    Register <dina<29>> equivalent to <dina<100>> has been removed
+    Register <dina<30>> equivalent to <dina<100>> has been removed
+    Register <dina<31>> equivalent to <dina<100>> has been removed
+    Register <dina<32>> equivalent to <dina<100>> has been removed
+    Register <dina<33>> equivalent to <dina<100>> has been removed
+    Register <dina<34>> equivalent to <dina<100>> has been removed
+    Register <dina<35>> equivalent to <dina<100>> has been removed
+    Register <dina<36>> equivalent to <dina<100>> has been removed
+    Register <dina<37>> equivalent to <dina<100>> has been removed
+    Register <dina<38>> equivalent to <dina<100>> has been removed
+    Register <dina<39>> equivalent to <dina<100>> has been removed
+    Register <dina<40>> equivalent to <dina<100>> has been removed
+    Register <dina<41>> equivalent to <dina<100>> has been removed
+    Register <dina<42>> equivalent to <dina<100>> has been removed
+    Register <dina<43>> equivalent to <dina<100>> has been removed
+    Register <dina<44>> equivalent to <dina<100>> has been removed
+    Register <dina<45>> equivalent to <dina<100>> has been removed
+    Register <dina<46>> equivalent to <dina<100>> has been removed
+    Register <dina<47>> equivalent to <dina<100>> has been removed
+    Register <dina<48>> equivalent to <dina<100>> has been removed
+    Register <dina<49>> equivalent to <dina<100>> has been removed
+    Register <dina<4>> equivalent to <dina<100>> has been removed
+    Register <dina<50>> equivalent to <dina<100>> has been removed
+    Register <dina<51>> equivalent to <dina<100>> has been removed
+    Register <dina<52>> equivalent to <dina<100>> has been removed
+    Register <dina<53>> equivalent to <dina<100>> has been removed
+    Register <dina<54>> equivalent to <dina<100>> has been removed
+    Register <dina<55>> equivalent to <dina<100>> has been removed
+    Register <dina<56>> equivalent to <dina<100>> has been removed
+    Register <dina<57>> equivalent to <dina<100>> has been removed
+    Register <dina<58>> equivalent to <dina<100>> has been removed
+    Register <dina<59>> equivalent to <dina<100>> has been removed
+    Register <dina<5>> equivalent to <dina<100>> has been removed
+    Register <dina<60>> equivalent to <dina<100>> has been removed
+    Register <dina<61>> equivalent to <dina<100>> has been removed
+    Register <dina<62>> equivalent to <dina<100>> has been removed
+    Register <dina<63>> equivalent to <dina<100>> has been removed
+    Register <dina<64>> equivalent to <dina<100>> has been removed
+    Register <dina<65>> equivalent to <dina<100>> has been removed
+    Register <dina<66>> equivalent to <dina<100>> has been removed
+    Register <dina<67>> equivalent to <dina<100>> has been removed
+    Register <dina<68>> equivalent to <dina<100>> has been removed
+    Register <dina<69>> equivalent to <dina<100>> has been removed
+    Register <dina<6>> equivalent to <dina<100>> has been removed
+    Register <dina<70>> equivalent to <dina<100>> has been removed
+    Register <dina<71>> equivalent to <dina<100>> has been removed
+    Register <dina<72>> equivalent to <dina<100>> has been removed
+    Register <dina<73>> equivalent to <dina<100>> has been removed
+    Register <dina<74>> equivalent to <dina<100>> has been removed
+    Register <dina<75>> equivalent to <dina<100>> has been removed
+    Register <dina<76>> equivalent to <dina<100>> has been removed
+    Register <dina<77>> equivalent to <dina<100>> has been removed
+    Register <dina<78>> equivalent to <dina<100>> has been removed
+    Register <dina<79>> equivalent to <dina<100>> has been removed
+    Register <dina<7>> equivalent to <dina<100>> has been removed
+    Register <dina<80>> equivalent to <dina<100>> has been removed
+    Register <dina<81>> equivalent to <dina<100>> has been removed
+    Register <dina<82>> equivalent to <dina<100>> has been removed
+    Register <dina<83>> equivalent to <dina<100>> has been removed
+    Register <dina<84>> equivalent to <dina<100>> has been removed
+    Register <dina<85>> equivalent to <dina<100>> has been removed
+    Register <dina<86>> equivalent to <dina<100>> has been removed
+    Register <dina<87>> equivalent to <dina<100>> has been removed
+    Register <dina<88>> equivalent to <dina<100>> has been removed
+    Register <dina<89>> equivalent to <dina<100>> has been removed
+    Register <dina<8>> equivalent to <dina<100>> has been removed
+    Register <dina<90>> equivalent to <dina<100>> has been removed
+    Register <dina<91>> equivalent to <dina<100>> has been removed
+    Register <dina<92>> equivalent to <dina<100>> has been removed
+    Register <dina<93>> equivalent to <dina<100>> has been removed
+    Register <dina<94>> equivalent to <dina<100>> has been removed
+    Register <dina<95>> equivalent to <dina<100>> has been removed
+    Register <dina<96>> equivalent to <dina<100>> has been removed
+    Register <dina<97>> equivalent to <dina<100>> has been removed
+    Register <dina<98>> equivalent to <dina<100>> has been removed
+    Register <dina<99>> equivalent to <dina<100>> has been removed
+    Register <dina<9>> equivalent to <dina<100>> has been removed
+    Found 1-bit register for signal <not_exceed_max_col>.
+    Found 5-bit register for signal <addra>.
+    Found 5-bit register for signal <addrb>.
+    Found 5-bit adder for signal <addrb$sub0000> created at line 90.
+    Found 7-bit register for signal <ascii_to_vga>.
+    Found 7x3-bit multiplier for signal <ascii_to_vga$mult0000> created at line 91.
+    Found 1-bit register for signal <dina<100>>.
+    Found 32-bit comparator greater for signal <not_exceed_max_col$cmp_gt0000> created at line 85.
+    Found 7-bit register for signal <read_col>.
+    Found 32-bit register for signal <read_row>.
+    Found 32-bit register for signal <write_col>.
+    Found 32-bit register for signal <write_row>.
+    Summary:
+	inferred 122 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   1 Multiplier(s).
+	inferred   1 Comparator(s).
+Unit <my_buffer> synthesized.
+
+
+Synthesizing Unit <VGAController>.
+    Related source file is "C:/Projects/myVGA/VGAController.vhd".
+WARNING:Xst:646 - Signal <temp> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <not_exceed> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <clk25> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+Unit <VGAController> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 2048x8-bit ROM                                        : 1
+# Multipliers                                          : 1
+ 7x3-bit multiplier                                    : 1
+# Adders/Subtractors                                   : 1
+ 5-bit adder                                           : 1
+# Counters                                             : 2
+ 10-bit up counter                                     : 1
+ 9-bit up counter                                      : 1
+# Registers                                            : 15
+ 1-bit register                                        : 7
+ 12-bit register                                       : 1
+ 3-bit register                                        : 1
+ 32-bit register                                       : 1
+ 5-bit register                                        : 2
+ 7-bit register                                        : 3
+# Comparators                                          : 7
+ 10-bit comparator greatequal                          : 1
+ 10-bit comparator less                                : 2
+ 11-bit comparator greatequal                          : 1
+ 11-bit comparator less                                : 2
+ 32-bit comparator greater                             : 1
+# Multiplexers                                         : 1
+ 1-bit 8-to-1 multiplexer                              : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Reading core <ipcore_dir/new_buffer_ram.ngc>.
+Loading core <new_buffer_ram> for timing and area information for instance <my_buffer_ram>.
+INFO:Xst:2261 - The FF/Latch <b1_0> in Unit <Inst_vga640480> is equivalent to the following 2 FFs/Latches, which will be removed : <b1_1> <b1_2> 
+INFO:Xst:2261 - The FF/Latch <addra_0> in Unit <Inst_my_buffer> is equivalent to the following 5 FFs/Latches, which will be removed : <addra_1> <addra_2> <addra_3> <addra_4> <dina_100> 
+WARNING:Xst:1293 - FF/Latch <addra_0> has a constant value of 0 in block <Inst_my_buffer>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <read_row_5> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_6> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_7> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_8> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_9> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_10> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_11> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_12> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_13> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_14> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_15> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_16> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_17> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_18> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_19> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_20> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_21> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_22> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_23> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_24> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_25> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_26> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_27> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_28> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_29> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_30> of sequential type is unconnected in block <Inst_my_buffer>.
+WARNING:Xst:2677 - Node <read_row_31> of sequential type is unconnected in block <Inst_my_buffer>.
+
+Synthesizing (advanced) Unit <my_buffer>.
+	Found pipelined multiplier on signal <ascii_to_vga_mult0000>:
+		- 1 pipeline level(s) found in a register on signal <read_col>.
+		Pushing register(s) into the multiplier macro.
+INFO:Xst:2385 - HDL ADVISOR - You can improve the performance of the multiplier Mmult_ascii_to_vga_mult0000 by adding 1 register level(s).
+Unit <my_buffer> synthesized (advanced).
+WARNING:Xst:2677 - Node <read_row_5> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_6> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_7> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_8> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_9> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_10> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_11> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_12> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_13> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_14> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_15> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_16> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_17> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_18> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_19> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_20> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_21> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_22> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_23> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_24> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_25> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_26> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_27> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_28> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_29> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_30> of sequential type is unconnected in block <my_buffer>.
+WARNING:Xst:2677 - Node <read_row_31> of sequential type is unconnected in block <my_buffer>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 2048x8-bit ROM                                        : 1
+# Multipliers                                          : 1
+ 7x3-bit registered multiplier                         : 1
+# Adders/Subtractors                                   : 1
+ 5-bit adder                                           : 1
+# Counters                                             : 2
+ 10-bit up counter                                     : 1
+ 9-bit up counter                                      : 1
+# Registers                                            : 58
+ Flip-Flops                                            : 58
+# Comparators                                          : 7
+ 10-bit comparator greatequal                          : 1
+ 10-bit comparator less                                : 2
+ 11-bit comparator greatequal                          : 1
+ 11-bit comparator less                                : 2
+ 32-bit comparator greater                             : 1
+# Multiplexers                                         : 1
+ 1-bit 8-to-1 multiplexer                              : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <dina_100> (without init value) has a constant value of 0 in block <my_buffer>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <addra_0> has a constant value of 0 in block <my_buffer>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <addra_1> has a constant value of 0 in block <my_buffer>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <addra_2> has a constant value of 0 in block <my_buffer>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <addra_3> has a constant value of 0 in block <my_buffer>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <addra_4> has a constant value of 0 in block <my_buffer>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <b1_0> in Unit <vga640480> is equivalent to the following 2 FFs/Latches, which will be removed : <b1_1> <b1_2> 
+
+Optimizing unit <VGAController> ...
+
+Optimizing unit <vga640480> ...
+
+Optimizing unit <my_buffer> ...
+WARNING:Xst:2677 - Node <Inst_my_buffer/not_exceed_max_col> of sequential type is unconnected in block <VGAController>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block VGAController, actual ratio is 6.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 75
+ Flip-Flops                                            : 75
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : VGAController.ngr
+Top Level Output File Name         : VGAController
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 13
+
+Cell Usage :
+# BELS                             : 1361
+#      GND                         : 2
+#      INV                         : 9
+#      LUT1                        : 17
+#      LUT2                        : 30
+#      LUT2_D                      : 6
+#      LUT2_L                      : 15
+#      LUT3                        : 216
+#      LUT3_D                      : 11
+#      LUT3_L                      : 7
+#      LUT4                        : 559
+#      LUT4_D                      : 38
+#      LUT4_L                      : 36
+#      MUXCY                       : 42
+#      MUXF5                       : 219
+#      MUXF6                       : 84
+#      MUXF7                       : 32
+#      MUXF8                       : 10
+#      VCC                         : 2
+#      XORCY                       : 26
+# FlipFlops/Latches                : 75
+#      FD                          : 7
+#      FD_1                        : 13
+#      FDC                         : 13
+#      FDCE                        : 9
+#      FDE                         : 19
+#      FDE_1                       : 5
+#      FDP                         : 2
+#      FDR                         : 1
+#      FDRS_1                      : 6
+# RAMS                             : 8
+#      RAMB16_S36_S36              : 8
+# Clock Buffers                    : 2
+#      BUFG                        : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 12
+#      IBUF                        : 1
+#      OBUF                        : 11
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s1200efg320-4 
+
+ Number of Slices:                      494  out of   8672     5%  
+ Number of Slice Flip Flops:             75  out of  17344     0%  
+ Number of 4 input LUTs:                944  out of  17344     5%  
+ Number of IOs:                          13
+ Number of bonded IOBs:                  13  out of    250     5%  
+ Number of BRAMs:                         8  out of     28    28%  
+ Number of GCLKs:                         2  out of     24     8%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+Inst_vga640480/clk1                | BUFG                   | 43    |
+clk                                | BUFGP                  | 40    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-----------------------------------------------------------+--------------------------+-------+
+Control Signal                                             | Buffer(FF name)          | Load  |
+-----------------------------------------------------------+--------------------------+-------+
+Inst_vga640480/reset_inv(Inst_vga640480/reset_inv1_INV_0:O)| NONE(Inst_vga640480/b1_0)| 24    |
+-----------------------------------------------------------+--------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 14.812ns (Maximum Frequency: 67.513MHz)
+   Minimum input arrival time before clock: 4.044ns
+   Maximum output required time after clock: 6.009ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'Inst_vga640480/clk1'
+  Clock period: 12.564ns (frequency: 79.593MHz)
+  Total number of paths / destination ports: 3860 / 71
+-------------------------------------------------------------------------
+Delay:               12.564ns (Levels of Logic = 11)
+  Source:            Inst_vga640480/bit_addr_3 (FF)
+  Destination:       Inst_vga640480/b1_0 (FF)
+  Source Clock:      Inst_vga640480/clk1 rising
+  Destination Clock: Inst_vga640480/clk1 rising
+
+  Data Path: Inst_vga640480/bit_addr_3 to Inst_vga640480/b1_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q            180   0.591   1.484  Inst_vga640480/bit_addr_3 (Inst_vga640480/bit_addr_3)
+     LUT4:I0->O           21   0.704   1.163  Inst_fontROM/Mrom_dataOut_varindex0000391 (Inst_fontROM/Mrom_dataOut_varindex000039)
+     LUT4:I2->O            1   0.704   0.499  to_rom_row<4>61 (to_rom_row<4>7)
+     LUT3:I1->O            1   0.704   0.000  Inst_fontROM/Mmux_dataOut_21_f5_15_F (N223)
+     MUXF5:I0->O           1   0.321   0.455  Inst_fontROM/Mmux_dataOut_21_f5_15 (Inst_fontROM/Mmux_dataOut_21_f516)
+     LUT3_L:I2->LO         1   0.704   0.135  to_rom_row<8>6_SW0 (N133)
+     LUT3:I2->O            1   0.704   0.455  to_rom_row<8>6 (to_rom_row<8>7)
+     LUT3:I2->O            1   0.704   0.000  Inst_fontROM/Mmux_dataOut_11_f5_G (N182)
+     MUXF5:I1->O           1   0.321   0.455  Inst_fontROM/Mmux_dataOut_11_f5 (Inst_fontROM/Mmux_dataOut_11_f5)
+     LUT3:I2->O            1   0.704   0.424  to_rom_col<0>11 (to_rom_col<0>2)
+     LUT4:I3->O            1   0.704   0.000  Inst_vga640480/r1_mux0001<0>1_F (N183)
+     MUXF5:I0->O           1   0.321   0.000  Inst_vga640480/r1_mux0001<0>1 (Inst_vga640480/r1_mux0001<0>)
+     FDC:D                     0.308          Inst_vga640480/b1_0
+    ----------------------------------------
+    Total                     12.564ns (7.494ns logic, 5.070ns route)
+                                       (59.6% logic, 40.4% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 14.812ns (frequency: 67.513MHz)
+  Total number of paths / destination ports: 30874 / 70
+-------------------------------------------------------------------------
+Delay:               7.406ns (Levels of Logic = 5)
+  Source:            Inst_my_buffer/my_buffer_ram/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s3_init.ram/dpram.dp36x36.ram (RAM)
+  Destination:       Inst_my_buffer/ascii_to_vga_6 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk falling
+
+  Data Path: Inst_my_buffer/my_buffer_ram/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s3_init.ram/dpram.dp36x36.ram to Inst_my_buffer/ascii_to_vga_6
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     RAMB16_S36_S36:CLKB->DOB15    1   2.800   0.455  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s3_init.ram/dpram.dp36x36.ram (doutb<52>)
+     end scope: 'Inst_my_buffer/my_buffer_ram'
+     LUT4:I2->O            1   0.704   0.499  Inst_my_buffer/ascii_to_vga_mux0002<10>19 (Inst_my_buffer/ascii_to_vga_mux0002<10>19)
+     LUT3:I1->O            1   0.704   0.424  Inst_my_buffer/ascii_to_vga_mux0002<10>164_SW0 (N145)
+     LUT4_L:I3->LO         1   0.704   0.104  Inst_my_buffer/ascii_to_vga_mux0002<10>164 (Inst_my_buffer/ascii_to_vga_mux0002<10>164)
+     LUT4:I3->O            1   0.704   0.000  Inst_my_buffer/ascii_to_vga_mux0002<10>124511 (Inst_my_buffer/ascii_to_vga_mux0002<10>12451)
+     FDRS_1:D                  0.308          Inst_my_buffer/ascii_to_vga_6
+    ----------------------------------------
+    Total                      7.406ns (5.924ns logic, 1.482ns route)
+                                       (80.0% logic, 20.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'Inst_vga640480/clk1'
+  Total number of paths / destination ports: 19 / 19
+-------------------------------------------------------------------------
+Offset:              4.044ns (Levels of Logic = 2)
+  Source:            rst (PAD)
+  Destination:       Inst_vga640480/char_addr_11 (FF)
+  Destination Clock: Inst_vga640480/clk1 rising
+
+  Data Path: rst to Inst_vga640480/char_addr_11
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             2   1.218   0.447  rst_IBUF (rst_IBUF)
+     MUXF5:S->O           19   0.739   1.085  Inst_vga640480/bit_addr_and00002_f5 (Inst_vga640480/bit_addr_and0000)
+     FDE:CE                    0.555          Inst_vga640480/bit_addr_0
+    ----------------------------------------
+    Total                      4.044ns (2.512ns logic, 1.532ns route)
+                                       (62.1% logic, 37.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'Inst_vga640480/clk1'
+  Total number of paths / destination ports: 29 / 11
+-------------------------------------------------------------------------
+Offset:              6.009ns (Levels of Logic = 2)
+  Source:            Inst_vga640480/vs1 (FF)
+  Destination:       b<2> (PAD)
+  Source Clock:      Inst_vga640480/clk1 rising
+
+  Data Path: Inst_vga640480/vs1 to b<2>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDP:C->Q              2   0.591   0.622  Inst_vga640480/vs1 (Inst_vga640480/vs1)
+     LUT3:I0->O            9   0.704   0.820  Inst_vga640480/g<0>1 (b_0_OBUF)
+     OBUF:I->O                 3.272          b_2_OBUF (b<2>)
+    ----------------------------------------
+    Total                      6.009ns (4.567ns logic, 1.442ns route)
+                                       (76.0% logic, 24.0% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 15.00 secs
+Total CPU time to Xst completion: 14.70 secs
+ 
+--> 
+
+Total memory usage is 221920 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   78 (   0 filtered)
+Number of infos    :    4 (   0 filtered)
+

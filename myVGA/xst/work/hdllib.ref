@@ -1,0 +1,11 @@
+AR vgacontroller behavioral C:/Projects/myVGA/VGAController.vhd sub00/vhpl10 1449041101
+EN my_buffer NULL C:/Projects/myVGA/buffer.vhd sub00/vhpl07 1449041098
+PH ascii_define NULL C:/Projects/myVGA/ascii_define.vhd sub00/vhpl04 1449041091
+AR fontrom behavioral C:/Projects/myVGA/font_rom.vhd sub00/vhpl01 1449041097
+AR vga640480 behavior C:/Projects/myVGA/VGA_640480.vhd sub00/vhpl03 1449041095
+EN new_buffer_ram NULL C:/Projects/myVGA/ipcore_dir/new_buffer_ram.vhd sub00/vhpl05 1449041092
+EN vgacontroller NULL C:/Projects/myVGA/VGAController.vhd sub00/vhpl09 1449041100
+EN fontrom NULL C:/Projects/myVGA/font_rom.vhd sub00/vhpl00 1449041096
+EN vga640480 NULL C:/Projects/myVGA/VGA_640480.vhd sub00/vhpl02 1449041094
+AR my_buffer behavioral C:/Projects/myVGA/buffer.vhd sub00/vhpl08 1449041099
+AR new_buffer_ram new_buffer_ram_a C:/Projects/myVGA/ipcore_dir/new_buffer_ram.vhd sub00/vhpl06 1449041093

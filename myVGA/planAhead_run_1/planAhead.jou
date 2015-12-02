@@ -1,0 +1,52 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7
+# Build 321239 by xbuild on Fri Sep 27 19:31:35 MDT 2013
+# Start of session at: Wed Dec 02 00:40:25 2015
+# Process ID: 4632
+# Log file: C:/Projects/myVGA/planAhead_run_1/planAhead.log
+# Journal file: C:/Projects/myVGA/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source C:/Projects/myVGA/pa.fromHdl.tcl
+update_compile_order -fileset sim_1
+startgroup
+set_property package_pin B6 [get_ports {b[2]}]
+endgroup
+startgroup
+set_property package_pin A6 [get_ports {b[1]}]
+endgroup
+startgroup
+set_property package_pin D5 [get_ports {b[0]}]
+endgroup
+startgroup
+set_property package_pin C5 [get_ports {g[2]}]
+endgroup
+startgroup
+set_property package_pin C4 [get_ports {g[1]}]
+endgroup
+startgroup
+set_property package_pin B4 [get_ports {g[0]}]
+endgroup
+startgroup
+set_property package_pin A4 [get_ports {r[2]}]
+endgroup
+startgroup
+set_property package_pin C3 [get_ports {r[1]}]
+endgroup
+startgroup
+set_property package_pin A7 [get_ports {r[0]}]
+endgroup
+set_property package_pin "" [get_ports [list  clk25]]
+startgroup
+set_property package_pin B9 [get_ports clk_0]
+endgroup
+startgroup
+set_property package_pin D6 [get_ports hs]
+endgroup
+startgroup
+set_property package_pin U10 [get_ports reset]
+endgroup
+startgroup
+set_property package_pin E6 [get_ports vs]
+endgroup
+save_constraints

@@ -1,0 +1,2 @@
+vhdtdtfi -prj myVGA -o C:/Projects/myVGA/my_buffer.vhi -module my_buffer -template C:/Xilinx/14.7/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work ipcore_dir/new_buffer_ram.vhd -lib work buffer.vhd 
+vhdtdtfi -prj myVGA -o C:/Projects/myVGA/my_buffer.vhi -module my_buffer -template C:/Xilinx/14.7/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work ipcore_dir/new_buffer_ram.vhd -lib work ascii_define.vhd -lib work buffer.vhd 

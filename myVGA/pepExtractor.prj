@@ -1,0 +1,3 @@
+work	"ascii_define.vhd"
+work	"buffer.vhd"
+work	"ipcore_dir/new_buffer_ram.vhd"

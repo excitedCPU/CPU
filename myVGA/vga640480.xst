@@ -1,0 +1,5 @@
+set -tmpdir "C:/Projects/myVGA/xst/projnav.tmp"
+set -xsthdpdir "C:/Projects/myVGA/xst"
+elaborate
+-ifn vga640480.prj
+-ifmt mixed

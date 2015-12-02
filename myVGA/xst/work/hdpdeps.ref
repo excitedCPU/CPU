@@ -1,0 +1,35 @@
+V3 22
+FL C:/Projects/myVGA/ascii_define.vhd 2015/12/02.00:50:52 P.20131013
+PH work/ascii_define 1449041091 FL C:/Projects/myVGA/ascii_define.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+FL C:/Projects/myVGA/buffer.vhd 2015/12/02.15:22:14 P.20131013
+EN work/my_buffer 1449041098 FL C:/Projects/myVGA/buffer.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181 \
+      PB ieee/std_logic_arith 1381692177 PB ieee/STD_LOGIC_UNSIGNED 1381692179 \
+      PH work/ascii_define 1449041091
+AR work/my_buffer/behavioral 1449041099 \
+      FL C:/Projects/myVGA/buffer.vhd EN work/my_buffer 1449041098 \
+      CP new_buffer_ram
+FL C:/Projects/myVGA/digital_rom.vhd 2015/11/30.19:19:11 P.20131013
+FL C:/Projects/myVGA/font_rom.vhd 2015/12/02.15:24:47 P.20131013
+EN work/fontROM 1449041096 FL C:/Projects/myVGA/font_rom.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/fontROM/Behavioral 1449041097 \
+      FL C:/Projects/myVGA/font_rom.vhd EN work/fontROM 1449041096
+FL C:/Projects/myVGA/ipcore_dir/new_buffer_ram.vhd 2015/12/02.13:59:00 P.20131013
+EN work/new_buffer_ram 1449041092 \
+      FL C:/Projects/myVGA/ipcore_dir/new_buffer_ram.vhd PB ieee/std_logic_1164 1381692176
+AR work/new_buffer_ram/new_buffer_ram_a 1449041093 \
+      FL C:/Projects/myVGA/ipcore_dir/new_buffer_ram.vhd EN work/new_buffer_ram 1449041092
+FL C:/Projects/myVGA/VGAController.vhd 2015/12/02.15:18:23 P.20131013
+EN work/VGAController 1449041100 FL C:/Projects/myVGA/VGAController.vhd \
+      PB ieee/std_logic_1164 1381692176
+AR work/VGAController/Behavioral 1449041101 \
+      FL C:/Projects/myVGA/VGAController.vhd EN work/VGAController 1449041100 \
+      CP vga640480 CP fontROM CP my_buffer
+FL C:/Projects/myVGA/VGA_640480.vhd 2015/12/02.13:59:20 P.20131013
+EN work/vga640480 1449041094 FL C:/Projects/myVGA/VGA_640480.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179 \
+      PB ieee/std_logic_arith 1381692177
+AR work/vga640480/behavior 1449041095 \
+      FL C:/Projects/myVGA/VGA_640480.vhd EN work/vga640480 1449041094

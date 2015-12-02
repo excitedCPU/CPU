@@ -1,0 +1,100 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7
+# Build 321239 by xbuild on Fri Sep 27 19:31:35 MDT 2013
+# Start of session at: Wed Dec 02 00:40:25 2015
+# Process ID: 4632
+# Log file: C:/Projects/myVGA/planAhead_run_1/planAhead.log
+# Journal file: C:/Projects/myVGA/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Device 21-36] Loading parts and site information from C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+source C:/Projects/myVGA/pa.fromHdl.tcl
+# create_project -name myVGA -dir "C:/Projects/myVGA/planAhead_run_2" -part xc3s1200efg320-4
+# set_param project.pinAheadLayout yes
+# set srcset [get_property srcset [current_run -impl]]
+# set_property target_constrs_file "vga640480.ucf" [current_fileset -constrset]
+Adding file 'C:/Projects/myVGA/vga640480.ucf' to fileset 'constrs_1'
+# set hdlfile [add_files [list {VGA_640480.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set_property top vga640480 $srcset
+# add_files [list {vga640480.ucf}] -fileset [get_property constrset [current_run]]
+# open_rtl_design -part xc3s1200efg320-4
+Using Verific elaboration
+Parsing VHDL file "C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/lib/synplify/synattr.vhd" into library synplify
+Parsing VHDL file "C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/lib/synplify/synattr.vhd" into library synplify
+Parsing VHDL file "C:/Projects/myVGA/VGA_640480.vhd" into library work
+INFO: [Designutils 20-910] Reading macro library C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn
+Parsing EDIF File [C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn]
+Finished Parsing EDIF File [C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn]
+Loading clock regions from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s1200e/ClockRegion.xml
+Loading clock buffers from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s1200e/ClockBuffers.xml
+Loading package from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s1200e/fg320/Package.xml
+Loading io standards from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/IOStandards.xml
+INFO: [Device 21-19] Loading pkg sso from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s1200e/fg320/SSORules.xml
+Loading list of drcs for the architecture : C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/drc.xml
+INFO: [Timing 38-77] Reading timing library C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/spartan3e-4.lib.
+INFO: [Timing 38-34] Done reading timing library C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/spartan3e-4.lib.
+Parsing UCF File [C:/Projects/myVGA/vga640480.ucf]
+Finished Parsing UCF File [C:/Projects/myVGA/vga640480.ucf]
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Phase 0 | Netlist Checksum: d1dbb679
+open_rtl_design: Time (s): elapsed = 00:00:08 . Memory (MB): peak = 477.715 ; gain = 60.828
+update_compile_order -fileset sim_1
+startgroup
+set_property package_pin B6 [get_ports {b[2]}]
+endgroup
+startgroup
+set_property package_pin A6 [get_ports {b[1]}]
+endgroup
+startgroup
+set_property package_pin D5 [get_ports {b[0]}]
+endgroup
+startgroup
+set_property package_pin C5 [get_ports {g[2]}]
+endgroup
+startgroup
+set_property package_pin C4 [get_ports {g[1]}]
+endgroup
+startgroup
+set_property package_pin B4 [get_ports {g[0]}]
+endgroup
+startgroup
+set_property package_pin A4 [get_ports {r[2]}]
+endgroup
+startgroup
+set_property package_pin C3 [get_ports {r[1]}]
+endgroup
+startgroup
+set_property package_pin A7 [get_ports {r[0]}]
+endgroup
+set_property package_pin "" [get_ports [list  clk25]]
+startgroup
+set_property package_pin B9 [get_ports clk_0]
+endgroup
+startgroup
+set_property package_pin D6 [get_ports hs]
+endgroup
+startgroup
+set_property package_pin U10 [get_ports reset]
+endgroup
+startgroup
+set_property package_pin E6 [get_ports vs]
+endgroup
+save_constraints
+exit
+ERROR: [PlanAhead 12-106] *** Exception: ui.h.b: Found deleted key in HTclEventBroker. Verify if the classes listed here call cleanup()
+HTclEvent: SIGNAL_MODIFY   Classes: ui.views.aR 
+HTclEvent: SIGNAL_BUS_MODIFY   Classes: ui.views.aR 
+HTclEvent: DEBUG_PORT_CONFIG_CHANGE   Classes: ui.views.aR 
+HTclEvent: DEBUG_CORE_CONFIG_CHANGE   Classes: ui.views.aR 
+ (See C:/Projects/myVGA\planAhead_pid4632.debug)
+ERROR: [Common 17-39] 'stop_gui' failed due to earlier errors.
+INFO: [Common 17-206] Exiting PlanAhead at Wed Dec 02 00:43:14 2015...
+INFO: [Common 17-83] Releasing license: PlanAhead

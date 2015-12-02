@@ -1,0 +1,129 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7
+# Build 321239 by xbuild on Fri Sep 27 19:31:35 MDT 2013
+# Start of session at: Wed Dec 02 01:09:04 2015
+# Process ID: 3628
+# Log file: C:/Projects/myVGA/planAhead_run_2/planAhead.log
+# Journal file: C:/Projects/myVGA/planAhead_run_2/planAhead.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Device 21-36] Loading parts and site information from C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+source C:/Projects/myVGA/pa.fromHdl.tcl
+# create_project -name myVGA -dir "C:/Projects/myVGA/planAhead_run_2" -part xc3s1200efg320-4
+# set_param project.pinAheadLayout yes
+# set srcset [get_property srcset [current_run -impl]]
+# set_property target_constrs_file "VGAController.ucf" [current_fileset -constrset]
+Adding file 'C:/Projects/myVGA/VGAController.ucf' to fileset 'constrs_1'
+# set hdlfile [add_files [list {ipcore_dir/new_buffer_ram.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# add_files [list {ipcore_dir/new_buffer_ram.ngc}]
+# set hdlfile [add_files [list {ascii_define.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set hdlfile [add_files [list {VGA_640480.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set hdlfile [add_files [list {font_rom.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set hdlfile [add_files [list {buffer.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set hdlfile [add_files [list {VGAController.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set_property top VGAController $srcset
+# add_files [list {VGAController.ucf}] -fileset [get_property constrset [current_run]]
+# open_rtl_design -part xc3s1200efg320-4
+Using Verific elaboration
+Parsing VHDL file "C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/lib/synplify/synattr.vhd" into library synplify
+Parsing VHDL file "C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/lib/synplify/synattr.vhd" into library synplify
+Parsing VHDL file "C:/Projects/myVGA/ipcore_dir/new_buffer_ram.vhd" into library work
+Parsing VHDL file "C:/Projects/myVGA/ascii_define.vhd" into library work
+Parsing VHDL file "C:/Projects/myVGA/VGA_640480.vhd" into library work
+Parsing VHDL file "C:/Projects/myVGA/font_rom.vhd" into library work
+Parsing VHDL file "C:/Projects/myVGA/buffer.vhd" into library work
+Parsing VHDL file "C:/Projects/myVGA/VGAController.vhd" into library work
+Release 14.7 - ngc2edif P.20131013 (nt)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Release 14.7 - ngc2edif P.20131013 (nt)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design new_buffer_ram.ngc ...
+WARNING:NetListWriters:298 - No output is written to new_buffer_ram.xncf,
+   ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+  finished :Prep
+Writing EDIF netlist file new_buffer_ram.edif ...
+ngc2edif: Total memory usage is 62636 kilobytes
+
+Reading core file 'C:/Projects/myVGA/ipcore_dir/new_buffer_ram.ngc' for (cell view 'new_buffer_ram', library 'work', file 'new_buffer_ram.vhd')
+Parsing EDIF File [./.Xil/PlanAhead-3628-B423/ngc2edif/new_buffer_ram.edif]
+Finished Parsing EDIF File [./.Xil/PlanAhead-3628-B423/ngc2edif/new_buffer_ram.edif]
+INFO: [Designutils 20-910] Reading macro library C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn
+Parsing EDIF File [C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn]
+Finished Parsing EDIF File [C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn]
+Loading clock regions from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s1200e/ClockRegion.xml
+Loading clock buffers from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s1200e/ClockBuffers.xml
+Loading package from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s1200e/fg320/Package.xml
+Loading io standards from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/IOStandards.xml
+INFO: [Device 21-19] Loading pkg sso from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/xc3s1200e/fg320/SSORules.xml
+Loading list of drcs for the architecture : C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan3e/spartan3e/drc.xml
+INFO: [Timing 38-77] Reading timing library C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/spartan3e-4.lib.
+INFO: [Timing 38-34] Done reading timing library C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan3e/spartan3e/spartan3e-4.lib.
+Parsing UCF File [C:/Projects/myVGA/VGAController.ucf]
+Finished Parsing UCF File [C:/Projects/myVGA/VGAController.ucf]
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Phase 0 | Netlist Checksum: 7a23e532
+open_rtl_design: Time (s): elapsed = 00:00:10 . Memory (MB): peak = 487.566 ; gain = 65.672
+update_compile_order -fileset sim_1
+startgroup
+set_property package_pin B6 [get_ports {b[2]}]
+endgroup
+startgroup
+set_property package_pin A6 [get_ports {b[1]}]
+endgroup
+startgroup
+set_property package_pin D5 [get_ports {b[0]}]
+endgroup
+startgroup
+set_property package_pin C5 [get_ports {g[2]}]
+endgroup
+startgroup
+set_property package_pin C4 [get_ports {g[1]}]
+endgroup
+startgroup
+set_property package_pin B4 [get_ports {g[0]}]
+endgroup
+startgroup
+set_property package_pin A4 [get_ports {r[2]}]
+endgroup
+startgroup
+set_property package_pin C3 [get_ports {r[1]}]
+endgroup
+startgroup
+set_property package_pin A7 [get_ports {r[0]}]
+endgroup
+startgroup
+set_property package_pin B9 [get_ports clk]
+endgroup
+startgroup
+set_property package_pin D6 [get_ports hs]
+endgroup
+startgroup
+set_property package_pin U10 [get_ports rst]
+endgroup
+startgroup
+set_property package_pin E6 [get_ports vs]
+endgroup
+save_constraints
+exit

@@ -1,0 +1,6 @@
+vhdl work "C:\Projects\myVGA\ipcore_dir\new_buffer_ram.vhd"
+vhdl work "C:\Projects\myVGA\ascii_define.vhd"
+vhdl work "C:\Projects\myVGA\VGA_640480.vhd"
+vhdl work "C:\Projects\myVGA\font_rom.vhd"
+vhdl work "C:\Projects\myVGA\buffer.vhd"
+vhdl work "C:\Projects\myVGA\VGAController.vhd"
