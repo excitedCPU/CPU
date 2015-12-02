@@ -13,4 +13,4 @@ print str_to_bin('6766')
 with open('buffer_data.coe', 'w') as coe_file:
 	coe_file.write('memory_initialization_radix=2;\nmemory_initialization_vector=\n')
 	for looper in range(32):
-		coe_file.write(str_to_bin('0123456789ABCDEFGHIJKLMNOPQRSTUBWXWZ') + '0000,\n')
+		coe_file.write(str_to_bin(' ')*36 + '0000,\n')

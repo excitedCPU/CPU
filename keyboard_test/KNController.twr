@@ -1,9 +1,9 @@
 --------------------------------------------------------------------------------
-Release 14.7 Trace  (nt64)
+Release 14.7 Trace  (nt)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
--n 3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr
+C:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\trce.exe -intstyle ise -v 3 -s 4 -n
+3 -fastpaths -xml KNController.twx KNController.ncd -o KNController.twr
 KNController.pcf -ucf KNController.ucf
 
 Design file:              KNController.ncd
@@ -45,8 +45,8 @@ Setup/Hold to clock sys_clk
             |Max Setup to|Max Hold to |                  | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 ------------+------------+------------+------------------+--------+
-PS_clk      |    2.098(R)|   -0.442(R)|sys_clk_BUFGP     |   0.000|
-PS_data     |    0.205(R)|    1.106(R)|sys_clk_BUFGP     |   0.000|
+PS_clk      |    1.888(R)|   -0.228(R)|sys_clk_BUFGP     |   0.000|
+PS_data     |    1.849(R)|   -0.203(R)|sys_clk_BUFGP     |   0.000|
 ------------+------------+------------+------------------+--------+
 
 Clock sys_clk to Pad
@@ -54,14 +54,15 @@ Clock sys_clk to Pad
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-Be_Pushed<0>|   10.323(R)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<1>|   10.886(R)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<2>|    9.957(R)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<3>|   10.891(R)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<4>|   10.760(R)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<5>|   10.422(R)|sys_clk_BUFGP     |   0.000|
-Be_Pushed<6>|   10.782(R)|sys_clk_BUFGP     |   0.000|
-is_ready    |   12.991(R)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<0>|   10.230(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<1>|    9.957(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<2>|    9.956(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<3>|   10.695(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<4>|   11.368(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<5>|   10.297(F)|sys_clk_BUFGP     |   0.000|
+Be_Pushed<6>|   10.266(F)|sys_clk_BUFGP     |   0.000|
+is_ready    |   15.226(R)|sys_clk_BUFGP     |   0.000|
+            |   11.142(F)|sys_clk_BUFGP     |   0.000|
 ------------+------------+------------------+--------+
 
 Clock to Setup on destination clock sys_clk
@@ -69,18 +70,18 @@ Clock to Setup on destination clock sys_clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-sys_clk        |   11.736|    7.948|   10.679|   19.929|
+sys_clk        |   24.882|   11.566|    6.022|    2.337|
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Wed Dec 02 16:56:13 2015 
+Analysis completed Thu Dec 03 00:54:56 2015 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 197 MB
+Peak Memory Usage: 141 MB
 
 
 

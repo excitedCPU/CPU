@@ -1,5 +1,3 @@
-
-
 NET "PS_clk" LOC = U6;
 NET "PS_data" LOC = V6;
 NET "rst" LOC = U10;

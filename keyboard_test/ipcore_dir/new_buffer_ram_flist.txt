@@ -1,5 +1,4 @@
 # Output products list for <new_buffer_ram>
-_xmsgs\pn_parser.xmsgs
 new_buffer_ram.asy
 new_buffer_ram.gise
 new_buffer_ram.mif

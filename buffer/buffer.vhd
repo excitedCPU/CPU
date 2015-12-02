@@ -72,24 +72,28 @@ begin
 			-- write process
 			if isNewChar = '1' then
 				write_col <= write_col + 1;
-				if write_col >= MAX_COL then
+				if write_col >= MAX_COL OR input_ascii = ASCII_ENTER then
 					write_row <= write_row + 1;
 					write_col <= 0;
 				end if;
 				addra <= conv_std_logic_vector(write_row, 5);
 				dina((255 - write_col*7) downto (255 - write_col*7 - 6)) <= input_ascii;
 			end if;
-			-- read process
-			read_row <= conv_integer(char_addr(11 downto 7));
-			read_col <= conv_integer(char_addr(6 downto 0));
-			if read_col > MAX_COL then
-				not_exceed_max_col <= '0';
-				ascii_to_vga <= ASCII_SPACE(6 downto 0);
-			elsif read_col <= MAX_COL then
-				not_exceed_max_col <= '1';
-				addrb <= conv_std_logic_vector(read_row, 5);
-				ascii_to_vga <= doutb((255 - read_col*7) downto (255 - read_col*7 - 6));
-			end if;
+		end if;
+	end process;
+
+	ram_read_process: process(clk, char_addr)
+	begin
+		-- read process
+		read_row <= conv_integer(char_addr(11 downto 7));
+		read_col <= conv_integer(char_addr(6 downto 0));
+		if read_col > MAX_COL then
+			not_exceed_max_col <= '0';
+			ascii_to_vga <= ASCII_SPACE(6 downto 0);
+		elsif read_col <= MAX_COL then
+			not_exceed_max_col <= '1';
+			addrb <= conv_std_logic_vector(read_row, 5);
+			ascii_to_vga <= doutb((255 - read_col*7) downto (255 - read_col*7 - 6));
 		end if;
 	end process;
 
