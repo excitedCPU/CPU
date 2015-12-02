@@ -46,6 +46,8 @@ entity CPU_manager is
 	data_ready: in std_logic;
 	tbre: in std_logic;
 	tsre: in std_logic;
+
+	interrupt_sign: in std_logic;
 	
 	Ram2Data: inout std_logic_vector(15 downto 0);
 	ToRam2_addr: out std_logic_vector(17 downto 0);
@@ -54,11 +56,43 @@ entity CPU_manager is
 	Ram2WE: out std_logic;
 	instruction_out: out std_logic_vector(15 downto 0);
 	DIGITAL_H: out std_logic_vector(6 downto 0);
-	DIGITAL_L: out std_logic_vector(6 downto 0)
+	DIGITAL_L: out std_logic_vector(6 downto 0);
+
+	FlashData: inout std_logic_vector(15 downto 0);
+	FlashByte: out std_logic;
+	FlashVpen: out std_logic;
+	FlashCE: out std_logic;
+	FlashOE: out std_logic;
+	FlashWE: out std_logic;
+	FlashRP: out std_logic;
+	FlashAddr: out std_logic_vector(22 downto 0);
+	display: out std_logic_vector(15 downto 0)
 	);
 end CPU_manager;
 
 architecture Behavioral of CPU_manager is	
+	COMPONENT Flash_controler
+	PORT(
+		rst : IN std_logic;
+		clk : IN std_logic;    
+		FlashData : INOUT std_logic_vector(15 downto 0);      
+		FlashByte : OUT std_logic;
+		FlashVpen : OUT std_logic;
+		FlashCE : OUT std_logic;
+		FlashOE : OUT std_logic;
+		FlashWE : OUT std_logic;
+		FlashRP : OUT std_logic;
+		FlashAddr : OUT std_logic_vector(22 downto 0);
+		display : OUT std_logic_vector(15 downto 0);
+		flash_ready : OUT std_logic;
+		FlashRam2EN : OUT std_logic;
+		FlashRam2OE : OUT std_logic;
+		FlashRam2WE : OUT std_logic;
+		FlashRam2Addr : OUT std_logic_vector(15 downto 0);
+		FlashRam2Data : OUT std_logic_vector(15 downto 0)
+		);
+	END COMPONENT;
+
 	COMPONENT PC
 	PORT(
 		clk : IN std_logic;
@@ -357,9 +391,38 @@ architecture Behavioral of CPU_manager is
 		L: out std_logic_vector(6 downto 0)
 		);
 	END COMPONENT;
+	
+--	COMPONENT interrupt
+--	PORT(
+--		clk : IN std_logic;
+--		rst : IN std_logic;
+--		interrupt_sign : IN std_logic;
+--		ID_EX_IH : IN std_logic;
+--		EX_ME_Result : IN std_logic;
+--		ME_WB_Result : IN std_logic;
+--		EX_ME_regWrite : IN std_logic_vector(2 downto 0);
+--		ME_WB_regWrite : IN std_logic_vector(2 downto 0);
+--		PC: IN std_logic_vector(15 downto 0);
+--		IF_instruction : IN std_logic_vector(15 downto 0);
+--		ID_branchOrJump : IN std_logic_vector(2 downto 0);   
+--		debug: OUT std_logic_vector(15 downto 0);       
+--		return_PC: OUT std_logic_vector(15 downto 0);
+--		instruction_insert : OUT std_logic_vector(15 downto 0);
+--		ID_control : OUT std_logic
+--		);
+--	END COMPONENT;
 
-	signal clk: std_logic := '1';
-	signal clk2: std_logic := '1';
+	signal Flash_Ready: std_logic;
+	signal Flash_Ram2EN: std_logic;
+	signal Flash_Ram2OE: std_logic;
+	signal Flash_Ram2WE: std_logic;
+	signal Flash_ToRam2_Addr: std_logic_vector(15 downto 0);
+	signal Flash_Ram2Data: std_logic_vector(15 downto 0);
+	
+	signal ToIF_write_enable: std_logic;
+	signal ToIF_read_enable: std_logic;
+	signal ToIF_write_Data: std_logic_vector(15 downto 0);
+	signal ToIF_target_Addr: std_logic_vector(15 downto 0);
 
 	signal PC_PC: std_logic_vector(15 downto 0) := (others => '0');
 	
@@ -456,97 +519,140 @@ architecture Behavioral of CPU_manager is
 	signal ME_Ram2WriteEnable: std_logic := '0';
 	signal ME_Ram2Data: std_logic_vector(15 downto 0) := (others => '0');
 	signal ME_Ram2Addr: std_logic_vector(15 downto 0) := (others => '0');
+
+	--signal interrupt_instruction: std_logic_vector(15 downto 0);
+	--signal interrupt_ID_control: std_logic;
+	--signal interrupt_debug: std_logic_vector(15 downto 0);
+	--signal interrupt_PC: std_logic_vector(15 downto 0);
 	
 	signal out_register1: std_logic_vector(15 downto 0) := (others => '0');--debug
 	signal out_register2: std_logic_vector(15 downto 0) := (others => '0');--debug
 	
 	signal Ram2Enable: std_logic := '0';
 	signal keep_signal: std_logic := '0';
+
+	--signal interrupt_sign: std_logic := '0';
+	
+	signal clk: std_logic := '1';
+	signal clk2: std_logic := '1';
+	signal clk3: std_logic := '1';
+	signal clk4: std_logic := '1';
+	signal clk5: std_logic := '1';
+	signal clk6: std_logic := '1';
+	signal clk7: std_logic := '1';
+	signal clk8: std_logic := '1';
+	signal clk9: std_logic := '1';
+	signal clk10: std_logic := '1';
+	signal clk11: std_logic := '1';
 begin
 	ToRam1_addr(17 downto 16) <= "00";
 	ToRam2_addr(17 downto 16) <= "00";
 	Ram2Enable <= ME_Ram2ReadEnable or ME_Ram2WriteEnable;
 	keep_signal<= riskCheck_waitEnable or Ram2Enable;
-	--instruction_out <= IF_instruction;
-	--instruction_out(15 downto 14) <= byPass_Fsrc1;--debug
-	--instruction_out(13 downto 12) <= byPass_Fsrc2;--debug
-	--instruction_out(11 downto 10) <= byPass_Fbranch;
-	--instruction_out(9 downto 8) <= byPass_FmemData;
---	instruction_out(15 downto 14) <= byPass_FmemData;
---	instruction_out(13) <= ID_EX_WC; 
---	instruction_out(12) <= riskCheck_waitEnable;
---	instruction_out(11 downto 0) <= EX_wrireData(11 downto 0);
-	instruction_out <= EX_ALUResult;
---	instruction_out(15) <= ID_EX_WC;
---	instruction_out(14 downto 12) <= EX_ME_RegWrite;
---	instruction_out(11 downto 9) <= ME_WB_RegWrite;
---	instruction_out(8 downto 6) <= EX_ME_Rtarget;
---	instruction_out(5 downto 3) <= ME_WB_Rtarget;
---	instruction_out(2 downto 0) <= ID_EX_instruction_7_5;
---	instruction_out(15 downto 14) <= byPass_FmemData;
---	instruction_out(13 downto 11) <= ID_EX_instruction_7_5;
---	instruction_out(10 downto 8) <= EX_ME_Rtarget;
---	instruction_out(7 downto 5) <= ME_WB_Rtarget;
---	instruction_out(4 downto 2) <= ME_WB_RegWrite;
---	instruction_out(1) <= ID_EX_WC;
---	instruction_out(0) <= '0';
---	instruction_out(15) <= ID_EX_T_Enable;
---	instruction_out(14 downto 12) <= EX_ME_regWrite;
---	instruction_out(5 downto 0) <= EX_ME_Result(5 downto 0);
---	instruction_out(9) <= branchControl_PC_Choose;
---	instruction_out(8 downto 6) <= ID_EX_branchOrJump;
---	instruction_out(11 downto 10) <= byPass_Fbranch;
-	--instruction_out <= IF_instruction;
---	instruction_out(15) <= ME_Ram2WriteEnable;
---	instruction_out(14) <= ME_Ram2ReadEnable;
---	instruction_out(13) <= EX_ME_memRead;
---	instruction_out(12) <= EX_ME_memWrite;
---	--instruction_out(11) <= '1' when EX_ME_result(15) = '0' else
---	--								'0';
---	instruction_out(11) <= EX_ME_kill;
-----	instruction_out(9) <= Ram2Enable;
---	instruction_out(10) <= riskCheck_waitEnable;
---	instruction_out(9 downto 0) <= (others => '0');
---									
---	instruction_out(7 downto 0) <= EX_ME_result(15 downto 8);
-	--instruction_out(15) <= s
-	--instruction_out(15 downto 0) <= EX_ME_Result(15 downto 0);
-	--instruction_out(3 downto 2) <= byPass_Fsrc1;
-	--instruction_out(1 downto 0) <= byPass_Fsrc2;
-	--instruction_out(15 downto 13) <= EX_ME_Rtarget;
-	--instruction_out(12 downto 10) <= ID_EX_instruction_7_5;
-	--instruction_out(9 downto 7) <= ID_EX_ALUsrc2;
-	--instruction_out(6 downto 4) <= EX_ME_regWrite;
-	--instruction_out(3 downto 0) <= (others => '1');
-	--instruction_out(11 downto 8) <= (others => '0');
-	--instruction_out <= tmp2;
-	--instruction_out(7 downto 0) <= tmp2(7 downto 0);
-	--instruction_out <= tmp1;
-	--instruction_out(15 downto 12) <= ID_EX_ALUop;
-	--instruction_out(7 downto 0) <= ID_EX_imm_exp_result(7 downto 0);
-	--instruction_out(15 downto 0) <= IF_instruction;
-	--instruction_out(15 downto 13) <= ID_EX_ALUsrc1;
-	--instruction_out(12 downto 10) <= ID_EX_ALUsrc2;
-	--instruction_out(9 downto 8) <= "00";
-	--instruction_out(7 downto 0) <= ID_EX_imm_exp_result(7 downto 0);
-	--instruction_out(9) <= branchControl_PC_Choose;
-	--instruction_out(8) <= branchControl_kill;
-	--instruction_out <= ID_imm_exp_result;
+	
+	ToIF_write_enable <= ME_Ram2WriteEnable when Flash_Ready = '1' else Flash_Ram2WE;
+	ToIF_read_enable <= ME_Ram2ReadEnable and Flash_Ready;
+	ToIF_write_Data <= ME_Ram2Data when Flash_Ready = '1' else Flash_Ram2Data;
+	ToIF_target_Addr <= ME_Ram2Addr when Flash_Ready = '1' else Flash_ToRam2_Addr;
 
-	process(clk1)
-	begin
-		if (falling_edge(clk1)) then
-			clk2 <= not clk2;
-		end if;
-	end process;
---
---	process(clk2) 
+--	instruction_out <= IF_instruction;
+	instruction_out <= EX_ALUResult when Flash_Ready = '1' else Flash_Ram2Data;
+--	instruction_out(15) <= clk10;
+--	instruction_out(14) <= Flash_Ram2WE;
+--	instruction_out(13 downto 0) <= (others => '0');
+
+
+	clk <= clk1 or (not Flash_Ready);
+	--clk10 <= clk10;
+	--clk11 <= clk1 when Flash_Ready = '1' else clk10;
+	clk10 <= clk1;
+	clk11 <= clk1;
+	
+--	process(clk1)
 --	begin
---		if (falling_edge(clk2)) then
---			clk <= not clk;
+--		if (falling_edge(clk1)) then
+--			clk2 <= not clk2;
 --		end if;
 --	end process;
-	clk <= clk2;
+--
+--	process(clk2)
+--	begin
+--		if (falling_edge(clk2)) then
+--			clk3 <= not clk3;
+--		end if;
+--	end process;
+--	
+--	process(clk3)
+--	begin
+--		if (falling_edge(clk3)) then
+--			clk4 <= not clk4;
+--		end if;
+--	end process;
+--	
+--	process(clk4)
+--	begin
+--		if (falling_edge(clk4)) then
+--			clk5 <= not clk5;
+--		end if;
+--	end process;
+--	
+--	process(clk5)
+--	begin
+--		if (falling_edge(clk5)) then
+--			clk6 <= not clk6;
+--		end if;
+--	end process;
+--	
+--	process(clk6)
+--	begin
+--		if (falling_edge(clk6)) then
+--			clk7 <= not clk7;
+--		end if;
+--	end process;
+--	
+--	process(clk7)
+--	begin
+--		if (falling_edge(clk7)) then
+--			clk8 <= not clk8;
+--		end if;
+--	end process;
+--	
+--	process(clk8)
+--	begin
+--		if (falling_edge(clk8)) then
+--			clk9 <= not clk9;
+--		end if;
+--	end process;
+--	
+--	process(clk9)
+--	begin
+--		if (falling_edge(clk9)) then
+--			clk10 <= not clk10;
+--		end if;
+--	end process;
+
+
+	
+
+	Inst_Flash_controler: Flash_controler PORT MAP(
+		rst => rst,
+		clk => clk10,
+		FlashByte => FlashByte,
+		FlashVpen => FlashVpen,
+		FlashCE => FlashCE,
+		FlashOE => FlashOE,
+		FlashWE => FlashWE,
+		FlashRP => FlashRP,
+		FlashAddr => FlashAddr,
+		FlashData => FlashData,
+		display => display,
+		flash_ready => Flash_Ready,
+		FlashRam2EN => Flash_Ram2EN,
+		FlashRam2OE => Flash_Ram2OE,
+		FlashRam2WE => Flash_Ram2WE,
+		FlashRam2Addr => Flash_ToRam2_Addr,
+		FlashRam2Data => Flash_Ram2Data
+	);
 
 	Inst_PC: PC PORT MAP(
 		clk => clk,
@@ -557,15 +663,15 @@ begin
 	);
 
 	Inst_IF_manager: IF_manager PORT MAP(
-		clk => clk,
+		clk => clk11,
 		rst => rst,
 		old_pc => PC_PC,
 		new_pc => IF_PC,
 		Instruction => IF_instruction,
-		read_enable => ME_Ram2ReadEnable,
-		write_enable => ME_Ram2WriteEnable,
-		write_Data => ME_Ram2Data,
-		target_Addr => ME_Ram2Addr,
+		read_enable => ToIF_read_enable,--ME_Ram2ReadEnable,
+		write_enable => ToIF_write_enable,--ME_Ram2WriteEnable,
+		write_Data => ToIF_write_Data,--ME_Ram2Data,
+		target_Addr => ToIF_target_Addr,--ME_Ram2Addr,
 		RAddr => PC_PC,
 		Ram2Data => Ram2Data,
 		ToRam2_addr => ToRam2_addr(15 downto 0),
@@ -585,7 +691,7 @@ begin
 	);
 
 	Inst_ID_manager: ID_manager PORT MAP(
-		clk => clk,
+		clk => clk2,
 		rst => rst,
 		instruction => IF_ID_instruction,
 		from_PC => IF_ID_PC,
@@ -817,6 +923,32 @@ begin
 		H => DIGITAL_H,
 		L => DIGITAL_L
 	);
+	
+--	Inst_interrupt: interrupt PORT MAP(
+--		clk => clk,
+--		rst => rst,
+--		interrupt_sign => interrupt_sign,
+--		ID_EX_IH => ID_EX_IH(15),
+--		EX_ME_Result => EX_ME_result(15),
+--		ME_WB_Result => ME_WB_Result(15),
+--		EX_ME_regWrite => EX_ME_regWrite,
+--		ME_WB_regWrite => ME_WB_regWrite,
+--		PC => mux_PC_PC,
+--		instruction_insert => interrupt_instruction,
+--		ID_control => interrupt_ID_control,
+--		debug => interrupt_debug, 
+--		return_PC => interrupt_PC,
+--		IF_instruction => IF_instruction,
+--		ID_branchOrJump => ID_branchOrJump
+--	);
+--
+--	instruction_out(15) <= interrupt_ID_control;
+--	--instruction_out(14 downto 12) <= EX_ME_regWrite;
+--	--instruction_out(11 downto 9) <= ME_WB_regWrite;
+--	--instruction_out(8) <= EX_ME_result(15);
+--	--instruction_out(7) <= ME_WB_Result(15);
+--	--instruction_out(6) <= ID_EX_IH(15);
+--	instruction_out(14 downto 0) <= interrupt_debug(15 downto 1);
 
 end Behavioral;
 
